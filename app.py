@@ -1,17 +1,18 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import mysql.connector
+import os
 
 app = Flask(__name__)
 CORS(app)
 
-
 # MySQL Connection
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Pritam@123",
-    database="portfolio_db"
+    host=os.environ.get("MYSQL_HOST"),
+    user=os.environ.get("MYSQL_USER"),
+    password=os.environ.get("MYSQL_PASSWORD"),
+    database=os.environ.get("MYSQL_DATABASE"),
+    port=int(os.environ.get("MYSQL_PORT"))
 )
 
 cursor = db.cursor()
@@ -37,7 +38,6 @@ def contact():
     print("Email:", email)
     print("Message:", message)
 
-
     # Insert data into MySQL
     query = """
     INSERT INTO contacts (name, email, message)
@@ -49,10 +49,9 @@ def contact():
     cursor.execute(query, values)
     db.commit()
 
-
     return jsonify({
         "message": "Data Saved Successfully"
-    })  
+    })
 
 
 if __name__ == "__main__":
