@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_file
 from flask_cors import CORS
 import mysql.connector
 import os
@@ -18,15 +18,15 @@ db = mysql.connector.connect(
 cursor = db.cursor()
 
 
+# Open Website
 @app.route("/")
 def home():
-    return "Backend Connected Successfully!"
+    return send_file("index.html")
 
 
+# Contact Form API
 @app.route("/contact", methods=["POST"])
 def contact():
-
-    print("Contact route reached!")
 
     data = request.json
 
@@ -34,19 +34,12 @@ def contact():
     email = data["email"]
     message = data["message"]
 
-    print("Name:", name)
-    print("Email:", email)
-    print("Message:", message)
-
-    # Insert data into MySQL
     query = """
     INSERT INTO contacts (name, email, message)
     VALUES (%s, %s, %s)
     """
 
-    values = (name, email, message)
-
-    cursor.execute(query, values)
+    cursor.execute(query, (name, email, message))
     db.commit()
 
     return jsonify({
