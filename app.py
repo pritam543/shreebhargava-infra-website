@@ -17,6 +17,22 @@ db = mysql.connector.connect(
 
 cursor = db.cursor()
 
+# Auto-Create 'contacts' table if it doesn't exist
+try:
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS contacts (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        message TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    );
+    """)
+    db.commit()
+    print("Table 'contacts' checked/created successfully!")
+except Exception as e:
+    print(f"Error creating table: {e}")
+
 
 # Open Website
 @app.route("/")
@@ -27,12 +43,11 @@ def home():
 # Contact Form API
 @app.route("/contact", methods=["POST"])
 def contact():
-
     data = request.json
 
-    name = data["name"]
-    email = data["email"]
-    message = data["message"]
+    name = data.get("name")
+    email = data.get("email")
+    message = data.get("message")
 
     query = """
     INSERT INTO contacts (name, email, message)
