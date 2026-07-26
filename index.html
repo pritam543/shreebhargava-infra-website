@@ -589,33 +589,152 @@
             color: var(--text-muted);
         }
 
+        /* ================= CONTACT FORM UPDATED ================= */
+
         .contact-form {
             background: var(--secondary-dark);
             padding: 40px;
-            border: 1px solid rgba(197, 168, 128, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(197, 168, 128, 0.2);
         }
 
-        .form-group {
-            margin-bottom: 20px;
+
+        .contact-form h3 {
+            color: var(--gold);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
         }
 
-        .form-group input,
-        .form-group textarea {
+
+        /* Form Layout */
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+
+        /* Input Fields */
+
+        #contactForm input,
+        #contactForm textarea {
+
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+
+            padding: 15px 18px;
+
+            background: rgba(255, 255, 255, 0.06);
+
+            border: 1px solid rgba(255, 255, 255, 0.15);
+
+            border-radius: 6px;
+
             color: var(--text-light);
+
             font-family: inherit;
-            font-size: 0.9rem;
+
+            font-size: 0.95rem;
+
             transition: var(--transition);
+
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+
+        /* Placeholder Color */
+
+        #contactForm input::placeholder,
+        #contactForm textarea::placeholder {
+
+            color: var(--text-muted);
+
+        }
+
+
+        /* Focus Effect */
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+
             outline: none;
+
             border-color: var(--gold);
-            background: rgba(255, 255, 255, 0.08);
+
+            background: rgba(255, 255, 255, 0.1);
+
+        }
+
+
+        /* Message Box */
+
+        #contactForm textarea {
+
+            min-height: 150px;
+
+            resize: vertical;
+
+        }
+
+
+        /* Submit Button */
+
+        #contactForm button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            background: var(--gold);
+
+            color: var(--primary-dark);
+
+            border: 2px solid var(--gold);
+
+            border-radius: 6px;
+
+            font-size: 0.95rem;
+
+            font-weight: 600;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+
+            cursor: pointer;
+
+            transition: var(--transition);
+
+        }
+
+
+        #contactForm button:hover {
+
+            background: transparent;
+
+            color: var(--gold);
+
+        }
+
+
+        /* Mobile Contact Form */
+
+        @media(max-width:768px) {
+
+            .contact-form {
+
+                padding: 25px;
+
+            }
+
+            #contactForm input,
+            #contactForm textarea {
+
+                padding: 13px 15px;
+
+            }
+
         }
 
         /* --- Footer --- */
@@ -1071,11 +1190,20 @@
                     a Message</h3>
                 <form id="contactForm">
 
-                    <input id="name" type="text" placeholder="Your Name" required>
+                    <input id="name" type="text" placeholder="Full Name" required>
 
-                    <input id="email" type="email" placeholder="Your Email" required>
+
+                    <input id="email" type="email" placeholder="Email Address" required>
+
+
+                    <input id="phone" type="tel" placeholder="Phone Number" required>
+
+
+                    <input id="subject" type="text" placeholder="Subject" required>
+
 
                     <textarea id="message" placeholder="Your Message" required></textarea>
+
 
                     <button type="submit">
                         Send Message
@@ -1094,48 +1222,111 @@
     </footer>
 
     <script>
+
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const links = document.querySelectorAll('.nav-links a');
+
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
 
+
         links.forEach(link => {
+
             link.addEventListener('click', () => {
+
                 navLinks.classList.remove('active');
+
                 links.forEach(l => l.classList.remove('active'));
+
                 link.classList.add('active');
+
             });
+
         });
 
+
+
+        // Contact Form Submit
+
         document.getElementById("contactForm")
-.addEventListener("submit", async function(e){
+            .addEventListener("submit", async function (e) {
 
-    e.preventDefault();
 
-    const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    };
+                e.preventDefault();
 
-    const response = await fetch(
-        "http://127.0.0.1:5000/contact",
-        {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        }
-    );
 
-    const result = await response.json();
+                const data = {
 
-    alert(result.message);
-});
+                    name: document.getElementById("name").value,
+
+                    email: document.getElementById("email").value,
+
+                    phone: document.getElementById("phone").value,
+
+                    subject: document.getElementById("subject").value,
+
+                    message: document.getElementById("message").value
+
+                };
+
+
+
+                try {
+
+
+                    const response = await fetch("/contact", {
+
+                        method: "POST",
+
+                        headers: {
+
+                            "Content-Type": "application/json"
+
+                        },
+
+                        body: JSON.stringify(data)
+
+                    });
+
+
+
+                    const result = await response.json();
+
+
+
+                    if (response.ok) {
+
+                        alert("Message sent successfully!");
+
+                        document.getElementById("contactForm").reset();
+
+                    }
+
+                    else {
+
+                        alert(result.message || "Something went wrong!");
+
+                    }
+
+
+
+                }
+
+                catch (error) {
+
+
+                    console.error("Error:", error);
+
+                    alert("Server error. Please try again later.");
+
+                }
+
+
+            });
+
 
     </script>
 </body>
