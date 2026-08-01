@@ -159,18 +159,56 @@
             font-size: 1.5rem;
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section & Background Slideshow --- */
         .hero {
-            background: linear-gradient(rgba(17, 22, 30, 0.75), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+            position: relative;
             height: 90vh;
             display: flex;
             align-items: center;
             color: var(--text-light);
             text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(17, 22, 30, 0.75), rgba(17, 22, 30, 0.85));
+        }
+
+        .hero-slide.active {
+            opacity: 1;
         }
 
         .hero-content {
-            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            max-width: 850px;
             margin: 0 auto;
         }
 
@@ -191,10 +229,11 @@
         }
 
         .hero-content p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
             margin-bottom: 40px;
             font-weight: 300;
+            letter-spacing: 2px;
         }
 
         .btn {
@@ -434,7 +473,7 @@
             color: #555;
         }
 
-        /* --- Our Process (UPGRADED STYLING) --- */
+        /* --- Our Process --- */
         .process {
             background-color: var(--bg-light);
         }
@@ -508,7 +547,6 @@
             letter-spacing: 0.5px;
         }
 
-        /* Expandable Description Drawer */
         .process-details-drawer {
             display: none;
             background: var(--white);
@@ -531,7 +569,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -671,7 +708,6 @@
             color: var(--text-muted);
         }
 
-        /* Contact Form */
         .contact-form {
             background: var(--secondary-dark);
             padding: 40px;
@@ -743,7 +779,6 @@
             color: var(--gold);
         }
 
-        /* --- Footer --- */
         footer {
             background-color: #0b0f14;
             color: var(--text-muted);
@@ -754,9 +789,7 @@
             letter-spacing: 1px;
         }
 
-        /* --- Responsive Media Queries --- */
         @media (max-width: 992px) {
-
             .about-grid,
             .wcu-grid,
             .contact-grid {
@@ -833,8 +866,7 @@
             <div class="logo">
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development
-                    <br>
-                    Creative Indian Architect
+                    <br>Creative Indian Architect
                 </span>
             </div>
             <ul class="nav-links" id="navLinks">
@@ -842,6 +874,7 @@
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
+                 <li><a href="#Rewards">Rewards</a></li>
                 <li><a href="#process">Our Process</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -851,15 +884,23 @@
         </div>
     </header>
 
+    <!-- --- Updated Hero Section with Background Slideshow --- -->
     <section id="home" class="hero">
+        <div class="hero-bg-slider">
+            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80');"></div>
+        </div>
+
         <div class="container hero-content">
             <h2>Creative Indian Architect</h2>
             <h1>Designing Spaces That Inspire</h1>
-            <p>  ARCHITECTURE | INTERIOR | LANDSCAPE | TURNKEY PROJECTS  </p>
+            <p>ARCHITECTURE | INTERIOR | LANDSCAPE | TURNKEY PROJECTS</p>
             <a href="#contact" class="btn">Get In Touch</a>
         </div>
     </section>
 
+    <!-- --- Updated About Section --- -->
     <section id="about" class="section-padding container">
         <div class="about-grid">
             <div class="about-text">
@@ -1089,13 +1130,12 @@
         </div>
     </section>
 
-    <!-- ================= OUR PROCESS (UPDATED) ================= -->
     <section id="process" class="section-padding process">
         <div class="container">
             <div class="section-header">
                 <h2>Our Process</h2>
             </div>
-
+            
             <div class="process-timeline">
                 <div class="process-step" onclick="showProcessDetails(1, this)">
                     <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
@@ -1147,7 +1187,6 @@
                 </div>
             </div>
 
-            <!-- Expandable Detailed Box -->
             <div id="processDrawer" class="process-details-drawer">
                 <div class="drawer-header">
                     <div id="drawerTitle" class="drawer-title">Step Details</div>
@@ -1205,9 +1244,8 @@
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <div>architectbhargava@gmail.com
-                            <br>
-                            shreebhargava@gmail.com
+                        <div>shreebhargavainfra@gmail.com
+                            <br>shreebhargava@gmail.com
                         </div>
                     </li>
                 </ul>
@@ -1222,25 +1260,13 @@
                         <span>Google Review</span>
                     </div>
                     <div class="qr-item">
-                        <a href="https://www.instagram.com/architectbhargava/" target="_blank"
-                            rel="noopener noreferrer">
-                            <div class="qr-placeholder">
-                                <i class="fa-brands fa-instagram"></i>
-                            </div>
-
-                            <h4>Instagram</h4>
-
-                        </a>
+                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div>
+                        <span>Instagram</span>
                     </div>
-                    <a href="https://shreebhargava-infra-website.onrender.com" target="_blank"
-                        rel="noopener noreferrer">
-                        <div class="qr-item">
-                            <div class="qr-placeholder">
-                                <i class="fa-solid fa-globe"></i>
-                            </div>
-                            <h4>Website</h4>
-                        </div>
-                    </a>
+                    <div class="qr-item">
+                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div>
+                        <span>Website</span>
+                    </div>
                 </div>
             </div>
 
@@ -1261,12 +1287,12 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That
-                Inspire</p>
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That Inspire</p>
         </div>
     </footer>
 
     <script>
+        // --- Navigation Toggle ---
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const links = document.querySelectorAll('.nav-links a');
@@ -1279,11 +1305,23 @@
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
                 links.forEach(l => l.classList.remove('active'));
-                link.addEventListener('click', () => link.classList.add('active'));
+                link.classList.add('active');
             });
         });
 
-        /* --- Process Section Interactive Script --- */
+        // --- Hero Background Slideshow JS ---
+        const slides = document.querySelectorAll('.hero-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 4000); // Changes image every 4 seconds
+
+        // --- Process Section Interactive Script ---
         const processDescriptions = {
             1: {
                 title: "1. Consultation & Requirement Analysis",
@@ -1332,7 +1370,7 @@
             document.querySelectorAll('.process-step').forEach(s => s.classList.remove('active'));
         }
 
-        // Contact Form Submit
+        // --- Contact Form Submit ---
         document.getElementById("contactForm").addEventListener("submit", async function (e) {
             e.preventDefault();
 
