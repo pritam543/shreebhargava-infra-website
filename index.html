@@ -16,8 +16,10 @@
         :root {
             --primary-dark: #11161e;
             --secondary-dark: #1a212d;
-            --gold: #c5a880;
-            --gold-hover: #b3946c;
+            --gold: #ff6600;
+            /* Primary Orange Color */
+            --gold-hover: #e65c00;
+            /* Hover Dark Orange */
             --text-light: #ffffff;
             --text-muted: #a0aab5;
             --text-dark: #333333;
@@ -106,7 +108,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
         }
 
         .navbar {
@@ -240,7 +242,7 @@
             display: inline-block;
             padding: 14px 35px;
             background-color: var(--gold);
-            color: var(--primary-dark);
+            color: #ffffff;
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 1px;
@@ -687,7 +689,10 @@
         .qr-item {
             background: rgba(255, 255, 255, 0.05);
             padding: 15px 10px;
-            border: 1px solid rgba(197, 168, 128, 0.2);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .qr-placeholder {
@@ -713,7 +718,7 @@
             background: var(--secondary-dark);
             padding: 40px;
             border-radius: 10px;
-            border: 1px solid rgba(197, 168, 128, 0.2);
+            border: 1px solid rgba(255, 102, 0, 0.2);
         }
 
         .contact-form h3 {
@@ -764,7 +769,7 @@
             width: 100%;
             padding: 15px;
             background: var(--gold);
-            color: var(--primary-dark);
+            color: #ffffff;
             border: 2px solid var(--gold);
             border-radius: 6px;
             font-size: 0.95rem;
@@ -827,7 +832,7 @@
                 width: 100%;
                 background-color: var(--primary-dark);
                 padding: 20px;
-                border-bottom: 1px solid rgba(197, 168, 128, 0.2);
+                border-bottom: 1px solid rgba(255, 102, 0, 0.2);
                 gap: 15px;
                 text-align: center;
             }
