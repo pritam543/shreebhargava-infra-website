@@ -569,6 +569,7 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -790,6 +791,7 @@
         }
 
         @media (max-width: 992px) {
+
             .about-grid,
             .wcu-grid,
             .contact-grid {
@@ -874,7 +876,7 @@
                 <li><a href="#about">About Us</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
-                 <li><a href="#Rewards">Rewards</a></li>
+                <li><a href="#Rewards">Rewards</a></li>
                 <li><a href="#process">Our Process</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -887,9 +889,15 @@
     <!-- --- Updated Hero Section with Background Slideshow --- -->
     <section id="home" class="hero">
         <div class="hero-bg-slider">
-            <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80');"></div>
-            <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80');"></div>
+            <div class="hero-slide active"
+                style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1920&q=80');">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80');">
+            </div>
         </div>
 
         <div class="container hero-content">
@@ -1135,7 +1143,7 @@
             <div class="section-header">
                 <h2>Our Process</h2>
             </div>
-            
+
             <div class="process-timeline">
                 <div class="process-step" onclick="showProcessDetails(1, this)">
                     <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
@@ -1259,14 +1267,16 @@
                         <div class="qr-placeholder"><i class="fa-solid fa-g"></i></div>
                         <span>Google Review</span>
                     </div>
-                    <div class="qr-item">
+
+                    <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="qr-item">
                         <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div>
                         <span>Instagram</span>
-                    </div>
-                    <div class="qr-item">
+                    </a>
+
+                    <a href="https://shreebhargava-infra-website.onrender.com" target="_blank" class="qr-item">
                         <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div>
                         <span>Website</span>
-                    </div>
+                    </a>
                 </div>
             </div>
 
@@ -1287,7 +1297,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That Inspire</p>
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That
+                Inspire</p>
         </div>
     </footer>
 
