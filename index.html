@@ -71,7 +71,7 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
 
         .section-header h2 {
@@ -254,7 +254,6 @@
             color: var(--gold);
         }
 
-        /* --- Hero Social Icons Styling --- */
         .hero-social-icons {
             display: flex;
             justify-content: center;
@@ -431,61 +430,106 @@
             color: var(--text-muted);
         }
 
-        /* --- Featured Projects --- */
+        /* --- Featured Projects Filter Buttons --- */
+        .project-filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            color: var(--primary-dark);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: #ffffff;
+            border-color: var(--gold);
+            box-shadow: 0 4px 15px rgba(255, 102, 0, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* --- Projects Grid & Cards --- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
+            gap: 35px;
         }
 
         .project-card {
             background: var(--white);
             border: 1px solid #eee;
+            border-radius: 8px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            border-color: rgba(255, 102, 0, 0.4);
         }
 
         .project-img {
             position: relative;
             overflow: hidden;
-            height: 300px;
+            height: 280px;
         }
 
         .project-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: var(--transition);
+            transition: transform 0.5s ease;
         }
 
         .project-card:hover .project-img img {
-            transform: scale(1.05);
+            transform: scale(1.08);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
         }
 
         .project-info {
-            padding: 30px;
-        }
-
-        .project-meta {
+            padding: 25px 30px;
+            flex-grow: 1;
             display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-            font-size: 0.85rem;
-            color: #666;
-        }
-
-        .project-meta span strong {
-            color: var(--primary-dark);
+            flex-direction: column;
         }
 
         .project-info h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             text-transform: uppercase;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
             color: var(--primary-dark);
+            font-weight: 700;
         }
 
         .project-location {
@@ -494,12 +538,36 @@
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 12px 0;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+            color: #666;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .project-meta span strong {
+            color: var(--primary-dark);
         }
 
         .project-info p {
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: #555;
+            line-height: 1.6;
+        }
+
+        /* Dynamic Filtering Hide class */
+        .project-card.hide {
+            display: none;
         }
 
         /* --- Our Process --- */
@@ -594,15 +662,8 @@
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .drawer-header {
@@ -823,20 +884,16 @@
         }
 
         .orange-text {
-            color: #ff6600; /* Vibrant Orange Color */
+            color: #ff6600;
         }
 
         @media (max-width: 992px) {
-
-            .about-grid,
-            .wcu-grid,
-            .contact-grid {
+            .about-grid, .wcu-grid, .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
-            .projects-grid,
-            .testimonials-grid {
+            .projects-grid, .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -886,6 +943,11 @@
 
             .contact-form {
                 padding: 25px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 0.75rem;
             }
         }
 
@@ -942,7 +1004,6 @@
             <p>ARCHITECTURE | INTERIOR | LANDSCAPE | TURNKEY PROJECTS</p>
             <a href="#contact" class="btn">Get In Touch</a>
             
-            <!-- Direct Contact Icons Right Below Get In Touch Button -->
             <div class="hero-social-icons">
                 <a href="#" target="_blank" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                 <a href="https://www.instagram.com/architectbhargava/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
@@ -1095,92 +1156,182 @@
         </div>
     </section>
 
+    <!-- --- Featured Projects Section with Interactive Category Buttons --- -->
     <section id="projects" class="section-padding">
         <div class="container">
             <div class="section-header">
                 <h2>Featured Projects</h2>
             </div>
 
-            <div class="projects-grid">
-                <div class="project-card">
+            <!-- Category Filter Buttons -->
+            <div class="project-filter-buttons">
+                <button class="filter-btn active" onclick="filterProjects('all', this)">All Projects</button>
+                <button class="filter-btn" onclick="filterProjects('architecture', this)">Architecture</button>
+                <button class="filter-btn" onclick="filterProjects('interior', this)">Interior</button>
+                <button class="filter-btn" onclick="filterProjects('landscape', this)">Landscape</button>
+                <button class="filter-btn" onclick="filterProjects('turnkey', this)">Turnkey Projects</button>
+                <button class="filter-btn" onclick="filterProjects('government', this)">Government Project</button>
+            </div>
+
+            <div class="projects-grid" id="projectsContainer">
+                
+                <!-- Project Card 1 (Architecture & Turnkey) -->
+                <div class="project-card" data-category="architecture turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
                             alt="Modern Luxury Residence">
+                        <span class="project-badge">Architecture / Turnkey</span>
                     </div>
                     <div class="project-info">
                         <h3>Modern Luxury Residence</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
-                        </div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
                         <div class="project-meta">
-                            <span><strong>Area:</strong> 4200 sq.ft.</span>
+                            <span><strong>Area:</strong> 4,200 sq.ft.</span>
                             <span><strong>Type:</strong> Residential</span>
-                            <span><strong>Scope:</strong> Architecture, Interior & Turnkey</span>
+                            <span><strong>Scope:</strong> Complete Design & Turnkey</span>
                         </div>
-                        <p>A perfect blend of modern architecture and warm interiors, this residence is designed to
-                            offer luxury, comfort, and functionality for contemporary living.</p>
+                        <p>A perfect blend of modern architecture and warm interiors, this residence is designed to offer luxury, natural lighting, and seamless ergonomics.</p>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <!-- Project Card 2 (Architecture & Landscape) -->
+                <div class="project-card" data-category="architecture landscape">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
                             alt="Contemporary Villa">
+                        <span class="project-badge">Architecture / Landscape</span>
                     </div>
                     <div class="project-info">
                         <h3>Contemporary Villa</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
-                        </div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
                         <div class="project-meta">
-                            <span><strong>Area:</strong> 3500 sq.ft.</span>
-                            <span><strong>Type:</strong> Residential</span>
-                            <span><strong>Scope:</strong> Architecture, Interior & Landscape</span>
+                            <span><strong>Area:</strong> 3,500 sq.ft.</span>
+                            <span><strong>Type:</strong> Residential Villa</span>
+                            <span><strong>Scope:</strong> Elevation & Landscape</span>
                         </div>
-                        <p>A contemporary villa with clean lines, open spaces, and lush green landscaping, creating a
-                            perfect balance between nature and modern living.</p>
+                        <p>A contemporary villa with clean structural lines, open courtyard planning, and lush green surrounding landscapes.</p>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <!-- Project Card 3 (Interior) -->
+                <div class="project-card" data-category="interior">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
                             alt="Premium Office Interior">
+                        <span class="project-badge">Interior Design</span>
                     </div>
                     <div class="project-info">
-                        <h3>Premium Office Interior</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
-                        </div>
+                        <h3>Premium Corporate Office</h3>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
                         <div class="project-meta">
-                            <span><strong>Area:</strong> 2800 sq.ft.</span>
-                            <span><strong>Type:</strong> Commercial</span>
-                            <span><strong>Scope:</strong> Interior Design & Execution</span>
+                            <span><strong>Area:</strong> 2,800 sq.ft.</span>
+                            <span><strong>Type:</strong> Commercial Workspace</span>
+                            <span><strong>Scope:</strong> Interior Execution</span>
                         </div>
-                        <p>A modern workspace designed to enhance productivity and creativity with a perfect combination
-                            of aesthetics, ergonomics, and functionality.</p>
+                        <p>A high-end corporate workplace designed to maximize employee productivity with modern acoustic lighting and luxurious seating layouts.</p>
                     </div>
                 </div>
 
-                <div class="project-card">
+                <!-- Project Card 4 (Interior & Turnkey) -->
+                <div class="project-card" data-category="interior turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
                             alt="Commercial Showroom">
+                        <span class="project-badge">Interior / Turnkey</span>
                     </div>
                     <div class="project-info">
-                        <h3>Commercial Showroom</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
-                        </div>
+                        <h3>Commercial Luxury Showroom</h3>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Bhopal, Madhya Pradesh</div>
                         <div class="project-meta">
-                            <span><strong>Area:</strong> 1800 sq.ft.</span>
-                            <span><strong>Type:</strong> Commercial</span>
-                            <span><strong>Scope:</strong> Architecture, Interior & Execution</span>
+                            <span><strong>Area:</strong> 1,800 sq.ft.</span>
+                            <span><strong>Type:</strong> Commercial Retail</span>
+                            <span><strong>Scope:</strong> Turnkey Fitouts</span>
                         </div>
-                        <p>A premium showroom designed to create a lasting impression with elegant interiors, optimal
-                            lighting, and smart space planning.</p>
+                        <p>A premium retail showroom designed to create an immersive customer experience with architectural accent lighting and smart space planning.</p>
                     </div>
                 </div>
+
+                <!-- Project Card 5 (Landscape) -->
+                <div class="project-card" data-category="landscape">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
+                            alt="Eco Park & Landscape">
+                        <span class="project-badge">Landscape</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Urban Eco Courtyard & Park</h3>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Khargone, Madhya Pradesh</div>
+                        <div class="project-meta">
+                            <span><strong>Area:</strong> 12,000 sq.ft.</span>
+                            <span><strong>Type:</strong> Outdoor Landscape</span>
+                            <span><strong>Scope:</strong> Master Green Planning</span>
+                        </div>
+                        <p>Sustainable landscape planning featuring native plants, water fountains, ambient lawn seating, and pedestrian pathways.</p>
+                    </div>
+                </div>
+
+                <!-- Project Card 6 (Government Project) -->
+                <div class="project-card" data-category="government architecture">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80"
+                            alt="Government Complex">
+                        <span class="project-badge">Government Project</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Civic Infrastructure Complex</h3>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-meta">
+                            <span><strong>Area:</strong> 25,000 sq.ft.</span>
+                            <span><strong>Type:</strong> Public Infrastructure</span>
+                            <span><strong>Scope:</strong> Architectural Planning</span>
+                        </div>
+                        <p>Government civic development project planned with high structural durability, public accessibility features, and Vastu compliance.</p>
+                    </div>
+                </div>
+
+                <!-- Project Card 7 (Government Project & Turnkey) -->
+                <div class="project-card" data-category="government turnkey">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80"
+                            alt="Government Administrative Office">
+                        <span class="project-badge">Government Project</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Regional Administrative Center</h3>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Raipur, Chhattisgarh</div>
+                        <div class="project-meta">
+                            <span><strong>Area:</strong> 18,500 sq.ft.</span>
+                            <span><strong>Type:</strong> Government Office</span>
+                            <span><strong>Scope:</strong> Turnkey Execution</span>
+                        </div>
+                        <p>State administrative office facility executed with eco-friendly building materials, modern conference chambers, and security protocols.</p>
+                    </div>
+                </div>
+
+                <!-- Project Card 8 (Interior & Architecture) -->
+                <div class="project-card" data-category="interior architecture">
+                    <div class="project-img">
+                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
+                            alt="Modern Duplex Villa">
+                        <span class="project-badge">Architecture / Interior</span>
+                    </div>
+                    <div class="project-info">
+                        <h3>Grand Heritage Villa</h3>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Pune, Maharashtra</div>
+                        <div class="project-meta">
+                            <span><strong>Area:</strong> 5,000 sq.ft.</span>
+                            <span><strong>Type:</strong> Residential Duplex</span>
+                            <span><strong>Scope:</strong> Architecture & Interior</span>
+                        </div>
+                        <p>Luxurious residential duplex integrating classic Indian aesthetic motifs with minimalist modern Italian furniture styling.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 
+    <!-- --- Our Process Section --- -->
     <section id="process" class="section-padding process">
         <div class="container">
             <div class="section-header">
@@ -1376,7 +1527,25 @@
             slides[currentSlide].classList.add('active');
         }
 
-        setInterval(nextSlide, 4000); // Changes image every 4 seconds
+        setInterval(nextSlide, 4000);
+
+        // --- Projects Filter Script ---
+        function filterProjects(category, btnElement) {
+            // Update active state of filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Show or Hide cards based on category data attribute
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                const cardCategories = card.getAttribute('data-category');
+                if (category === 'all' || cardCategories.includes(category)) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        }
 
         // --- Process Section Interactive Script ---
         const processDescriptions = {
