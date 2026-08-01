@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <style>
@@ -16,8 +16,10 @@
         :root {
             --primary-dark: #11161e;
             --secondary-dark: #1a212d;
-            --gold: #ff6600; /* Primary Orange Color */
-            --gold-hover: #e65c00; /* Hover Dark Orange */
+            --gold: #ff6600;
+            /* Primary Orange Color */
+            --gold-hover: #e65c00;
+            /* Hover Dark Orange */
             --text-light: #ffffff;
             --text-muted: #a0aab5;
             --text-dark: #333333;
@@ -99,7 +101,7 @@
             color: var(--text-light);
         }
 
-        /* --- Navbar & Modern Dropdown Styling --- */
+        /* --- Navbar & Dropdown Styling --- */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -138,7 +140,7 @@
             gap: 25px;
         }
 
-        .nav-links > li {
+        .nav-links>li {
             position: relative;
         }
 
@@ -160,7 +162,6 @@
             color: var(--gold);
         }
 
-        /* Submenu Dropdown Container */
         .dropdown-menu {
             position: absolute;
             top: 100%;
@@ -711,8 +712,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .drawer-header {
@@ -778,7 +786,7 @@
             margin-top: 5px;
         }
 
-        /* --- Careers Section --- */
+        /* --- Careers Section & Hiring Typography Banner --- */
         .careers {
             background-color: var(--bg-light);
         }
@@ -837,6 +845,39 @@
             font-size: 0.85rem;
             color: #666;
             margin-bottom: 0;
+        }
+
+        /* --- High Impact WE ARE HIRING Typography Badge --- */
+        .we-are-hiring-banner {
+            margin-top: 35px;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #11161e 0%, #1a212d 100%);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .we-are-hiring-banner h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            line-height: 1.1;
+            margin-bottom: 5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .we-are-hiring-banner span {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 500;
+            display: block;
         }
 
         .careers-form-card {
@@ -898,7 +939,6 @@
             background: rgba(255, 255, 255, 0.1);
         }
 
-        /* File Upload Styling */
         .file-upload-group {
             display: flex;
             flex-direction: column;
@@ -1112,12 +1152,17 @@
         }
 
         @media (max-width: 992px) {
-            .about-grid, .wcu-grid, .contact-grid, .careers-grid {
+
+            .about-grid,
+            .wcu-grid,
+            .contact-grid,
+            .careers-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
-            .projects-grid, .testimonials-grid {
+            .projects-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1186,13 +1231,19 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .contact-form, .careers-form-card {
+            .contact-form,
+            .careers-form-card {
                 padding: 25px;
             }
 
             .filter-btn {
                 padding: 8px 16px;
                 font-size: 0.75rem;
+            }
+
+            .we-are-hiring-banner h2 {
+                font-size: 1.7rem;
+                letter-spacing: 4px;
             }
         }
 
@@ -1206,21 +1257,22 @@
 
 <body>
 
-    <!-- Header Navigation Bar with Modern Clean Dropdown Menu -->
+    <!-- Header Navigation Bar -->
     <header>
         <div class="container navbar">
             <div class="logo">
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development
-                    <br> <h2 style="font-size: 0.65rem; color: var(--gold); display: inline;">Creative Indian Architect</h2>
+                    <br>
+                    <h2 style="font-size: 0.65rem; color: var(--gold); display: inline;">Creative Indian Architect</h2>
                 </span>
             </div>
-            
+
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About Us</a></li>
-                
-                <!-- Our Services Dropdown List -->
+
+                <!-- Services Dropdown -->
                 <li class="dropdown">
                     <a href="#services">Services <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
@@ -1233,7 +1285,7 @@
                     </ul>
                 </li>
 
-                <!-- Explore Dropdown List (Projects, Process, Rewards) -->
+                <!-- Explore Dropdown -->
                 <li class="dropdown">
                     <a href="#projects">Explore <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
@@ -1272,10 +1324,11 @@
             <h1>Designing Spaces That Inspire</h1>
             <p>ARCHITECTURE | INTERIOR | LANDSCAPE | TURNKEY PROJECTS</p>
             <a href="#contact" class="btn">Get In Touch</a>
-            
+
             <div class="hero-social-icons">
                 <a href="mailto:shreebhargavainfra@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://www.instagram.com/architectbhargava/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.instagram.com/architectbhargava/" target="_blank" title="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
                 <a href="#" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
@@ -1443,7 +1496,7 @@
             </div>
 
             <div class="projects-grid" id="projectsContainer">
-                
+
                 <div class="project-card" data-category="architecture turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
@@ -1452,13 +1505,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Modern Luxury Residence</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 4,200 sq.ft.</span>
                             <span><strong>Type:</strong> Residential</span>
                             <span><strong>Scope:</strong> Complete Design & Turnkey</span>
                         </div>
-                        <p>A perfect blend of modern architecture and warm interiors, this residence is designed to offer luxury, natural lighting, and seamless ergonomics.</p>
+                        <p>A perfect blend of modern architecture and warm interiors, this residence is designed to
+                            offer luxury, natural lighting, and seamless ergonomics.</p>
                     </div>
                 </div>
 
@@ -1470,13 +1525,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Contemporary Villa</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 3,500 sq.ft.</span>
                             <span><strong>Type:</strong> Residential Villa</span>
                             <span><strong>Scope:</strong> Elevation & Landscape</span>
                         </div>
-                        <p>A contemporary villa with clean structural lines, open courtyard planning, and lush green surrounding landscapes.</p>
+                        <p>A contemporary villa with clean structural lines, open courtyard planning, and lush green
+                            surrounding landscapes.</p>
                     </div>
                 </div>
 
@@ -1488,13 +1545,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Premium Corporate Office</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 2,800 sq.ft.</span>
                             <span><strong>Type:</strong> Commercial Workspace</span>
                             <span><strong>Scope:</strong> Interior Execution</span>
                         </div>
-                        <p>A high-end corporate workplace designed to maximize employee productivity with modern acoustic lighting and luxurious seating layouts.</p>
+                        <p>A high-end corporate workplace designed to maximize employee productivity with modern
+                            acoustic lighting and luxurious seating layouts.</p>
                     </div>
                 </div>
 
@@ -1506,13 +1565,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Commercial Luxury Showroom</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Bhopal, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Bhopal, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 1,800 sq.ft.</span>
                             <span><strong>Type:</strong> Commercial Retail</span>
                             <span><strong>Scope:</strong> Turnkey Fitouts</span>
                         </div>
-                        <p>A premium retail showroom designed to create an immersive customer experience with architectural accent lighting and smart space planning.</p>
+                        <p>A premium retail showroom designed to create an immersive customer experience with
+                            architectural accent lighting and smart space planning.</p>
                     </div>
                 </div>
 
@@ -1524,13 +1585,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Urban Eco Courtyard & Park</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Khargone, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Khargone, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 12,000 sq.ft.</span>
                             <span><strong>Type:</strong> Outdoor Landscape</span>
                             <span><strong>Scope:</strong> Master Green Planning</span>
                         </div>
-                        <p>Sustainable landscape planning featuring native plants, water fountains, ambient lawn seating, and pedestrian pathways.</p>
+                        <p>Sustainable landscape planning featuring native plants, water fountains, ambient lawn
+                            seating, and pedestrian pathways.</p>
                     </div>
                 </div>
 
@@ -1542,13 +1605,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Civic Infrastructure Complex</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 25,000 sq.ft.</span>
                             <span><strong>Type:</strong> Public Infrastructure</span>
                             <span><strong>Scope:</strong> Architectural Planning</span>
                         </div>
-                        <p>Government civic development project planned with high structural durability, public accessibility features, and Vastu compliance.</p>
+                        <p>Government civic development project planned with high structural durability, public
+                            accessibility features, and Vastu compliance.</p>
                     </div>
                 </div>
 
@@ -1635,8 +1700,9 @@
             <div class="careers-grid">
                 <div class="careers-info">
                     <h3>Join Our Creative Team</h3>
-                    <p>At Shree Bhargava Infrastructure & Development, we are always looking for passionate architects, interior designers, site engineers, and 3D visualizers who want to build innovative spaces.</p>
-                    
+                    <p>At Shree Bhargava Infrastructure & Development, we are always looking for passionate architects,
+                        interior designers, site engineers, and 3D visualizers who want to build innovative spaces.</p>
+
                     <div class="careers-highlights">
                         <div class="career-item">
                             <i class="fa-solid fa-user-graduate"></i>
@@ -1660,6 +1726,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="we-are-hiring-banner">
+                        <h2>WE ARE HIRING</h2>
+                        <span>Build Your Future With Us</span>
+                    </div>
                 </div>
 
                 <div class="careers-form-card">
@@ -1668,11 +1739,13 @@
                         <input id="applicantName" type="text" placeholder="Full Name" required>
                         <input id="applicantEmail" type="email" placeholder="Email Address" required>
                         <input id="applicantPhone" type="tel" placeholder="Phone Number" required>
-                        
+
                         <select id="applicantPosition" required>
                             <option value="" disabled selected>Select Desired Position</option>
                             <option value="Senior Architect">Senior Architect</option>
-                            <option value="Junior Architect / Intern">Junior Architect / Intern</option>
+                            <option value="Junior Architect / Intern">Junior Architect</option>
+                            <option value="Junior Architect / Intern">Intern</option>
+
                             <option value="Interior Designer">Interior Designer</option>
                             <option value="3D Visualizer / Draftsman">3D Visualizer / Draftsman</option>
                             <option value="Site Civil Engineer">Site Civil Engineer</option>
@@ -1681,7 +1754,9 @@
 
                         <select id="applicantExperience" required>
                             <option value="" disabled selected>Select Experience Level</option>
-                            <option value="Fresher / Intern">Fresher / Intern</option>
+                            <option value="Fresher / Intern">Fresher</option>
+                            <option value="Fresher / Intern">Intern</option>
+
                             <option value="1 - 3 Years">1 - 3 Years</option>
                             <option value="3 - 5 Years">3 - 5 Years</option>
                             <option value="5+ Years">5+ Years</option>
@@ -1692,8 +1767,9 @@
                             <input id="applicantResume" type="file" accept=".pdf,.doc,.docx" required>
                         </div>
 
-                        <textarea id="applicantCover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
-                        
+                        <textarea id="applicantCover"
+                            placeholder="Short intro about yourself & key skills (Optional)"></textarea>
+
                         <button type="submit">Submit Application</button>
                     </form>
                 </div>
@@ -1744,7 +1820,7 @@
                     <li>
                         <i class="fa-solid fa-location-dot"></i>
                         <div>B-57, MIG Colony, RSS Nagar,<br>Indore - 452011
-                            <br> 
+                            <br>
                             <b class="orange-text">Our Branches</b>- Indore , Bhopal , Harda , Khargone , Pune , Raipur
                         </div>
                     </li>
@@ -1795,7 +1871,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That Inspire</p>
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That
+                Inspire</p>
         </div>
     </footer>
 
@@ -1809,7 +1886,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Mobile click dropdown toggle
         document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
             dropdownToggle.addEventListener('click', (e) => {
                 if (window.innerWidth <= 768) {
