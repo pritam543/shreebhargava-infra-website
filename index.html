@@ -16,8 +16,10 @@
         :root {
             --primary-dark: #11161e;
             --secondary-dark: #1a212d;
-            --gold: #ff6600; /* Primary Orange Color */
-            --gold-hover: #e65c00; /* Hover Dark Orange */
+            --gold: #ff6600;
+            /* Primary Orange Color */
+            --gold-hover: #e65c00;
+            /* Hover Dark Orange */
             --text-light: #ffffff;
             --text-muted: #a0aab5;
             --text-dark: #333333;
@@ -138,7 +140,7 @@
             gap: 25px;
         }
 
-        .nav-links > li {
+        .nav-links>li {
             position: relative;
         }
 
@@ -268,7 +270,7 @@
             margin-bottom: 20px;
         }
 
-        .hero-content h3{
+        .hero-content h3 {
             font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 20px;
@@ -779,8 +781,15 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .drawer-header {
@@ -927,7 +936,7 @@
             letter-spacing: 6px;
             line-height: 1.1;
             margin-bottom: 5px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
         }
 
         .we-are-hiring-banner span {
@@ -1211,12 +1220,17 @@
         }
 
         @media (max-width: 992px) {
-            .about-grid, .wcu-grid, .contact-grid, .careers-grid {
+
+            .about-grid,
+            .wcu-grid,
+            .contact-grid,
+            .careers-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
 
-            .projects-grid, .testimonials-grid {
+            .projects-grid,
+            .testimonials-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1285,7 +1299,8 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .contact-form, .careers-form-card {
+            .contact-form,
+            .careers-form-card {
                 padding: 25px;
             }
 
@@ -1320,13 +1335,14 @@
             <div class="logo">
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development
-                    <br> <h2 style="font-size: 0.65rem; color: var(--gold); display: inline;">Creative Indian Architect</h2>
+                    <br>
+                    <h2 style="font-size: 0.65rem; color: var(--gold); display: inline;">Creative Indian Architect</h2>
                 </span>
             </div>
-            
+
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
-                
+
                 <!-- About Us Dropdown -->
                 <li class="dropdown">
                     <a href="#about">About Us <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
@@ -1389,10 +1405,11 @@
             <h1>Designing Spaces That Inspire</h1>
             <p>ARCHITECTURE | INTERIOR | LANDSCAPE | TURNKEY PROJECTS</p>
             <a href="#contact" class="btn">Get In Touch</a>
-            
+
             <div class="hero-social-icons">
                 <a href="mailto:shreebhargavainfra@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i></a>
-                <a href="https://www.instagram.com/architectbhargava/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.instagram.com/architectbhargava/" target="_blank" title="Instagram"><i
+                        class="fa-brands fa-instagram"></i></a>
                 <a href="#" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
@@ -1440,18 +1457,18 @@
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <!-- Local Image path configured with object-fit -->
-                        <img src="Founder and Principle architect.jpg" class="team-img" alt="Er. Shashank Pare" onerror="this.src='">
+                        <img src="images/Founder.jpg" class="team-img" alt="Er. Shashank Pare"
+                            onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80';">
                     </div>
                     <h4>Er. Shashank Pare</h4>
                     <span>Founder & Principal Architect</span>
                     <p>10+ years of visionary leadership in modern architectural planning and urban developments.</p>
                 </div>
-                
+
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <!-- Local Image path configured with object-fit -->
-                        <img src="Managing director.jpg" class="team-img" alt="Ar. Sakshi Pare" onerror="this.src='">
+                        <img src="images/co-Founder.jpg" class="team-img" alt="Ar. Sakshi Pare"
+                            onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80';">
                     </div>
                     <h4>Ar. Sakshi Pare</h4>
                     <span>Co-Founder & Chief Interior Designer</span>
@@ -1589,7 +1606,7 @@
             </div>
 
             <div class="projects-grid" id="projectsContainer">
-                
+
                 <div class="project-card" data-category="architecture turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
@@ -1598,13 +1615,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Modern Luxury Residence</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 4,200 sq.ft.</span>
                             <span><strong>Type:</strong> Residential</span>
                             <span><strong>Scope:</strong> Complete Design & Turnkey</span>
                         </div>
-                        <p>A perfect blend of modern architecture and warm interiors, this residence is designed to offer luxury, natural lighting, and seamless ergonomics.</p>
+                        <p>A perfect blend of modern architecture and warm interiors, this residence is designed to
+                            offer luxury, natural lighting, and seamless ergonomics.</p>
                     </div>
                 </div>
 
@@ -1616,13 +1635,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Contemporary Villa</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 3,500 sq.ft.</span>
                             <span><strong>Type:</strong> Residential Villa</span>
                             <span><strong>Scope:</strong> Elevation & Landscape</span>
                         </div>
-                        <p>A contemporary villa with clean structural lines, open courtyard planning, and lush green surrounding landscapes.</p>
+                        <p>A contemporary villa with clean structural lines, open courtyard planning, and lush green
+                            surrounding landscapes.</p>
                     </div>
                 </div>
 
@@ -1634,13 +1655,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Premium Corporate Office</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 2,800 sq.ft.</span>
                             <span><strong>Type:</strong> Commercial Workspace</span>
                             <span><strong>Scope:</strong> Interior Execution</span>
                         </div>
-                        <p>A high-end corporate workplace designed to maximize employee productivity with modern acoustic lighting and luxurious seating layouts.</p>
+                        <p>A high-end corporate workplace designed to maximize employee productivity with modern
+                            acoustic lighting and luxurious seating layouts.</p>
                     </div>
                 </div>
 
@@ -1652,13 +1675,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Commercial Luxury Showroom</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Bhopal, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Bhopal, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 1,800 sq.ft.</span>
                             <span><strong>Type:</strong> Commercial Retail</span>
                             <span><strong>Scope:</strong> Turnkey Fitouts</span>
                         </div>
-                        <p>A premium retail showroom designed to create an immersive customer experience with architectural accent lighting and smart space planning.</p>
+                        <p>A premium retail showroom designed to create an immersive customer experience with
+                            architectural accent lighting and smart space planning.</p>
                     </div>
                 </div>
 
@@ -1670,13 +1695,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Urban Eco Courtyard & Park</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Khargone, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Khargone, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 12,000 sq.ft.</span>
                             <span><strong>Type:</strong> Outdoor Landscape</span>
                             <span><strong>Scope:</strong> Master Green Planning</span>
                         </div>
-                        <p>Sustainable landscape planning featuring native plants, water fountains, ambient lawn seating, and pedestrian pathways.</p>
+                        <p>Sustainable landscape planning featuring native plants, water fountains, ambient lawn
+                            seating, and pedestrian pathways.</p>
                     </div>
                 </div>
 
@@ -1688,13 +1715,15 @@
                     </div>
                     <div class="project-info">
                         <h3>Civic Infrastructure Complex</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh</div>
+                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Indore, Madhya Pradesh
+                        </div>
                         <div class="project-meta">
                             <span><strong>Area:</strong> 25,000 sq.ft.</span>
                             <span><strong>Type:</strong> Public Infrastructure</span>
                             <span><strong>Scope:</strong> Architectural Planning</span>
                         </div>
-                        <p>Government civic development project planned with high structural durability, public accessibility features, and Vastu compliance.</p>
+                        <p>Government civic development project planned with high structural durability, public
+                            accessibility features, and Vastu compliance.</p>
                     </div>
                 </div>
 
@@ -1781,8 +1810,9 @@
             <div class="careers-grid">
                 <div class="careers-info">
                     <h3>Join Our Creative Team</h3>
-                    <p>At Shree Bhargava Infrastructure & Development, we are always looking for passionate architects, interior designers, site engineers, and 3D visualizers who want to build innovative spaces.</p>
-                    
+                    <p>At Shree Bhargava Infrastructure & Development, we are always looking for passionate architects,
+                        interior designers, site engineers, and 3D visualizers who want to build innovative spaces.</p>
+
                     <div class="careers-highlights">
                         <div class="career-item">
                             <i class="fa-solid fa-user-graduate"></i>
@@ -1819,7 +1849,7 @@
                         <input id="applicantName" type="text" placeholder="Full Name" required>
                         <input id="applicantEmail" type="email" placeholder="Email Address" required>
                         <input id="applicantPhone" type="tel" placeholder="Phone Number" required>
-                        
+
                         <select id="applicantPosition" required>
                             <option value="" disabled selected>Select Desired Position</option>
                             <option value="Senior Architect">Senior Architect</option>
@@ -1843,8 +1873,9 @@
                             <input id="applicantResume" type="file" accept=".pdf,.doc,.docx" required>
                         </div>
 
-                        <textarea id="applicantCover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
-                        
+                        <textarea id="applicantCover"
+                            placeholder="Short intro about yourself & key skills (Optional)"></textarea>
+
                         <button type="submit">Submit Application</button>
                     </form>
                 </div>
@@ -1896,7 +1927,7 @@
                     <li>
                         <i class="fa-solid fa-location-dot"></i>
                         <div>B-57, MIG Colony, RSS Nagar,<br>Indore - 452011
-                            <br> 
+                            <br>
                             <b class="orange-text">Our Branches</b>- Indore , Bhopal , Harda , Khargone , Pune , Raipur
                         </div>
                     </li>
@@ -1947,7 +1978,8 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That Inspire</p>
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That
+                Inspire</p>
         </div>
     </footer>
 
