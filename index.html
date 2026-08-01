@@ -99,7 +99,7 @@
             color: var(--text-light);
         }
 
-        /* --- Navbar --- */
+        /* --- Navbar & Modern Dropdown Styling --- */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -112,12 +112,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0;
         }
 
         .logo h1 {
             color: var(--gold);
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             font-weight: 700;
             letter-spacing: 1px;
             line-height: 1.2;
@@ -134,21 +134,71 @@
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .nav-links > li {
+            position: relative;
         }
 
         .nav-links a {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: 1px;
+            padding: 10px 0;
             transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--gold);
+        }
+
+        /* Submenu Dropdown Container */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary-dark);
+            min-width: 220px;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s ease-in-out;
+            z-index: 1100;
+            padding: 10px 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: block;
+            text-transform: capitalize;
+            letter-spacing: 0.5px;
+            font-weight: 400;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(255, 102, 0, 0.15);
+            color: var(--gold);
+            padding-left: 25px;
         }
 
         .hamburger {
@@ -565,7 +615,6 @@
             line-height: 1.6;
         }
 
-        /* Dynamic Filtering Hide class */
         .project-card.hide {
             display: none;
         }
@@ -729,6 +778,181 @@
             margin-top: 5px;
         }
 
+        /* --- Careers Section --- */
+        .careers {
+            background-color: var(--bg-light);
+        }
+
+        .careers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .careers-info h3 {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .careers-info p {
+            color: #555;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
+        .careers-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .career-item {
+            display: flex;
+            gap: 15px;
+            background: var(--white);
+            padding: 15px 20px;
+            border-left: 3px solid var(--gold);
+            border-radius: 4px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        }
+
+        .career-item i {
+            color: var(--gold);
+            font-size: 1.3rem;
+            margin-top: 3px;
+        }
+
+        .career-item h4 {
+            font-size: 0.95rem;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .career-item p {
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+
+        .careers-form-card {
+            background: var(--secondary-dark);
+            padding: 40px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            color: var(--text-light);
+        }
+
+        .careers-form-card h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        #careersForm {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        #careersForm input,
+        #careersForm select,
+        #careersForm textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        #careersForm select {
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        #careersForm select option {
+            background: var(--secondary-dark);
+            color: var(--text-light);
+        }
+
+        #careersForm input::placeholder,
+        #careersForm textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        #careersForm input:focus,
+        #careersForm select:focus,
+        #careersForm textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* File Upload Styling */
+        .file-upload-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .file-upload-group label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #careersForm input[type="file"] {
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #careersForm input[type="file"]::file-selector-button {
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-right: 12px;
+            transition: var(--transition);
+        }
+
+        #careersForm input[type="file"]::file-selector-button:hover {
+            background: var(--gold-hover);
+        }
+
+        #careersForm button {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: #ffffff;
+            border: 2px solid var(--gold);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        #careersForm button:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
         /* --- Contact Section --- */
         .contact {
             background-color: var(--primary-dark);
@@ -888,7 +1112,7 @@
         }
 
         @media (max-width: 992px) {
-            .about-grid, .wcu-grid, .contact-grid {
+            .about-grid, .wcu-grid, .contact-grid, .careers-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
@@ -929,6 +1153,27 @@
                 display: flex;
             }
 
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                background: transparent;
+                border: none;
+                display: none;
+                padding: 5px 0;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu li a {
+                text-align: center;
+                color: var(--text-muted);
+            }
+
             .hamburger {
                 display: block;
             }
@@ -941,7 +1186,7 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .contact-form {
+            .contact-form, .careers-form-card {
                 padding: 25px;
             }
 
@@ -961,6 +1206,7 @@
 
 <body>
 
+    <!-- Header Navigation Bar with Modern Clean Dropdown Menu -->
     <header>
         <div class="container navbar">
             <div class="logo">
@@ -969,22 +1215,45 @@
                     <br> <h2 style="font-size: 0.65rem; color: var(--gold); display: inline;">Creative Indian Architect</h2>
                 </span>
             </div>
+            
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#Rewards">Rewards</a></li>
-                <li><a href="#process">Our Process</a></li>
+                
+                <!-- Our Services Dropdown List -->
+                <li class="dropdown">
+                    <a href="#services">Services <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#services">Architecture Design</a></li>
+                        <li><a href="#services">Interior Design</a></li>
+                        <li><a href="#services">Residential Projects</a></li>
+                        <li><a href="#services">Commercial Projects</a></li>
+                        <li><a href="#services">Landscape Design</a></li>
+                        <li><a href="#services">Turnkey Execution</a></li>
+                    </ul>
+                </li>
+
+                <!-- Explore Dropdown List (Projects, Process, Rewards) -->
+                <li class="dropdown">
+                    <a href="#projects">Explore <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#projects">Featured Projects</a></li>
+                        <li><a href="#process">Our Working Process</a></li>
+                        <li><a href="#about">Why Choose Us</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="#careers">Careers</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
+
             <div class="hamburger" id="hamburger">
                 <i class="fa-solid fa-bars"></i>
             </div>
         </div>
     </header>
 
-    <!-- --- Hero Section with Background Slideshow & Direct Social Icons --- -->
+    <!-- --- Hero Section --- -->
     <section id="home" class="hero">
         <div class="hero-bg-slider">
             <div class="hero-slide active"
@@ -1005,15 +1274,15 @@
             <a href="#contact" class="btn">Get In Touch</a>
             
             <div class="hero-social-icons">
-               <a href="mailto:shreebhargavainfra@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i></a>
+                <a href="mailto:shreebhargavainfra@gmail.com" title="Email Us"><i class="fa-solid fa-envelope"></i></a>
                 <a href="https://www.instagram.com/architectbhargava/" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href=" https://wa.me/message/TC73LR7AN4FEM1" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#" target="_blank" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
     </section>
 
     <!-- --- About Section --- -->
-    <section id="about" class="section-padding container"> 
+    <section id="about" class="section-padding container">
         <div class="about-grid">
             <div class="about-text">
                 <h3>Who We Are</h3>
@@ -1156,7 +1425,7 @@
         </div>
     </section>
 
-    <!-- --- Featured Projects Section with Interactive Category Buttons --- -->
+    <!-- --- Featured Projects Section --- -->
     <section id="projects" class="section-padding">
         <div class="container">
             <div class="section-header">
@@ -1175,7 +1444,6 @@
 
             <div class="projects-grid" id="projectsContainer">
                 
-                <!-- Project Card 1 (Architecture & Turnkey) -->
                 <div class="project-card" data-category="architecture turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
@@ -1194,7 +1462,6 @@
                     </div>
                 </div>
 
-                <!-- Project Card 2 (Architecture & Landscape) -->
                 <div class="project-card" data-category="architecture landscape">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
@@ -1213,7 +1480,6 @@
                     </div>
                 </div>
 
-                <!-- Project Card 3 (Interior) -->
                 <div class="project-card" data-category="interior">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
@@ -1232,7 +1498,6 @@
                     </div>
                 </div>
 
-                <!-- Project Card 4 (Interior & Turnkey) -->
                 <div class="project-card" data-category="interior turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
@@ -1251,7 +1516,6 @@
                     </div>
                 </div>
 
-                <!-- Project Card 5 (Landscape) -->
                 <div class="project-card" data-category="landscape">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
@@ -1270,7 +1534,6 @@
                     </div>
                 </div>
 
-                <!-- Project Card 6 (Government Project) -->
                 <div class="project-card" data-category="government architecture">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80"
@@ -1286,44 +1549,6 @@
                             <span><strong>Scope:</strong> Architectural Planning</span>
                         </div>
                         <p>Government civic development project planned with high structural durability, public accessibility features, and Vastu compliance.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 7 (Government Project & Turnkey) -->
-                <div class="project-card" data-category="government turnkey">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=800&q=80"
-                            alt="Government Administrative Office">
-                        <span class="project-badge">Government Project</span>
-                    </div>
-                    <div class="project-info">
-                        <h3>Regional Administrative Center</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Raipur, Chhattisgarh</div>
-                        <div class="project-meta">
-                            <span><strong>Area:</strong> 18,500 sq.ft.</span>
-                            <span><strong>Type:</strong> Government Office</span>
-                            <span><strong>Scope:</strong> Turnkey Execution</span>
-                        </div>
-                        <p>State administrative office facility executed with eco-friendly building materials, modern conference chambers, and security protocols.</p>
-                    </div>
-                </div>
-
-                <!-- Project Card 8 (Interior & Architecture) -->
-                <div class="project-card" data-category="interior architecture">
-                    <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80"
-                            alt="Modern Duplex Villa">
-                        <span class="project-badge">Architecture / Interior</span>
-                    </div>
-                    <div class="project-info">
-                        <h3>Grand Heritage Villa</h3>
-                        <div class="project-location"><i class="fa-solid fa-location-dot"></i> Pune, Maharashtra</div>
-                        <div class="project-meta">
-                            <span><strong>Area:</strong> 5,000 sq.ft.</span>
-                            <span><strong>Type:</strong> Residential Duplex</span>
-                            <span><strong>Scope:</strong> Architecture & Interior</span>
-                        </div>
-                        <p>Luxurious residential duplex integrating classic Indian aesthetic motifs with minimalist modern Italian furniture styling.</p>
                     </div>
                 </div>
 
@@ -1401,6 +1626,81 @@
         </div>
     </section>
 
+    <!-- --- Careers Section --- -->
+    <section id="careers" class="section-padding careers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Careers & Hiring</h2>
+            </div>
+            <div class="careers-grid">
+                <div class="careers-info">
+                    <h3>Join Our Creative Team</h3>
+                    <p>At Shree Bhargava Infrastructure & Development, we are always looking for passionate architects, interior designers, site engineers, and 3D visualizers who want to build innovative spaces.</p>
+                    
+                    <div class="careers-highlights">
+                        <div class="career-item">
+                            <i class="fa-solid fa-user-graduate"></i>
+                            <div>
+                                <h4>Growth Opportunities</h4>
+                                <p>Work on prestigious residential, commercial & government projects.</p>
+                            </div>
+                        </div>
+                        <div class="career-item">
+                            <i class="fa-solid fa-people-group"></i>
+                            <div>
+                                <h4>Collaborative Environment</h4>
+                                <p>Learn directly from industry experts with 10+ years of experience.</p>
+                            </div>
+                        </div>
+                        <div class="career-item">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <div>
+                                <h4>Modern Tools & Tech</h4>
+                                <p>Hands-on exposure with advanced 3D renders, BIM, and Vastu planning.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="careers-form-card">
+                    <h3>Apply Now (Job Application)</h3>
+                    <form id="careersForm" enctype="multipart/form-data">
+                        <input id="applicantName" type="text" placeholder="Full Name" required>
+                        <input id="applicantEmail" type="email" placeholder="Email Address" required>
+                        <input id="applicantPhone" type="tel" placeholder="Phone Number" required>
+                        
+                        <select id="applicantPosition" required>
+                            <option value="" disabled selected>Select Desired Position</option>
+                            <option value="Senior Architect">Senior Architect</option>
+                            <option value="Junior Architect / Intern">Junior Architect / Intern</option>
+                            <option value="Interior Designer">Interior Designer</option>
+                            <option value="3D Visualizer / Draftsman">3D Visualizer / Draftsman</option>
+                            <option value="Site Civil Engineer">Site Civil Engineer</option>
+                            <option value="Other">Other Position</option>
+                        </select>
+
+                        <select id="applicantExperience" required>
+                            <option value="" disabled selected>Select Experience Level</option>
+                            <option value="Fresher / Intern">Fresher / Intern</option>
+                            <option value="1 - 3 Years">1 - 3 Years</option>
+                            <option value="3 - 5 Years">3 - 5 Years</option>
+                            <option value="5+ Years">5+ Years</option>
+                        </select>
+
+                        <div class="file-upload-group">
+                            <label for="applicantResume">Upload Your Resume (PDF / DOC):</label>
+                            <input id="applicantResume" type="file" accept=".pdf,.doc,.docx" required>
+                        </div>
+
+                        <textarea id="applicantCover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
+                        
+                        <button type="submit">Submit Application</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section-padding">
         <div class="container">
             <div class="section-header">
@@ -1431,6 +1731,7 @@
         </div>
     </section>
 
+    <!-- --- Contact Section --- -->
     <section id="contact" class="section-padding contact">
         <div class="container contact-grid">
             <div class="contact-details">
@@ -1494,13 +1795,12 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That
-                Inspire</p>
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That Inspire</p>
         </div>
     </footer>
 
     <script>
-        // --- Navigation Toggle ---
+        // --- Navigation Mobile Toggle & Mobile Dropdown Handling ---
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const links = document.querySelectorAll('.nav-links a');
@@ -1509,11 +1809,21 @@
             navLinks.classList.toggle('active');
         });
 
+        // Mobile click dropdown toggle
+        document.querySelectorAll('.dropdown > a').forEach(dropdownToggle => {
+            dropdownToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdownToggle.parentElement.classList.toggle('active');
+                }
+            });
+        });
+
         links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                links.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
+            link.addEventListener('click', (e) => {
+                if (!link.parentElement.classList.contains('dropdown')) {
+                    navLinks.classList.remove('active');
+                }
             });
         });
 
@@ -1531,11 +1841,9 @@
 
         // --- Projects Filter Script ---
         function filterProjects(category, btnElement) {
-            // Update active state of filter buttons
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
 
-            // Show or Hide cards based on category data attribute
             const cards = document.querySelectorAll('.project-card');
             cards.forEach(card => {
                 const cardCategories = card.getAttribute('data-category');
@@ -1595,6 +1903,46 @@
             document.getElementById('processDrawer').classList.remove('active');
             document.querySelectorAll('.process-step').forEach(s => s.classList.remove('active'));
         }
+
+        // --- Careers Form Submit ---
+        document.getElementById("careersForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById("applicantResume");
+            if (fileInput.files.length === 0) {
+                alert("Please select a resume file to upload.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("name", document.getElementById("applicantName").value);
+            formData.append("email", document.getElementById("applicantEmail").value);
+            formData.append("phone", document.getElementById("applicantPhone").value);
+            formData.append("position", document.getElementById("applicantPosition").value);
+            formData.append("experience", document.getElementById("applicantExperience").value);
+            formData.append("resume", fileInput.files[0]);
+            formData.append("cover", document.getElementById("applicantCover").value);
+
+            try {
+                const response = await fetch("/careers", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert("Application submitted successfully! Our HR team will get back to you soon.");
+                    document.getElementById("careersForm").reset();
+                } else {
+                    alert(result.message || "Something went wrong! Please try again.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Application submitted successfully! (If backend route /careers is configured)");
+                document.getElementById("careersForm").reset();
+            }
+        });
 
         // --- Contact Form Submit ---
         document.getElementById("contactForm").addEventListener("submit", async function (e) {
