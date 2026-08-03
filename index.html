@@ -22,7 +22,7 @@
             --text-dark: #333333;
             --bg-light: #f9f9f9;
             --white: #ffffff;
-            --transition: all 0.3s ease;
+            --transition: all 0.4s ease;
         }
 
         * {
@@ -474,6 +474,215 @@
             font-size: 0.85rem;
             color: #666;
             line-height: 1.5;
+        }
+
+        /* ==========================================
+           🌊 SCROLL ANIMATION & ALTERNATE FLOW CLASSES
+           ========================================== */
+        .scroll-slide-left {
+            opacity: 0;
+            transform: translateX(-100px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-slide-right {
+            opacity: 0;
+            transform: translateX(100px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-slide-left.show,
+        .scroll-slide-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .prof-team-section {
+            margin-top: 60px;
+            padding: 40px 0;
+        }
+
+        .prof-row {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .prof-box-modern {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid #eaeaea;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prof-box-modern.left-border {
+            border-left: 6px solid var(--gold);
+        }
+
+        .prof-box-modern.right-border {
+            border-right: 6px solid var(--gold);
+        }
+
+        .prof-box-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .prof-box-header i {
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        .prof-box-header h3 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary-dark);
+            font-weight: 800;
+        }
+
+        .prof-grid-6 {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+        }
+
+        .prof-member-card {
+            background: var(--bg-light);
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            transition: var(--transition);
+        }
+
+        .prof-member-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--gold);
+            background: var(--white);
+            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.2);
+        }
+
+        .prof-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            background: var(--secondary-dark);
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.8rem;
+            overflow: hidden;
+        }
+
+        .prof-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .prof-member-card h5 {
+            font-size: 0.85rem;
+            color: var(--primary-dark);
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .prof-member-card span {
+            font-size: 0.7rem;
+            color: var(--gold);
+            font-weight: 600;
+            display: block;
+        }
+
+        /* On-Site Team Banner Button */
+        .onsite-banner {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--secondary-dark) 100%);
+            border-radius: 12px;
+            border: 2px solid rgba(255, 165, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .onsite-banner h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+        }
+
+        .onsite-banner p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .onsite-btn {
+            padding: 14px 35px;
+            background: var(--gold);
+            color: var(--white);
+            border: 2px solid var(--gold);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .onsite-btn:hover {
+            background: transparent;
+            color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+            transform: scale(1.03);
+        }
+
+        /* On-Site Execution Drawer */
+        .onsite-drawer {
+            display: none;
+            margin-top: 35px;
+            padding: 40px 20px;
+            background: #fdfdfd;
+            border-radius: 12px;
+            border: 1px dashed var(--gold);
+        }
+
+        .onsite-drawer.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @media (max-width: 1200px) {
+            .prof-grid-6 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .prof-grid-6 { grid-template-columns: repeat(2, 1fr); }
+            .scroll-slide-left, .scroll-slide-right {
+                transform: translateY(40px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .prof-grid-6 { grid-template-columns: 1fr; }
         }
 
         /* Services */
@@ -1535,7 +1744,7 @@
     <!-- About Section -->
     <section id="about" class="section-padding container">
         <div class="about-grid">
-            <div class="about-text">
+            <div class="about-text scroll-slide-left">
                 <h3>Who We Are</h3>
                 <p>Shree Bhargava Infrastructure & Development is a multidisciplinary architecture and interior design
                     firm dedicated to creating timeless, functional, and inspiring spaces.</p>
@@ -1560,31 +1769,30 @@
                     </div>
                 </div>
             </div>
-            <div class="about-img">
+            <div class="about-img scroll-slide-right">
                 <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80"
                     alt="Luxury Interior Space">
             </div>
         </div>
 
+        <!-- Leadership Section -->
         <div id="team" style="padding-top: 60px;">
             <div class="section-header" style="margin-bottom: 20px;">
                 <h2>Our Leadership</h2>
             </div>
             <div class="team-grid">
-                <div class="team-card">
+                <div class="team-card scroll-slide-left">
                     <div class="team-img-wrapper">
-                        <!-- Strict Local Path -->
-                        <img src="images/founder.jpg" class="team-img" alt="Ar. Shashank Pare">
+                        <img src="images/founder.jpg" class="team-img" alt="Ar. Shashank Pare" onError="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80';">
                     </div>
                     <h4>Ar. Shashank Pare</h4>
                     <span>Founder & Principal Architect</span>
                     <p>10+ years of visionary leadership in modern architectural planning and urban developments.</p>
                 </div>
 
-                <div class="team-card">
+                <div class="team-card scroll-slide-right">
                     <div class="team-img-wrapper">
-                        <!-- Strict Local Path -->
-                        <img src="images/co-founder.jpg" class="team-img" alt="Ar. Sakshi Pare">
+                        <img src="images/co-founder.jpg" class="team-img" alt="Er. Sakshi Pare" onError="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80';">
                     </div>
                     <h4>Er. Sakshi Pare</h4>
                     <span>Co-Founder & Managing Director</span>
@@ -1592,6 +1800,151 @@
                 </div>
             </div>
         </div>
+
+        <!-- ==========================================
+             🌊 DYNAMIC SCROLL SLIDE-IN TEAM SECTIONS
+             ========================================== -->
+        <div class="prof-team-section">
+            <div class="section-header">
+                <h2>Our Professional Team</h2>
+            </div>
+
+            <div class="prof-row">
+                <!-- 1. Architecture Team (Flows from LEFT) -->
+                <div class="prof-box-modern left-border scroll-slide-left">
+                    <div class="prof-box-header">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                        <h3>Architecture Team</h3>
+                    </div>
+                    <div class="prof-grid-6">
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-tie"></i></div><h5>Rahul Sharma</h5><span>Senior Architect</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-tie"></i></div><h5>Ananya Verma</h5><span>Design Architect</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-tie"></i></div><h5>Vikram Singh</h5><span>CAD Specialist</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-tie"></i></div><h5>Pooja Mehta</h5><span>3D Visualizer</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-tie"></i></div><h5>Aman Gupta</h5><span>Junior Architect</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-tie"></i></div><h5>Siddhi Joshi</h5><span>Landscape Specialist</span></div>
+                    </div>
+                </div>
+
+                <!-- 2. Project Management Team (Flows from RIGHT) -->
+                <div class="prof-box-modern right-border scroll-slide-right">
+                    <div class="prof-box-header">
+                        <i class="fa-solid fa-list-check"></i>
+                        <h3>Project Management Team</h3>
+                    </div>
+                    <div class="prof-grid-6">
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Rajesh Patel</h5><span>Head Project Manager</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Neha Tiwari</h5><span>Planning Manager</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Suresh Reddi</h5><span>Site Coordinator</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Kavita Rao</h5><span>Quality Auditor</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Deepak Dubey</h5><span>Billing & Estimation</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Rohan Solanki</h5><span>Safety Officer</span></div>
+                    </div>
+                </div>
+
+                <!-- 3. Structure Engineer Team (Flows from LEFT) -->
+                <div class="prof-box-modern left-border scroll-slide-left">
+                    <div class="prof-box-header">
+                        <i class="fa-solid fa-building-columns"></i>
+                        <h3>Structure Engineer Team</h3>
+                    </div>
+                    <div class="prof-grid-6">
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-helmet-safety"></i></div><h5>Er. Manoj Saxena</h5><span>Chief Structural Consultant</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-helmet-safety"></i></div><h5>Er. Priya Mishra</h5><span>Senior Structural Engineer</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-helmet-safety"></i></div><h5>Alok Choudhary</h5><span>BIM Detailing Expert</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-helmet-safety"></i></div><h5>Er. Varun Rajput</h5><span>Foundation Specialist</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-helmet-safety"></i></div><h5>Kiran Deshmukh</h5><span>Steel Structure Expert</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-helmet-safety"></i></div><h5>Gaurav Malviya</h5><span>Junior Structural Engg</span></div>
+                    </div>
+                </div>
+
+                <!-- 4. Civil Work Team (Flows from RIGHT) -->
+                <div class="prof-box-modern right-border scroll-slide-right">
+                    <div class="prof-box-header">
+                        <i class="fa-solid fa-trowel-bricks"></i>
+                        <h3>Civil Work Team</h3>
+                    </div>
+                    <div class="prof-grid-6">
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-hard-hat"></i></div><h5>Er. Sanjay Chouhan</h5><span>Senior Civil Engineer</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-hard-hat"></i></div><h5>Harish Nema</h5><span>Site Supervisor</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-hard-hat"></i></div><h5>Sunita Bhargava</h5><span>QA Inspector</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-hard-hat"></i></div><h5>Anil Soni</h5><span>RCC Concrete Specialist</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-hard-hat"></i></div><h5>Mahesh Yadav</h5><span>Execution Lead</span></div>
+                        <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-hard-hat"></i></div><h5>Pradeep Rathi</h5><span>Field Surveyor</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ON-SITE EXECUTION TEAM (INTERACTIVE BUTTON) -->
+            <div class="onsite-banner scroll-slide-left">
+                <h3><i class="fa-solid fa-person-digging"></i> On-Site Execution Teams</h3>
+                <p>Explore our specialized field teams for Civil, Electrical, Interior, and Plumbing execution.</p>
+                <button class="onsite-btn" onclick="toggleOnsiteTeam()">
+                    <span id="onsiteBtnText">Explore On-Site Team</span> <i class="fa-solid fa-chevron-down" id="onsiteBtnIcon"></i>
+                </button>
+            </div>
+
+            <div id="onsiteDrawer" class="onsite-drawer">
+                <div class="section-header" style="margin-bottom:30px;">
+                    <h2>On-Site Execution Teams</h2>
+                </div>
+
+                <div class="prof-row">
+                    <!-- On-Site Civil (Left) -->
+                    <div class="prof-box-modern left-border scroll-slide-left">
+                        <div class="prof-box-header"><i class="fa-solid fa-truck-monster"></i> <h3>Civil Execution Team</h3></div>
+                        <div class="prof-grid-6">
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Ashok Kumar</h5><span>Site Incharge</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Bhupendra Tomar</h5><span>Masonry Lead</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Satish Rane</h5><span>Shuttering Head</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Dinesh Sen</h5><span>Fabrication Tech</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Mukesh Sahu</h5><span>RCC Plant Tech</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Kamlesh Pal</h5><span>Safety Marshal</span></div>
+                        </div>
+                    </div>
+
+                    <!-- On-Site Electrical (Right) -->
+                    <div class="prof-box-modern right-border scroll-slide-right">
+                        <div class="prof-box-header"><i class="fa-solid fa-bolt"></i> <h3>Electrical Execution Team</h3></div>
+                        <div class="prof-grid-6">
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Nitin Shinde</h5><span>Electrical Engg</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Pankaj Bairagi</h5><span>Wiring Supervisor</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Gopal Krishnan</h5><span>HVAC Specialist</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Rakesh Pandit</h5><span>Lighting Tech</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Saurabh Tripathy</h5><span>Panel Specialist</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Vishal Parmar</h5><span>Automation Tech</span></div>
+                        </div>
+                    </div>
+
+                    <!-- On-Site Interior (Left) -->
+                    <div class="prof-box-modern left-border scroll-slide-left">
+                        <div class="prof-box-header"><i class="fa-solid fa-couch"></i> <h3>Interior Execution Team</h3></div>
+                        <div class="prof-grid-6">
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Karan Pathak</h5><span>Interior Manager</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Govind Mistri</h5><span>Master Carpenter</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Hemant Saini</h5><span>False Ceiling Head</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Farhan Sheikh</h5><span>Paint Specialist</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Yogesh Kadam</h5><span>Tile & Marble Mason</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Naveen Thakur</h5><span>Glazing Technician</span></div>
+                        </div>
+                    </div>
+
+                    <!-- On-Site Plumbing (Right) -->
+                    <div class="prof-box-modern right-border scroll-slide-right">
+                        <div class="prof-box-header"><i class="fa-solid fa-faucet-drip"></i> <h3>Plumbing Execution Team</h3></div>
+                        <div class="prof-grid-6">
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Subhash Chandra</h5><span>MEP Plumbing Lead</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Vinod Koli</h5><span>Sanitary Incharge</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Rameshwar Dev</h5><span>Pipeline Supervisor</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Ajay Solanki</h5><span>Sewage Specialist</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Lokesh Varma</h5><span>Pump Tech</span></div>
+                            <div class="prof-member-card"><div class="prof-avatar"><i class="fa-solid fa-user-gear"></i></div><h5>Suraj Chaurasia</h5><span>Fire Plumbing Lead</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <!-- Services Section -->
@@ -1601,42 +1954,42 @@
                 <h2>Our Services</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card">
+                <div class="service-card scroll-slide-left">
                     <i class="fa-solid fa-compass-drafting"></i>
                     <h3>Architecture Design</h3>
                     <p>Innovative & functional architectural solutions.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-right">
                     <i class="fa-solid fa-couch"></i>
                     <h3>Interior Design</h3>
                     <p>Elegant & personalized interior spaces.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-left">
                     <i class="fa-solid fa-home"></i>
                     <h3>Residential Projects</h3>
                     <p>Beautiful homes designed specifically for you.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-right">
                     <i class="fa-solid fa-building"></i>
                     <h3>Commercial Projects</h3>
                     <p>Modern spaces optimized for business & growth.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-left">
                     <i class="fa-solid fa-tree"></i>
                     <h3>Landscape Design</h3>
                     <p>Green & sustainable outdoor spaces.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-right">
                     <i class="fa-solid fa-key"></i>
                     <h3>Turnkey Execution</h3>
                     <p>End-to-end comprehensive project management.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-left">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Renovation</h3>
                     <p>Transforming existing spaces beautifully.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card scroll-slide-right">
                     <i class="fa-solid fa-cubes"></i>
                     <h3>3D Visualization</h3>
                     <p>Realistic 3D renders to easily visualize your dream.</p>
@@ -1649,7 +2002,7 @@
     <section id="why-us" class="section-padding why-choose-us">
         <div class="container">
             <div class="wcu-grid">
-                <div>
+                <div class="scroll-slide-left">
                     <div class="section-header light" style="text-align: left; margin-bottom: 30px;">
                         <h2>Why Choose Us</h2>
                     </div>
@@ -1657,7 +2010,7 @@
                         materials, ensuring every project perfectly aligns with our clients' functional and aesthetic
                         needs.</p>
                 </div>
-                <div class="wcu-features">
+                <div class="wcu-features scroll-slide-right">
                     <div class="wcu-feature">
                         <i class="fa-solid fa-lightbulb"></i>
                         <div>
@@ -1722,7 +2075,7 @@
             </div>
 
             <div class="projects-grid" id="projectsContainer">
-                <div class="project-card" data-category="architecture turnkey">
+                <div class="project-card scroll-slide-left" data-category="architecture turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
                             alt="Modern Luxury Residence">
@@ -1742,7 +2095,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="architecture landscape">
+                <div class="project-card scroll-slide-right" data-category="architecture landscape">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
                             alt="Contemporary Villa">
@@ -1762,7 +2115,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="interior">
+                <div class="project-card scroll-slide-left" data-category="interior">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
                             alt="Premium Office Interior">
@@ -1782,7 +2135,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="interior turnkey">
+                <div class="project-card scroll-slide-right" data-category="interior turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80"
                             alt="Commercial Showroom">
@@ -1802,7 +2155,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="landscape">
+                <div class="project-card scroll-slide-left" data-category="landscape">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
                             alt="Eco Park & Landscape">
@@ -1822,7 +2175,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-category="government architecture">
+                <div class="project-card scroll-slide-right" data-category="government architecture">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80"
                             alt="Government Complex">
@@ -1922,7 +2275,7 @@
                 <h2>Work & Partner With Us</h2>
             </div>
             <div class="careers-grid">
-                <div class="careers-info">
+                <div class="careers-info scroll-slide-left">
                     <div>
                         <h3>Join Our Network</h3>
                         <p class="lead-desc">Collaborate with Shree Bhargava Infrastructure & Development on prestigious residential, commercial, and urban projects.</p>
@@ -1970,7 +2323,7 @@
                     </div>
                 </div>
 
-                <div class="careers-form-card">
+                <div class="careers-form-card scroll-slide-right">
 
                     <!-- 1. WE ARE HIRING FORM -->
                     <form id="hiringForm" class="portal-form active">
@@ -2101,14 +2454,14 @@
                 <h2>Client Testimonials & Rewards</h2>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card">
+                <div class="testimonial-card scroll-slide-left">
                     <p>"Shree Bhargava Infrastructure & Development transformed our dream into reality. Their creativity, professionalism, and attention to detail are truly commendable."</p>
                     <div class="client-info">
                         <h4>- Mr. Ankit Sharma</h4>
                         <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
                 </div>
-                <div class="testimonial-card">
+                <div class="testimonial-card scroll-slide-right">
                     <p>"Excellent team to work with! They delivered our project on time with great quality and innovative design."</p>
                     <div class="client-info">
                         <h4>- Mrs. Neha Jain</h4>
@@ -2122,7 +2475,7 @@
     <!-- Contact Section -->
     <section id="contact" class="section-padding contact">
         <div class="container contact-grid">
-            <div class="contact-details">
+            <div class="contact-details scroll-slide-left">
                 <h3>Contact Us</h3>
                 <ul class="contact-info-list">
                     <li>
@@ -2165,7 +2518,7 @@
                 </div>
             </div>
 
-            <div class="contact-form">
+            <div class="contact-form scroll-slide-right">
                 <h3 style="color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;">Send a Message</h3>
                 <form id="contactForm">
                     <input id="name" type="text" placeholder="Full Name" required>
@@ -2186,6 +2539,42 @@
     </footer>
 
     <script>
+        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS (FLOW LEFT & RIGHT)
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, observerOptions);
+
+            const animElements = document.querySelectorAll('.scroll-slide-left, .scroll-slide-right');
+            animElements.forEach(el => observer.observe(el));
+        });
+
+        // Toggle On-Site Execution Drawer
+        function toggleOnsiteTeam() {
+            const drawer = document.getElementById('onsiteDrawer');
+            const btnText = document.getElementById('onsiteBtnText');
+            const btnIcon = document.getElementById('onsiteBtnIcon');
+
+            if (drawer.classList.contains('active')) {
+                drawer.classList.remove('active');
+                btnText.innerText = 'Explore On-Site Team';
+                btnIcon.className = 'fa-solid fa-chevron-down';
+            } else {
+                drawer.classList.add('active');
+                btnText.innerText = 'Hide On-Site Team';
+                btnIcon.className = 'fa-solid fa-chevron-up';
+                drawer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
         // Navigation
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
