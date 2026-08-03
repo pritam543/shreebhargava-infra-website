@@ -16,7 +16,7 @@
         :root {
             --primary-dark: #11161e;
             --secondary-dark: #1a212d;
-            --gold: #ff6600; /* Primary Orange Color */
+            --gold: #ffa500; /* Primary Orange Color */
             --gold-hover: #e65c00; /* Hover Dark Orange */
             --text-light: #ffffff;
             --text-muted: #a0aab5;
@@ -1454,7 +1454,7 @@
                             onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80';">
                     </div>
                     <h4>Er. Sakshi Pare</h4>
-                    <span>Co-Founder & Interior Designer</span>
+                    <span>Co-Founder & Managing Director</span>
                     <p>Expertise in luxury residential interiors, space ergonomics, and contemporary aesthetics.</p>
                 </div>
             </div>
@@ -1845,7 +1845,7 @@
 
                         <textarea id="applicantCover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
                         
-                        <button type="submit">Submit Application</button>
+                        <button type="submit" id="careersSubmitBtn">Submit Application</button>
                     </form>
                 </div>
             </div>
@@ -1940,7 +1940,7 @@
                     <input id="phone" type="tel" placeholder="Phone Number" required>
                     <input id="subject" type="text" placeholder="Subject" required>
                     <textarea id="message" placeholder="Your Message" required></textarea>
-                    <button type="submit">Send Message</button>
+                    <button type="submit" id="contactSubmitBtn">Send Message</button>
                 </form>
             </div>
         </div>
@@ -2060,11 +2060,16 @@
         document.getElementById("careersForm").addEventListener("submit", async function (e) {
             e.preventDefault();
 
+            const submitBtn = document.getElementById("careersSubmitBtn");
             const fileInput = document.getElementById("applicantResume");
+            
             if (fileInput.files.length === 0) {
                 alert("Please select a resume file to upload.");
                 return;
             }
+
+            submitBtn.innerText = "Sending Application...";
+            submitBtn.disabled = true;
 
             const formData = new FormData();
             formData.append("name", document.getElementById("applicantName").value);
@@ -2076,6 +2081,7 @@
             formData.append("cover", document.getElementById("applicantCover").value);
 
             try {
+                // Relative URL: Universal for Localhost and Render
                 const response = await fetch("/careers", {
                     method: "POST",
                     body: formData
@@ -2084,21 +2090,27 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    alert("Application submitted successfully! Our HR team will get back to you soon.");
+                    alert("✅ Application submitted successfully! Our HR team will get back to you soon.");
                     document.getElementById("careersForm").reset();
                 } else {
-                    alert(result.message || "Something went wrong! Please try again.");
+                    alert("❌ " + (result.message || "Something went wrong! Please try again."));
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Application submitted successfully! (If backend route /careers is configured)");
-                document.getElementById("careersForm").reset();
+                alert("❌ Cannot connect to server! Make sure the backend server is running.");
+            } finally {
+                submitBtn.innerText = "Submit Application";
+                submitBtn.disabled = false;
             }
         });
 
         // --- Contact Form Submit ---
         document.getElementById("contactForm").addEventListener("submit", async function (e) {
             e.preventDefault();
+
+            const submitBtn = document.getElementById("contactSubmitBtn");
+            submitBtn.innerText = "Sending Message...";
+            submitBtn.disabled = true;
 
             const data = {
                 name: document.getElementById("name").value,
@@ -2109,6 +2121,7 @@
             };
 
             try {
+                // Relative URL: Universal for Localhost and Render
                 const response = await fetch("/contact", {
                     method: "POST",
                     headers: {
@@ -2120,14 +2133,17 @@
                 const result = await response.json();
 
                 if (response.ok) {
-                    alert("Message sent successfully!");
+                    alert("✅ Message sent successfully!");
                     document.getElementById("contactForm").reset();
                 } else {
-                    alert(result.message || "Something went wrong!");
+                    alert("❌ " + (result.message || "Something went wrong!"));
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("Server error. Please try again later.");
+                alert("❌ Cannot connect to server! Make sure the backend server is running.");
+            } finally {
+                submitBtn.innerText = "Send Message";
+                submitBtn.disabled = false;
             }
         });
     </script>
