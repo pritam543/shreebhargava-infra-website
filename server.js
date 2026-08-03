@@ -149,6 +149,13 @@ app.post('/contact', async (req, res) => {
     }
 });
 
+// ==========================================
+// 📌 ROOT ROUTE & STATIC FILE SERVING FIX FOR RENDER
+// ==========================================
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`🚀 SBA Infra Server running on http://localhost:${PORT}`);
