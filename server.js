@@ -1,5 +1,5 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 const multer = require('multer');
 const path = require('path');
 require('dotenv').config();
@@ -12,7 +12,6 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Enable CORS
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -23,54 +22,21 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve Static Files
 app.use(express.static(path.join(__dirname)));
 
-// ==========================================
-// 🔍 ENVIRONMENT VARIABLES CHECK
-// ==========================================
-console.log("\n-----------------------------------------");
-console.log("🔍 CHECKING LOADED ENV VARIABLES:");
-console.log("--> EMAIL_USER:", process.env.EMAIL_USER ? process.env.EMAIL_USER : "❌ MISSING");
-console.log("--> EMAIL_PASS Length:", process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim().length : 0, "(16 hona chahiye)");
-console.log("--> CAREERS_EMAIL:", process.env.CAREERS_EMAIL ? process.env.CAREERS_EMAIL : "❌ MISSING");
-console.log("--> CONTACT_EMAIL:", process.env.CONTACT_EMAIL ? process.env.CONTACT_EMAIL : "❌ MISSING");
-console.log("-----------------------------------------\n");
+// Setup SendGrid API Key
+if (process.env.SENDGRID_API_KEY) {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY.trim());
+    console.log("✅ SendGrid API Key Loaded Successfully!");
+} else {
+    console.error("❌ SENDGRID_API_KEY is missing in Environment Variables!");
+}
 
-// Multer Setup
+// Multer Setup for File Buffer
 const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 } // 10MB
-});
-
-// ==========================================
-// 📧 NODEMAILER TRANSPORTER SETUP (IPV4 FIX FOR RENDER)
-// ==========================================
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // TLS
-    auth: {
-        user: (process.env.EMAIL_USER || '').trim(),
-        pass: (process.env.EMAIL_PASS || '').trim()
-    },
-    family: 4, // 👈 FORCES IPV4 TO FIX ENETUNREACH ERROR ON RENDER
-    connectionTimeout: 15000,
-    greetingTimeout: 15000,
-    socketTimeout: 20000,
-    tls: {
-        rejectUnauthorized: false
-    }
-});
-
-// Verification Check
-transporter.verify((error, success) => {
-    if (error) {
-        console.error("❌ Gmail Transporter Error:", error.message);
-    } else {
-        console.log("✅ Gmail SMTP Server Ready to Send Emails!");
-    }
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB Limit
 });
 
 // ==========================================
@@ -88,7 +54,7 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
         const resumeFile = req.file;
 
         let formType = "Job Application";
-        let targetEmail = process.env.CAREERS_EMAIL || process.env.EMAIL_USER;
+        let targetEmail = process.env.CAREERS_EMAIL || process.env.EMAIL_USER || "shreebhargava50@gmail.com";
         let applicantName = name || contactPerson || contractorName || vendorName || "Inquirer";
 
         if (category || vendorName) {
@@ -115,24 +81,29 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
 
         emailContent += `</div>`;
 
-        const mailOptions = {
-            from: `"SBA Portal" <${process.env.EMAIL_USER}>`,
+        const msg = {
             to: targetEmail,
-            replyTo: email || process.env.EMAIL_USER,
+            from: process.env.EMAIL_USER || 'shreebhargava50@gmail.com', // Verified Sender
+            replyTo: email || process.env.EMAIL_USER || 'shreebhargava50@gmail.com',
             subject: `💼 New ${formType}: ${applicantName}`,
             html: emailContent,
-            attachments: resumeFile ? [{ filename: resumeFile.originalname, content: resumeFile.buffer }] : []
+            attachments: resumeFile ? [{
+                content: resumeFile.buffer.toString('base64'),
+                filename: resumeFile.originalname,
+                type: resumeFile.mimetype,
+                disposition: 'attachment'
+            }] : []
         };
 
-        console.log("⏳ Sending Email via Nodemailer...");
-        await transporter.sendMail(mailOptions);
-        console.log("✅ Email Sent Successfully!");
+        console.log("⏳ Sending Email via SendGrid API...");
+        await sgMail.send(msg);
+        console.log("✅ Careers Email Sent Successfully!");
         
         return res.status(200).json({ success: true, message: "Application submitted successfully!" });
 
     } catch (error) {
-        console.error("❌ CAREERS EMAIL ERROR:", error);
-        return res.status(500).json({ success: false, message: "Failed to send email: " + error.message });
+        console.error("❌ CAREERS EMAIL ERROR:", error.response ? error.response.body : error);
+        return res.status(500).json({ success: false, message: "Failed to send email. " + error.message });
     }
 });
 
@@ -144,9 +115,9 @@ app.post('/contact', async (req, res) => {
     try {
         const { name, email, phone, subject, message } = req.body;
 
-        const mailOptions = {
-            from: `"SBA Website Inquiry" <${process.env.EMAIL_USER}>`,
-            to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
+        const msg = {
+            to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER || "shreebhargavainfra@gmail.com",
+            from: process.env.EMAIL_USER || 'shreebhargava50@gmail.com',
             replyTo: email,
             subject: `📩 New Client Inquiry: ${subject || 'General Inquiry'} - ${name}`,
             html: `
@@ -166,19 +137,19 @@ app.post('/contact', async (req, res) => {
             `
         };
 
-        console.log("⏳ Sending Contact Email...");
-        await transporter.sendMail(mailOptions);
+        console.log("⏳ Sending Contact Email via SendGrid API...");
+        await sgMail.send(msg);
         console.log("✅ Contact Email Sent Successfully!");
         
         return res.status(200).json({ success: true, message: "Message sent successfully!" });
 
     } catch (error) {
-        console.error("❌ CONTACT EMAIL ERROR:", error);
-        return res.status(500).json({ success: false, message: "Failed to send message: " + error.message });
+        console.error("❌ CONTACT EMAIL ERROR:", error.response ? error.response.body : error);
+        return res.status(500).json({ success: false, message: "Failed to send message. " + error.message });
     }
 });
 
-// Serve Frontend
+// Serve Static Frontend
 app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
