@@ -7,12 +7,12 @@ require('dotenv').config();
 const app = express();
 
 // ==========================================
-// 🛡️ MIDDLEWARES & CORS POLICY (FIXES CONNECTION ERRORS)
+// 🛡️ MIDDLEWARES & CORS POLICY
 // ==========================================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Enable CORS for all incoming requests (Fixes Browser Block Error)
+// Enable CORS
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve Static Files (HTML, CSS, JS, Images)
+// Serve Static Files
 app.use(express.static(path.join(__dirname)));
 
 // ==========================================
@@ -37,46 +37,47 @@ console.log("--> CAREERS_EMAIL:", process.env.CAREERS_EMAIL ? process.env.CAREER
 console.log("--> CONTACT_EMAIL:", process.env.CONTACT_EMAIL ? process.env.CONTACT_EMAIL : "❌ MISSING");
 console.log("-----------------------------------------\n");
 
-// Multer Setup (File Upload to Buffer Memory)
+// Multer Setup
 const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 } // 10MB max limit
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB
 });
 
 // ==========================================
-// 📧 NODEMAILER TRANSPORTER SETUP FOR RENDER CLOUD
+// 📧 NODEMAILER TRANSPORTER SETUP (IPV4 FIX FOR RENDER)
 // ==========================================
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
-    port: 465,
-    secure: true, // Port 465 uses SSL
+    port: 587,
+    secure: false, // TLS
     auth: {
         user: (process.env.EMAIL_USER || '').trim(),
         pass: (process.env.EMAIL_PASS || '').trim()
     },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-    socketTimeout: 15000,
+    family: 4, // 👈 FORCES IPV4 TO FIX ENETUNREACH ERROR ON RENDER
+    connectionTimeout: 15000,
+    greetingTimeout: 15000,
+    socketTimeout: 20000,
     tls: {
         rejectUnauthorized: false
     }
 });
 
-// Startup Verification
+// Verification Check
 transporter.verify((error, success) => {
     if (error) {
-        console.error("❌ Gmail Transporter Connection Error:", error.message);
+        console.error("❌ Gmail Transporter Error:", error.message);
     } else {
         console.log("✅ Gmail SMTP Server Ready to Send Emails!");
     }
 });
 
 // ==========================================
-// 💼 1. CAREERS / VENDORS / CONTRACTORS FORM ROUTE
+// 💼 1. CAREERS / VENDORS / CONTRACTORS ROUTE
 // ==========================================
 app.post('/careers', upload.single('resume'), async (req, res) => {
-    console.log("\n📩 [CAREERS/PORTAL FORM] New Request Received!");
+    console.log("\n📩 [CAREERS/PORTAL FORM] Request Received!");
     try {
         const { 
             name, email, phone, position, experience, cover, 
@@ -86,7 +87,6 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
         
         const resumeFile = req.file;
 
-        // Determine Form Type
         let formType = "Job Application";
         let targetEmail = process.env.CAREERS_EMAIL || process.env.EMAIL_USER;
         let applicantName = name || contactPerson || contractorName || vendorName || "Inquirer";
@@ -126,13 +126,13 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
 
         console.log("⏳ Sending Email via Nodemailer...");
         await transporter.sendMail(mailOptions);
-        console.log("✅ Careers/Portal Email Sent Successfully!");
+        console.log("✅ Email Sent Successfully!");
         
         return res.status(200).json({ success: true, message: "Application submitted successfully!" });
 
     } catch (error) {
-        console.error("❌ CAREERS EMAIL DETAILED ERROR:", error);
-        return res.status(500).json({ success: false, message: "Failed to send application. " + error.message });
+        console.error("❌ CAREERS EMAIL ERROR:", error);
+        return res.status(500).json({ success: false, message: "Failed to send email: " + error.message });
     }
 });
 
@@ -140,7 +140,7 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
 // 📩 2. CONTACT FORM ROUTE
 // ==========================================
 app.post('/contact', async (req, res) => {
-    console.log("\n📩 [CONTACT FORM] New Request Received!");
+    console.log("\n📩 [CONTACT FORM] Request Received!");
     try {
         const { name, email, phone, subject, message } = req.body;
 
@@ -166,26 +166,24 @@ app.post('/contact', async (req, res) => {
             `
         };
 
-        console.log("⏳ Sending Contact Email via Nodemailer...");
+        console.log("⏳ Sending Contact Email...");
         await transporter.sendMail(mailOptions);
         console.log("✅ Contact Email Sent Successfully!");
         
         return res.status(200).json({ success: true, message: "Message sent successfully!" });
 
     } catch (error) {
-        console.error("❌ CONTACT EMAIL DETAILED ERROR:", error);
-        return res.status(500).json({ success: false, message: "Failed to send message. " + error.message });
+        console.error("❌ CONTACT EMAIL ERROR:", error);
+        return res.status(500).json({ success: false, message: "Failed to send message: " + error.message });
     }
 });
 
-// ==========================================
-// 📌 ROOT ROUTE & STATIC SERVING (Express v5 Fix)
-// ==========================================
+// Serve Frontend
 app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Start Express Server
+// Start Server
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
     console.log(`🚀 SBA Infra Server running on port ${PORT}`);
