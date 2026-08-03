@@ -22,22 +22,28 @@ console.log("--> CAREERS_EMAIL:", process.env.CAREERS_EMAIL ? process.env.CAREER
 console.log("--> CONTACT_EMAIL:", process.env.CONTACT_EMAIL ? process.env.CONTACT_EMAIL : "❌ MISSING");
 console.log("-----------------------------------------\n");
 
-// Multer Setup
+// Multer Setup (Resume File Memory Buffer)
 const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 }
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB Limit
 });
 
-// Nodemailer Transporter
+// Nodemailer Transporter (Explicit SSL Host configuration for Cloud platforms like Render)
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
         user: process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : '',
         pass: process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim() : ''
+    },
+    tls: {
+        rejectUnauthorized: false
     }
 });
 
+// Verify Nodemailer Transporter Connection on startup
 transporter.verify((error, success) => {
     if (error) {
         console.error("❌ Gmail Transporter Connection Error:", error.message);
@@ -47,15 +53,19 @@ transporter.verify((error, success) => {
 });
 
 // ==========================================
-// 1. CAREERS FORM ROUTE
+// 1. CAREERS FORM ROUTE (Resume -> Email 1)
 // ==========================================
 app.post('/careers', upload.single('resume'), async (req, res) => {
     console.log("\n📩 [CAREERS FORM] New Request Received!");
+    console.log("--> Form Data:", req.body);
+    console.log("--> Uploaded File:", req.file ? req.file.originalname : "NO FILE ATTACHED");
+
     try {
         const { name, email, phone, position, experience, cover } = req.body;
         const resumeFile = req.file;
 
         if (!resumeFile) {
+            console.log("⚠️ Validation Failed: Resume file missing!");
             return res.status(400).json({ message: "Resume upload is required!" });
         }
 
@@ -78,13 +88,23 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
                     <blockquote style="background: #f4f4f4; padding: 12px; border-left: 4px solid #ff6600;">
                         ${cover || 'No additional details provided.'}
                     </blockquote>
+                    <hr>
+                    <p style="font-size: 0.8rem; color: #666;">Candidate resume is attached with this email.</p>
                 </div>
             `,
-            attachments: [{ filename: resumeFile.originalname, content: resumeFile.buffer }]
+            attachments: [
+                {
+                    filename: resumeFile.originalname,
+                    content: resumeFile.buffer
+                }
+            ]
         };
 
+        console.log("⏳ Sending Careers Email via Nodemailer...");
         await transporter.sendMail(mailOptions);
+        console.log("✅ Careers Email Sent Successfully!");
         res.status(200).json({ message: "Application submitted successfully!" });
+
     } catch (error) {
         console.error("❌ CAREERS EMAIL DETAILED ERROR:", error);
         res.status(500).json({ message: "Failed to send application." });
@@ -92,10 +112,12 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
 });
 
 // ==========================================
-// 2. CONTACT FORM ROUTE
+// 2. CONTACT FORM ROUTE (Message -> Email 2)
 // ==========================================
 app.post('/contact', async (req, res) => {
     console.log("\n📩 [CONTACT FORM] New Request Received!");
+    console.log("--> Data:", req.body);
+
     try {
         const { name, email, phone, subject, message } = req.body;
 
@@ -121,8 +143,11 @@ app.post('/contact', async (req, res) => {
             `
         };
 
+        console.log("⏳ Sending Contact Email via Nodemailer...");
         await transporter.sendMail(mailOptions);
+        console.log("✅ Contact Email Sent Successfully!");
         res.status(200).json({ message: "Message sent successfully!" });
+
     } catch (error) {
         console.error("❌ CONTACT EMAIL DETAILED ERROR:", error);
         res.status(500).json({ message: "Failed to send message." });
@@ -130,7 +155,7 @@ app.post('/contact', async (req, res) => {
 });
 
 // ==========================================
-// 📌 ROOT ROUTE & STATIC FILE SERVING FIX (Express v5 Compatible)
+// 📌 ROOT ROUTE & STATIC FILE SERVING FIX
 // ==========================================
 app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
