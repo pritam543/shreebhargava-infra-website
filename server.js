@@ -1,5 +1,5 @@
 const express = require('express');
-const sgMail = require('@sendgrid/mail');
+const nodemailer = require('nodemailer');
 const multer = require('multer');
 const path = require('path');
 require('dotenv').config();
@@ -24,19 +24,37 @@ app.use((req, res, next) => {
 
 app.use(express.static(path.join(__dirname)));
 
-// Setup SendGrid API Key
-if (process.env.SENDGRID_API_KEY) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY.trim());
-    console.log("✅ SendGrid API Key Loaded Successfully!");
-} else {
-    console.error("❌ SENDGRID_API_KEY is missing in Environment Variables!");
-}
-
-// Multer Setup for File Buffer
+// Multer Setup for File Uploads
 const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
     limits: { fileSize: 10 * 1024 * 1024 } // 10MB Limit
+});
+
+// ==========================================
+// 📧 NODEMAILER TRANSPORTER CONFIGURATION
+// (Optimized with Port 465 SSL for Render Cloud)
+// ==========================================
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true, // SSL Connection
+    auth: {
+        user: process.env.EMAIL_USER, // e.g. shreebhargava50@gmail.com
+        pass: process.env.EMAIL_PASS  // Gmail App Password (16 characters)
+    },
+    connectionTimeout: 15000, // 15 seconds
+    greetingTimeout: 15000,
+    socketTimeout: 15000
+});
+
+// Verify connection configuration on start
+transporter.verify((error, success) => {
+    if (error) {
+        console.error("❌ Gmail SMTP Transporter Error:", error.message);
+    } else {
+        console.log("✅ Gmail SMTP Server is Ready to Send Emails!");
+    }
 });
 
 // ==========================================
@@ -81,28 +99,26 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
 
         emailContent += `</div>`;
 
-        const msg = {
+        const mailOptions = {
+            from: `"SBA Infra Website" <${process.env.EMAIL_USER}>`,
             to: targetEmail,
-            from: process.env.EMAIL_USER || 'shreebhargava50@gmail.com', // Verified Sender
-            replyTo: email || process.env.EMAIL_USER || 'shreebhargava50@gmail.com',
+            replyTo: email || process.env.EMAIL_USER,
             subject: `💼 New ${formType}: ${applicantName}`,
             html: emailContent,
             attachments: resumeFile ? [{
-                content: resumeFile.buffer.toString('base64'),
                 filename: resumeFile.originalname,
-                type: resumeFile.mimetype,
-                disposition: 'attachment'
+                content: resumeFile.buffer
             }] : []
         };
 
-        console.log("⏳ Sending Email via SendGrid API...");
-        await sgMail.send(msg);
+        console.log("⏳ Sending Email via Gmail SMTP...");
+        await transporter.sendMail(mailOptions);
         console.log("✅ Careers Email Sent Successfully!");
         
         return res.status(200).json({ success: true, message: "Application submitted successfully!" });
 
     } catch (error) {
-        console.error("❌ CAREERS EMAIL ERROR:", error.response ? error.response.body : error);
+        console.error("❌ CAREERS EMAIL ERROR:", error.message);
         return res.status(500).json({ success: false, message: "Failed to send email. " + error.message });
     }
 });
@@ -115,9 +131,9 @@ app.post('/contact', async (req, res) => {
     try {
         const { name, email, phone, subject, message } = req.body;
 
-        const msg = {
+        const mailOptions = {
+            from: `"SBA Infra Contact" <${process.env.EMAIL_USER}>`,
             to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER || "shreebhargavainfra@gmail.com",
-            from: process.env.EMAIL_USER || 'shreebhargava50@gmail.com',
             replyTo: email,
             subject: `📩 New Client Inquiry: ${subject || 'General Inquiry'} - ${name}`,
             html: `
@@ -137,14 +153,14 @@ app.post('/contact', async (req, res) => {
             `
         };
 
-        console.log("⏳ Sending Contact Email via SendGrid API...");
-        await sgMail.send(msg);
+        console.log("⏳ Sending Contact Email via Gmail SMTP...");
+        await transporter.sendMail(mailOptions);
         console.log("✅ Contact Email Sent Successfully!");
         
         return res.status(200).json({ success: true, message: "Message sent successfully!" });
 
     } catch (error) {
-        console.error("❌ CONTACT EMAIL ERROR:", error.response ? error.response.body : error);
+        console.error("❌ CONTACT EMAIL ERROR:", error.message);
         return res.status(500).json({ success: false, message: "Failed to send message. " + error.message });
     }
 });
