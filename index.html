@@ -12,7 +12,6 @@
         rel="stylesheet">
 
     <style>
-        /* --- Root Variables & Reset --- */
         :root {
             --primary-dark: #11161e;
             --secondary-dark: #1a212d;
@@ -104,7 +103,7 @@
             color: var(--text-light);
         }
 
-        /* --- Navbar Styling --- */
+        /* Navbar */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -222,7 +221,7 @@
             font-size: 1.5rem;
         }
 
-        /* --- Hero Section & Background Slideshow --- */
+        /* Hero */
         .hero {
             position: relative;
             height: 90vh;
@@ -347,7 +346,7 @@
             box-shadow: 0 5px 15px rgba(255, 102, 0, 0.4);
         }
 
-        /* --- About Section --- */
+        /* About */
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -407,7 +406,7 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* --- Team Members Section --- */
+        /* Team Members */
         .team-grid {
             display: flex;
             justify-content: center;
@@ -443,6 +442,7 @@
             overflow: hidden;
             border: 3px solid var(--gold);
             box-shadow: 0 5px 15px rgba(255, 102, 0, 0.2);
+            background-color: #222;
         }
 
         .team-img {
@@ -476,7 +476,7 @@
             line-height: 1.5;
         }
 
-        /* --- Services --- */
+        /* Services */
         .services {
             background-color: var(--bg-light);
         }
@@ -520,7 +520,7 @@
             color: #666;
         }
 
-        /* --- Why Choose Us --- */
+        /* Why Choose Us */
         .why-choose-us {
             background-color: var(--primary-dark);
             color: var(--text-light);
@@ -563,7 +563,7 @@
             color: var(--text-muted);
         }
 
-        /* --- Featured Projects Filter Buttons --- */
+        /* Featured Projects Filter Buttons */
         .project-filter-buttons {
             display: flex;
             justify-content: center;
@@ -595,7 +595,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- Projects Grid & Cards --- */
+        /* Projects Grid & Cards */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -702,7 +702,7 @@
             display: none;
         }
 
-        /* --- Our Process --- */
+        /* Our Process */
         .process {
             background-color: var(--bg-light);
         }
@@ -837,7 +837,7 @@
             line-height: 1.7;
         }
 
-        /* --- Testimonials --- */
+        /* Testimonials */
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -868,7 +868,7 @@
             margin-top: 5px;
         }
 
-        /* --- Careers & Portal Section (EQUAL HEIGHT FIX) --- */
+        /* Careers & Portal Section */
         .careers {
             background-color: var(--bg-light);
         }
@@ -1174,7 +1174,7 @@
             color: var(--gold);
         }
 
-        /* --- Contact Section --- */
+        /* Contact Section */
         .contact {
             background-color: var(--primary-dark);
             color: var(--text-light);
@@ -1495,7 +1495,7 @@
         </div>
     </header>
 
-    <!-- --- Hero Section --- -->
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <div class="hero-bg-slider">
             <div class="hero-slide active"
@@ -1532,7 +1532,7 @@
         </div>
     </section>
 
-    <!-- --- About Section --- -->
+    <!-- About Section -->
     <section id="about" class="section-padding container">
         <div class="about-grid">
             <div class="about-text">
@@ -1573,8 +1573,8 @@
             <div class="team-grid">
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="images/founder.jpg" class="team-img" alt="Ar. Shashank Pare"
-                            onerror="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80';">
+                        <!-- Strict Local Path -->
+                        <img src="images/founder.jpg" class="team-img" alt="Ar. Shashank Pare">
                     </div>
                     <h4>Ar. Shashank Pare</h4>
                     <span>Founder & Principal Architect</span>
@@ -1583,8 +1583,8 @@
 
                 <div class="team-card">
                     <div class="team-img-wrapper">
-                        <img src="images/co-founder.jpg" class="team-img" alt="Ar. Sakshi Pare"
-                            onerror="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80';">
+                        <!-- Strict Local Path -->
+                        <img src="images/co-founder.jpg" class="team-img" alt="Ar. Sakshi Pare">
                     </div>
                     <h4>Er. Sakshi Pare</h4>
                     <span>Co-Founder & Managing Director</span>
@@ -1645,7 +1645,7 @@
         </div>
     </section>
 
-    <!-- Why Choose Us Target -->
+    <!-- Why Choose Us -->
     <section id="why-us" class="section-padding why-choose-us">
         <div class="container">
             <div class="wcu-grid">
@@ -1705,7 +1705,7 @@
         </div>
     </section>
 
-    <!-- --- Featured Projects Section --- -->
+    <!-- Featured Projects Section -->
     <section id="projects" class="section-padding">
         <div class="container">
             <div class="section-header">
@@ -1722,7 +1722,6 @@
             </div>
 
             <div class="projects-grid" id="projectsContainer">
-
                 <div class="project-card" data-category="architecture turnkey">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
@@ -1842,12 +1841,11 @@
                             accessibility features, and Vastu compliance.</p>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- --- Our Process Section --- -->
+    <!-- Our Process Section -->
     <section id="process" class="section-padding process">
         <div class="container">
             <div class="section-header">
@@ -1917,7 +1915,7 @@
         </div>
     </section>
 
-    <!-- --- Careers, Vendors & Contractors Section (EQUALIZED HEIGHT) --- -->
+    <!-- Careers, Vendors & Contractors Section -->
     <section id="careers" class="section-padding careers">
         <div class="container">
             <div class="section-header">
@@ -1975,15 +1973,15 @@
                 <div class="careers-form-card">
 
                     <!-- 1. WE ARE HIRING FORM -->
-                    <form id="hiringForm" class="portal-form active" enctype="multipart/form-data">
+                    <form id="hiringForm" class="portal-form active">
                         <h3 class="form-heading">Apply Now (Job Application)</h3>
                         <p class="form-subtext">Fill in your details to join our internal team.</p>
 
-                        <input type="text" placeholder="Full Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="text" name="name" placeholder="Full Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
 
-                        <select required>
+                        <select name="position" required>
                             <option value="" disabled selected>Select Desired Position</option>
                             <option value="Senior Architect">Senior Architect</option>
                             <option value="Junior Architect / Intern">Junior Architect / Intern</option>
@@ -1995,7 +1993,7 @@
                             <option value="Other Position">Other Position</option>
                         </select>
 
-                        <select required>
+                        <select name="experience" required>
                             <option value="" disabled selected>Select Experience Level</option>
                             <option value="Fresher / Intern">Fresher / Intern</option>
                             <option value="1 - 3 Years">1 - 3 Years</option>
@@ -2005,25 +2003,25 @@
 
                         <div class="file-upload-group">
                             <label>Upload Resume / Portfolio (PDF / DOC):</label>
-                            <input type="file" accept=".pdf,.doc,.docx" required>
+                            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
                         </div>
 
-                        <textarea placeholder="Short intro about yourself & key skills (Optional)"></textarea>
+                        <textarea name="cover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
 
                         <button type="submit">Submit Job Application</button>
                     </form>
 
                     <!-- 2. VENDORS FORM -->
-                    <form id="vendorsForm" class="portal-form" enctype="multipart/form-data">
+                    <form id="vendorsForm" class="portal-form">
                         <h3 class="form-heading">Vendor / Supplier Registration</h3>
                         <p class="form-subtext">Register as an approved material vendor.</p>
 
-                        <input type="text" placeholder="Vendor / Company Name" required>
-                        <input type="text" placeholder="Contact Person Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="text" name="vendorName" placeholder="Vendor / Company Name" required>
+                        <input type="text" name="contactPerson" placeholder="Contact Person Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
 
-                        <select required>
+                        <select name="category" required>
                             <option value="" disabled selected>Select Supplied Material Category</option>
                             <option value="Iron & Steel">Iron & Steel (TMT, Beams)</option>
                             <option value="Cement & Aggregates">Cement, Sand & Aggregates</option>
@@ -2037,29 +2035,29 @@
                             <option value="Other Material Supplier">Other Material Category</option>
                         </select>
 
-                        <input type="text" placeholder="GST Number / Registration (Optional)">
+                        <input type="text" name="gst" placeholder="GST Number / Registration (Optional)">
 
                         <div class="file-upload-group">
                             <label>Company Profile / Material Catalog (PDF/DOC):</label>
-                            <input type="file" accept=".pdf,.doc,.docx">
+                            <input type="file" name="resume" accept=".pdf,.doc,.docx">
                         </div>
 
-                        <textarea placeholder="Specify brand names, products supplied, or business message..."></textarea>
+                        <textarea name="cover" placeholder="Specify brand names, products supplied, or business message..."></textarea>
 
                         <button type="submit">Submit Vendor Inquiry</button>
                     </form>
 
                     <!-- 3. CONTRACTORS FORM -->
-                    <form id="contractorsForm" class="portal-form" enctype="multipart/form-data">
+                    <form id="contractorsForm" class="portal-form">
                         <h3 class="form-heading">Contractor Registration</h3>
                         <p class="form-subtext">Partner with us as an execution contractor.</p>
 
-                        <input type="text" placeholder="Contractor / Firm Name" required>
-                        <input type="text" placeholder="Contact Person Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number" required>
+                        <input type="text" name="contractorName" placeholder="Contractor / Firm Name" required>
+                        <input type="text" name="contactPerson" placeholder="Contact Person Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
 
-                        <select required>
+                        <select name="specialization" required>
                             <option value="" disabled selected>Select Contractor Specialization</option>
                             <option value="Civil Engineering Contractor">Civil & Structural Contractor</option>
                             <option value="HVAC Contractor">HVAC & Ducting Contractor</option>
@@ -2073,7 +2071,7 @@
                             <option value="Other Execution Work">Other Specialty Work</option>
                         </select>
 
-                        <select required>
+                        <select name="experience" required>
                             <option value="" disabled selected>Work Experience In Years</option>
                             <option value="1 - 3 Years">1 - 3 Years</option>
                             <option value="3 - 5 Years">3 - 5 Years</option>
@@ -2083,10 +2081,10 @@
 
                         <div class="file-upload-group">
                             <label>Company Profile / Past Work Proof (PDF/DOC):</label>
-                            <input type="file" accept=".pdf,.doc,.docx">
+                            <input type="file" name="resume" accept=".pdf,.doc,.docx">
                         </div>
 
-                        <textarea placeholder="Mention key past projects executed, workforce strength, etc..."></textarea>
+                        <textarea name="cover" placeholder="Mention key past projects executed, workforce strength, etc..."></textarea>
 
                         <button type="submit">Submit Contractor Registration</button>
                     </form>
@@ -2104,30 +2102,24 @@
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
-                    <p>"Shree Bhargava Infrastructure & Development transformed our dream into reality. Their
-                        creativity, professionalism, and attention to detail are truly commendable."</p>
+                    <p>"Shree Bhargava Infrastructure & Development transformed our dream into reality. Their creativity, professionalism, and attention to detail are truly commendable."</p>
                     <div class="client-info">
                         <h4>- Mr. Ankit Sharma</h4>
-                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i></div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
                 </div>
                 <div class="testimonial-card">
-                    <p>"Excellent team to work with! They delivered our project on time with great quality and
-                        innovative design."</p>
+                    <p>"Excellent team to work with! They delivered our project on time with great quality and innovative design."</p>
                     <div class="client-info">
                         <h4>- Mrs. Neha Jain</h4>
-                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
-                                class="fa-solid fa-star"></i></div>
+                        <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- --- Contact Section --- -->
+    <!-- Contact Section -->
     <section id="contact" class="section-padding contact">
         <div class="container contact-grid">
             <div class="contact-details">
@@ -2146,9 +2138,7 @@
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <div>shreebhargavainfra@gmail.com
-                            <br>shreebhargava@gmail.com
-                        </div>
+                        <div>shreebhargavainfra@gmail.com<br>shreebhargava@gmail.com</div>
                     </li>
                 </ul>
 
@@ -2176,8 +2166,7 @@
             </div>
 
             <div class="contact-form">
-                <h3 style="color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;">Send
-                    a Message</h3>
+                <h3 style="color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;">Send a Message</h3>
                 <form id="contactForm">
                     <input id="name" type="text" placeholder="Full Name" required>
                     <input id="email" type="email" placeholder="Email Address" required>
@@ -2192,13 +2181,12 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That
-                Inspire</p>
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved. | Designing Spaces That Inspire</p>
         </div>
     </footer>
 
     <script>
-        // --- Navigation Mobile Toggle & Mobile Dropdown Handling ---
+        // Navigation
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const links = document.querySelectorAll('.nav-links a');
@@ -2224,7 +2212,7 @@
             });
         });
 
-        // --- Hero Background Slideshow JS ---
+        // Slideshow
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
 
@@ -2233,10 +2221,9 @@
             currentSlide = (currentSlide + 1) % slides.length;
             slides[currentSlide].classList.add('active');
         }
-
         setInterval(nextSlide, 4000);
 
-        // --- Projects Filter Script ---
+        // Filter
         function filterProjects(category, btnElement) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
@@ -2252,36 +2239,15 @@
             });
         }
 
-        // --- Process Section Interactive Script ---
+        // Process Section
         const processDescriptions = {
-            1: {
-                title: "1. Consultation & Requirement Analysis",
-                text: "We begin with a detailed, one-on-one discussion to understand your project goals, aesthetic preferences, functional requirements, and budget framework. Our team listens carefully to lay a solid conceptual foundation."
-            },
-            2: {
-                title: "2. Site Visit & Feasibility Study",
-                text: "Our architectural experts conduct an in-depth on-site evaluation, analyzing soil conditions, sun orientation, surrounding topography, and municipal guidelines to ensure structural feasibility and maximum space optimization."
-            },
-            3: {
-                title: "3. Concept Design & Layout Planning",
-                text: "We translate your ideas into schematic spatial layouts and floor plans. Focusing on ventilation, natural lighting, and modern ergonomics, we present initial design concepts for your input and refinement."
-            },
-            4: {
-                title: "4. Photorealistic 3D Visualization",
-                text: "Visualize your completed dream project before construction begins. We craft ultra-realistic 3D exterior and interior renderings, giving you a full perspective on material finishes, color schemes, and lighting dynamics."
-            },
-            5: {
-                title: "5. Working Drawings & Technical Detailing",
-                text: "We prepare exhaustive engineering blueprint packages including structural, electrical, plumbing (MEP), and architectural working drawings required for precise, error-free on-site construction."
-            },
-            6: {
-                title: "6. Precision Execution & Quality Assurance",
-                text: "Construction begins under the direct supervision of experienced civil engineers and project leads. We enforce strict quality standards, premium material selection, and timeline management throughout execution."
-            },
-            7: {
-                title: "7. Final Inspection & Handover",
-                text: "Following rigorous structural checks, finishing audits, and client walk-throughs, we hand over the completed turnkey project—fully equipped and ready for living or business operations with complete satisfaction."
-            }
+            1: { title: "1. Consultation & Requirement Analysis", text: "We begin with a detailed discussion..." },
+            2: { title: "2. Site Visit & Feasibility Study", text: "Our architectural experts conduct an in-depth on-site evaluation..." },
+            3: { title: "3. Concept Design & Layout Planning", text: "We translate your ideas into schematic spatial layouts..." },
+            4: { title: "4. Photorealistic 3D Visualization", text: "Visualize your completed dream project..." },
+            5: { title: "5. Working Drawings & Technical Detailing", text: "We prepare exhaustive blueprint packages..." },
+            6: { title: "6. Precision Execution & Quality Assurance", text: "Construction begins under direct supervision..." },
+            7: { title: "7. Final Inspection & Handover", text: "Following rigorous structural checks, we hand over..." }
         };
 
         function showProcessDetails(stepNum, element) {
@@ -2301,7 +2267,7 @@
             document.querySelectorAll('.process-step').forEach(s => s.classList.remove('active'));
         }
 
-        // --- Smooth Side-Sliding Form Switcher ---
+        // Form Switcher
         function switchPortalForm(type, element) {
             if (element.classList.contains('active')) return;
 
@@ -2321,7 +2287,6 @@
 
             if (currentActiveForm) {
                 currentActiveForm.classList.add('slide-out');
-
                 setTimeout(() => {
                     currentActiveForm.classList.remove('active', 'slide-out');
                     targetForm.classList.add('active');
@@ -2331,16 +2296,43 @@
             }
         }
 
-        // Form Submission Handler
+        // CONNECT ALL PORTAL FORMS (HIRING, VENDORS, CONTRACTORS) TO BACKEND
         document.querySelectorAll('.portal-form').forEach(form => {
-            form.addEventListener('submit', function (e) {
+            form.addEventListener('submit', async function (e) {
                 e.preventDefault();
-                alert("✅ Application / Details submitted successfully!");
-                form.reset();
+
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerText;
+                submitBtn.innerText = "Submitting Details...";
+                submitBtn.disabled = true;
+
+                const formData = new FormData(form);
+
+                try {
+                    const response = await fetch('/careers', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok && result.success) {
+                        alert("✅ " + (result.message || "Submitted successfully!"));
+                        form.reset();
+                    } else {
+                        alert("❌ " + (result.message || "Failed to submit. Please try again."));
+                    }
+                } catch (error) {
+                    console.error("Submission Error:", error);
+                    alert("❌ Server Connection Error! Make sure server is running.");
+                } finally {
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                }
             });
         });
 
-        // --- Contact Form Submit ---
+        // CONTACT FORM BACKEND CONNECT
         document.getElementById("contactForm").addEventListener("submit", async function (e) {
             e.preventDefault();
 
@@ -2367,7 +2359,7 @@
 
                 const result = await response.json();
 
-                if (response.ok) {
+                if (response.ok && result.success) {
                     alert("✅ Message sent successfully!");
                     document.getElementById("contactForm").reset();
                 } else {
@@ -2375,7 +2367,7 @@
                 }
             } catch (error) {
                 console.error("Error:", error);
-                alert("❌ Cannot connect to server! Make sure the backend server is running.");
+                alert("❌ Cannot connect to server!");
             } finally {
                 submitBtn.innerText = "Send Message";
                 submitBtn.disabled = false;
