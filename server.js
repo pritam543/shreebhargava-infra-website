@@ -6,13 +6,28 @@ require('dotenv').config();
 
 const app = express();
 
-// Middlewares
+// ==========================================
+// 🛡️ MIDDLEWARES & CORS POLICY (FIXES CONNECTION ERRORS)
+// ==========================================
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Enable CORS for all incoming requests (Fixes Browser Block Error)
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
+// Serve Static Files (HTML, CSS, JS, Images)
 app.use(express.static(path.join(__dirname)));
 
 // ==========================================
-// 🔍 DEBUG LOGS
+// 🔍 ENVIRONMENT VARIABLES CHECK
 // ==========================================
 console.log("\n-----------------------------------------");
 console.log("🔍 CHECKING LOADED ENV VARIABLES:");
@@ -22,28 +37,33 @@ console.log("--> CAREERS_EMAIL:", process.env.CAREERS_EMAIL ? process.env.CAREER
 console.log("--> CONTACT_EMAIL:", process.env.CONTACT_EMAIL ? process.env.CONTACT_EMAIL : "❌ MISSING");
 console.log("-----------------------------------------\n");
 
-// Multer Setup (Resume File Memory Buffer)
+// Multer Setup (File Upload to Buffer Memory)
 const storage = multer.memoryStorage();
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 10 * 1024 * 1024 } // 10MB Limit
+    limits: { fileSize: 10 * 1024 * 1024 } // 10MB max limit
 });
 
-// Nodemailer Transporter (Explicit SSL Host configuration for Cloud platforms like Render)
+// ==========================================
+// 📧 NODEMAILER TRANSPORTER SETUP FOR RENDER CLOUD
+// ==========================================
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
-    secure: true,
+    secure: true, // Port 465 uses SSL
     auth: {
-        user: process.env.EMAIL_USER ? process.env.EMAIL_USER.trim() : '',
-        pass: process.env.EMAIL_PASS ? process.env.EMAIL_PASS.trim() : ''
+        user: (process.env.EMAIL_USER || '').trim(),
+        pass: (process.env.EMAIL_PASS || '').trim()
     },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
     tls: {
         rejectUnauthorized: false
     }
 });
 
-// Verify Nodemailer Transporter Connection on startup
+// Startup Verification
 transporter.verify((error, success) => {
     if (error) {
         console.error("❌ Gmail Transporter Connection Error:", error.message);
@@ -53,77 +73,80 @@ transporter.verify((error, success) => {
 });
 
 // ==========================================
-// 1. CAREERS FORM ROUTE (Resume -> Email 1)
+// 💼 1. CAREERS / VENDORS / CONTRACTORS FORM ROUTE
 // ==========================================
 app.post('/careers', upload.single('resume'), async (req, res) => {
-    console.log("\n📩 [CAREERS FORM] New Request Received!");
-    console.log("--> Form Data:", req.body);
-    console.log("--> Uploaded File:", req.file ? req.file.originalname : "NO FILE ATTACHED");
-
+    console.log("\n📩 [CAREERS/PORTAL FORM] New Request Received!");
     try {
-        const { name, email, phone, position, experience, cover } = req.body;
+        const { 
+            name, email, phone, position, experience, cover, 
+            vendorName, contactPerson, category, gst, 
+            contractorName, specialization 
+        } = req.body;
+        
         const resumeFile = req.file;
 
-        if (!resumeFile) {
-            console.log("⚠️ Validation Failed: Resume file missing!");
-            return res.status(400).json({ message: "Resume upload is required!" });
+        // Determine Form Type
+        let formType = "Job Application";
+        let targetEmail = process.env.CAREERS_EMAIL || process.env.EMAIL_USER;
+        let applicantName = name || contactPerson || contractorName || vendorName || "Inquirer";
+
+        if (category || vendorName) {
+            formType = "Vendor / Supplier Registration";
+        } else if (specialization || contractorName) {
+            formType = "Contractor Registration";
         }
 
+        let emailContent = `
+            <div style="font-family: Arial, sans-serif; padding: 20px; border: 2px solid #ff6600; border-radius: 8px;">
+                <h2 style="color: #ff6600;">SBA Infra - New ${formType} Received</h2>
+                <hr>
+                <p><strong>Name / Firm:</strong> ${applicantName}</p>
+                <p><strong>Email:</strong> ${email || 'Not Provided'}</p>
+                <p><strong>Phone:</strong> ${phone || 'Not Provided'}</p>
+        `;
+
+        if (position) emailContent += `<p><strong>Position Applied:</strong> ${position}</p>`;
+        if (experience) emailContent += `<p><strong>Experience:</strong> ${experience}</p>`;
+        if (category) emailContent += `<p><strong>Material Category:</strong> ${category}</p>`;
+        if (gst) emailContent += `<p><strong>GST Number:</strong> ${gst}</p>`;
+        if (specialization) emailContent += `<p><strong>Specialization:</strong> ${specialization}</p>`;
+        if (cover) emailContent += `<br><p><strong>Details / Message:</strong></p><blockquote style="background:#f4f4f4; padding:12px; border-left:4px solid #ff6600;">${cover}</blockquote>`;
+
+        emailContent += `</div>`;
+
         const mailOptions = {
-            from: `"SBA Careers Portal" <${process.env.EMAIL_USER}>`,
-            to: process.env.CAREERS_EMAIL,
-            replyTo: email,
-            subject: `💼 New Job Application: ${position || 'Applicant'} - ${name || 'Candidate'}`,
-            html: `
-                <div style="font-family: Arial, sans-serif; padding: 20px; border: 2px solid #ff6600; border-radius: 8px;">
-                    <h2 style="color: #ff6600; margin-bottom: 10px;">SBA Infra - New Job Application Received</h2>
-                    <hr>
-                    <p><strong>Applicant Name:</strong> ${name}</p>
-                    <p><strong>Email:</strong> ${email}</p>
-                    <p><strong>Phone:</strong> ${phone}</p>
-                    <p><strong>Position Applied:</strong> ${position}</p>
-                    <p><strong>Experience:</strong> ${experience}</p>
-                    <br>
-                    <p><strong>Cover Letter / Notes:</strong></p>
-                    <blockquote style="background: #f4f4f4; padding: 12px; border-left: 4px solid #ff6600;">
-                        ${cover || 'No additional details provided.'}
-                    </blockquote>
-                    <hr>
-                    <p style="font-size: 0.8rem; color: #666;">Candidate resume is attached with this email.</p>
-                </div>
-            `,
-            attachments: [
-                {
-                    filename: resumeFile.originalname,
-                    content: resumeFile.buffer
-                }
-            ]
+            from: `"SBA Portal" <${process.env.EMAIL_USER}>`,
+            to: targetEmail,
+            replyTo: email || process.env.EMAIL_USER,
+            subject: `💼 New ${formType}: ${applicantName}`,
+            html: emailContent,
+            attachments: resumeFile ? [{ filename: resumeFile.originalname, content: resumeFile.buffer }] : []
         };
 
-        console.log("⏳ Sending Careers Email via Nodemailer...");
+        console.log("⏳ Sending Email via Nodemailer...");
         await transporter.sendMail(mailOptions);
-        console.log("✅ Careers Email Sent Successfully!");
-        res.status(200).json({ message: "Application submitted successfully!" });
+        console.log("✅ Careers/Portal Email Sent Successfully!");
+        
+        return res.status(200).json({ success: true, message: "Application submitted successfully!" });
 
     } catch (error) {
         console.error("❌ CAREERS EMAIL DETAILED ERROR:", error);
-        res.status(500).json({ message: "Failed to send application." });
+        return res.status(500).json({ success: false, message: "Failed to send application. " + error.message });
     }
 });
 
 // ==========================================
-// 2. CONTACT FORM ROUTE (Message -> Email 2)
+// 📩 2. CONTACT FORM ROUTE
 // ==========================================
 app.post('/contact', async (req, res) => {
     console.log("\n📩 [CONTACT FORM] New Request Received!");
-    console.log("--> Data:", req.body);
-
     try {
         const { name, email, phone, subject, message } = req.body;
 
         const mailOptions = {
             from: `"SBA Website Inquiry" <${process.env.EMAIL_USER}>`,
-            to: process.env.CONTACT_EMAIL,
+            to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
             replyTo: email,
             subject: `📩 New Client Inquiry: ${subject || 'General Inquiry'} - ${name}`,
             html: `
@@ -146,22 +169,24 @@ app.post('/contact', async (req, res) => {
         console.log("⏳ Sending Contact Email via Nodemailer...");
         await transporter.sendMail(mailOptions);
         console.log("✅ Contact Email Sent Successfully!");
-        res.status(200).json({ message: "Message sent successfully!" });
+        
+        return res.status(200).json({ success: true, message: "Message sent successfully!" });
 
     } catch (error) {
         console.error("❌ CONTACT EMAIL DETAILED ERROR:", error);
-        res.status(500).json({ message: "Failed to send message." });
+        return res.status(500).json({ success: false, message: "Failed to send message. " + error.message });
     }
 });
 
 // ==========================================
-// 📌 ROOT ROUTE & STATIC FILE SERVING FIX
+// 📌 ROOT ROUTE & STATIC SERVING (Express v5 Fix)
 // ==========================================
 app.get(/(.*)/, (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-const PORT = process.env.PORT || 5000;
+// Start Express Server
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
     console.log(`🚀 SBA Infra Server running on port ${PORT}`);
 });
