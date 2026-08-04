@@ -290,12 +290,15 @@
             line-height: 1.2;
         }
 
+        /* Clean Bold Text Without Border/Background */
         .hero-content p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
+            font-size: 1.15rem;
+            color: #ffffff;
             margin-bottom: 30px;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
         }
 
         .btn {
@@ -476,9 +479,7 @@
             line-height: 1.5;
         }
 
-        /* ==========================================
-           🏅 REWARDS & RECOGNITION SECTION STYLES
-           ========================================== */
+        /* Rewards & Recognition */
         .rewards-section {
             margin-top: 50px;
             background: var(--bg-light);
@@ -511,22 +512,26 @@
         }
 
         .reward-img {
-            height: 200px;
+            height: 220px;
             width: 100%;
             overflow: hidden;
             position: relative;
-            background: var(--secondary-dark);
+            background: #11161e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .reward-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
+            padding: 5px;
             transition: transform 0.5s ease;
         }
 
         .reward-card:hover .reward-img img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .reward-info {
@@ -546,9 +551,7 @@
             color: #666;
         }
 
-        /* ==========================================
-           🌊 SCROLL ANIMATION & ALTERNATE FLOW CLASSES
-           ========================================== */
+        /* Scroll Animations */
         .scroll-slide-left {
             opacity: 0;
             transform: translateX(-100px);
@@ -725,7 +728,6 @@
             transform: scale(1.03);
         }
 
-        /* On-Site Execution Drawer */
         .onsite-drawer {
             display: none;
             margin-top: 35px;
@@ -748,9 +750,6 @@
         @media (max-width: 768px) {
             .prof-grid-6 { grid-template-columns: repeat(2, 1fr); }
             .rewards-grid { grid-template-columns: repeat(1, 1fr); }
-            .scroll-slide-left, .scroll-slide-right {
-                transform: translateY(40px);
-            }
         }
 
         @media (max-width: 480px) {
@@ -844,7 +843,7 @@
             color: var(--text-muted);
         }
 
-        /* Featured Projects Filter Buttons */
+        /* Featured Projects */
         .project-filter-buttons {
             display: flex;
             justify-content: center;
@@ -876,7 +875,6 @@
             transform: translateY(-2px);
         }
 
-        /* Projects Grid & Cards */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1493,9 +1491,7 @@
             margin-top: 3px;
         }
 
-        /* ==========================================
-           🎨 REAL BRAND COLORS FOR CONTACT LOGOS
-           ========================================== */
+        /* Real Brand Colors For Contact Logos */
         .social-qr-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1527,7 +1523,6 @@
             transition: var(--transition);
         }
 
-        /* WhatsApp Brand Colors */
         .qr-item.whatsapp-brand .qr-placeholder {
             background: #25D366;
         }
@@ -1538,7 +1533,6 @@
             box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
         }
 
-        /* Google Review Brand Colors */
         .qr-item.google-brand .qr-placeholder {
             background: #4285F4;
         }
@@ -1549,7 +1543,6 @@
             box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
         }
 
-        /* Instagram Brand Colors */
         .qr-item.insta-brand .qr-placeholder {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
@@ -1560,7 +1553,6 @@
             box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3);
         }
 
-        /* Website Brand Colors */
         .qr-item.web-brand .qr-placeholder {
             background: var(--gold);
         }
@@ -1907,7 +1899,6 @@
             <div class="team-grid">
                 <div class="team-card scroll-slide-left">
                     <div class="team-img-wrapper">
-                        <!-- Lowercase Exact Matches -->
                         <img src="images/founder.jpg" class="team-img" alt="Ar. Shashank Pare" onError="this.src='https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80';">
                     </div>
                     <h4>Ar. Shashank Pare</h4>
@@ -1917,7 +1908,6 @@
 
                 <div class="team-card scroll-slide-right">
                     <div class="team-img-wrapper">
-                        <!-- Lowercase Exact Matches -->
                         <img src="images/co-founder.jpg" class="team-img" alt="Er. Sakshi Pare" onError="this.src='https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80';">
                     </div>
                     <h4>Er. Sakshi Pare</h4>
@@ -1927,16 +1917,14 @@
             </div>
         </div>
 
-        <!-- ==========================================
-             🌊 DYNAMIC SCROLL SLIDE-IN TEAM SECTIONS
-             ========================================== -->
+        <!-- Professional Team Section -->
         <div id="prof-team" class="prof-team-section">
             <div class="section-header">
                 <h2>Our Professional Team</h2>
             </div>
 
             <div class="prof-row">
-                <!-- 1. Architecture Team (Flows from LEFT) -->
+                <!-- 1. Architecture Team -->
                 <div class="prof-box-modern left-border scroll-slide-left">
                     <div class="prof-box-header">
                         <i class="fa-solid fa-compass-drafting"></i>
@@ -1952,7 +1940,7 @@
                     </div>
                 </div>
 
-                <!-- 2. Project Management Team (Flows from RIGHT) -->
+                <!-- 2. Project Management Team -->
                 <div class="prof-box-modern right-border scroll-slide-right">
                     <div class="prof-box-header">
                         <i class="fa-solid fa-list-check"></i>
@@ -1968,7 +1956,7 @@
                     </div>
                 </div>
 
-                <!-- 3. Structure Engineer Team (Flows from LEFT) -->
+                <!-- 3. Structure Engineer Team -->
                 <div class="prof-box-modern left-border scroll-slide-left">
                     <div class="prof-box-header">
                         <i class="fa-solid fa-building-columns"></i>
@@ -1984,7 +1972,7 @@
                     </div>
                 </div>
 
-                <!-- 4. Civil Work Team (Flows from RIGHT) -->
+                <!-- 4. Civil Work Team -->
                 <div class="prof-box-modern right-border scroll-slide-right">
                     <div class="prof-box-header">
                         <i class="fa-solid fa-trowel-bricks"></i>
@@ -2001,7 +1989,7 @@
                 </div>
             </div>
 
-            <!-- ON-SITE EXECUTION TEAM (INTERACTIVE BANNER WITH SMOOTH PAGE SHIFT) -->
+            <!-- On-Site Execution Team Banner -->
             <div class="onsite-banner scroll-slide-left">
                 <h3><i class="fa-solid fa-person-digging"></i> On-Site Execution Teams</h3>
                 <p>Explore our specialized field teams for Civil, Electrical, Interior, and Plumbing execution.</p>
@@ -2016,7 +2004,7 @@
                 </div>
 
                 <div class="prof-row">
-                    <!-- On-Site Civil (Left) -->
+                    <!-- On-Site Civil -->
                     <div class="prof-box-modern left-border scroll-slide-left">
                         <div class="prof-box-header"><i class="fa-solid fa-truck-monster"></i> <h3>Civil Execution Team</h3></div>
                         <div class="prof-grid-6">
@@ -2029,7 +2017,7 @@
                         </div>
                     </div>
 
-                    <!-- On-Site Electrical (Right) -->
+                    <!-- On-Site Electrical -->
                     <div class="prof-box-modern right-border scroll-slide-right">
                         <div class="prof-box-header"><i class="fa-solid fa-bolt"></i> <h3>Electrical Execution Team</h3></div>
                         <div class="prof-grid-6">
@@ -2042,7 +2030,7 @@
                         </div>
                     </div>
 
-                    <!-- On-Site Interior (Left) -->
+                    <!-- On-Site Interior -->
                     <div class="prof-box-modern left-border scroll-slide-left">
                         <div class="prof-box-header"><i class="fa-solid fa-couch"></i> <h3>Interior Execution Team</h3></div>
                         <div class="prof-grid-6">
@@ -2055,7 +2043,7 @@
                         </div>
                     </div>
 
-                    <!-- On-Site Plumbing (Right) -->
+                    <!-- On-Site Plumbing -->
                     <div class="prof-box-modern right-border scroll-slide-right">
                         <div class="prof-box-header"><i class="fa-solid fa-faucet-drip"></i> <h3>Plumbing Execution Team</h3></div>
                         <div class="prof-grid-6">
@@ -2074,7 +2062,7 @@
     </section>
 
     <!-- ==========================================
-         🏅 REWARDS & RECOGNITION SECTION (JUST ABOVE SERVICES)
+         🏅 REWARDS & RECOGNITION (JUST ABOVE SERVICES)
          ========================================== -->
     <section id="rewards" class="section-padding rewards-section-wrapper" style="background-color: #fff;">
         <div class="container">
@@ -2085,41 +2073,41 @@
                 <div class="rewards-grid">
                     <div class="reward-card scroll-slide-left">
                         <div class="reward-img">
-                            <img src="images/rewards1.jpg" alt="Excellence Award" onError="this.src='https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=600&q=80';">
+                            <img src="images/reward 1.jpg" alt="Architects Under 50" onError="this.src='https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=600&q=80';">
                         </div>
                         <div class="reward-info">
-                            <h4>Architectural Excellence</h4>
-                            <p>Recognized for innovative & sustainable design practices.</p>
+                            <h4>Architects Under 50</h4>
+                            <p>Recognized for exceptional design excellence and leadership in modern architecture.</p>
                         </div>
                     </div>
 
                     <div class="reward-card scroll-slide-right">
                         <div class="reward-img">
-                            <img src="images/rewards2.jpg" alt="Best Turnkey Design" onError="this.src='https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80';">
+                            <img src="images/reward 2.jpg" alt="Firm of the Year 2021" onError="this.src='https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80';">
                         </div>
                         <div class="reward-info">
-                            <h4>Best Turnkey Execution</h4>
-                            <p>Honored for flawless project execution & timely handovers.</p>
+                            <h4>Firm of the Year 2021</h4>
+                            <p>Awarded Most Promising & Leading Architecture & Design Firm in Madhya Pradesh.</p>
                         </div>
                     </div>
 
                     <div class="reward-card scroll-slide-left">
                         <div class="reward-img">
-                            <img src="images/rewards3.jpg" alt="Luxury Interior Award" onError="this.src='https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80';">
+                            <img src="images/reward 3.jpg" alt="National Edition Excellence" onError="this.src='https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80';">
                         </div>
                         <div class="reward-info">
-                            <h4>Luxury Interior Specialist</h4>
-                            <p>Awarded for high-end residential interior designs.</p>
+                            <h4>National Edition Excellence</h4>
+                            <p>Honored at Architecture & Interior Design Excellence Awards, Bengaluru.</p>
                         </div>
                     </div>
 
                     <div class="reward-card scroll-slide-right">
                         <div class="reward-img">
-                            <img src="images/rewards4.jpg" alt="Client Trust Award" onError="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80';">
+                            <img src="images/reward 4.jpg" alt="Architects Conclave 2019" onError="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80';">
                         </div>
                         <div class="reward-info">
-                            <h4>Most Trusted Infrastructure Firm</h4>
-                            <p>Voted by clients for 100% satisfaction & quality standards.</p>
+                            <h4>Architects Conclave 2019</h4>
+                            <p>Presented by The Times of India & Sahil Empire at Bhagwati Palace, Indore.</p>
                         </div>
                     </div>
                 </div>
@@ -2675,7 +2663,7 @@
                     </li>
                 </ul>
 
-                <!-- 🎨 REAL APP COLOR LOGOS -->
+                <!-- Real App Color Logos -->
                 <div class="social-qr-grid">
                     <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="qr-item whatsapp-brand">
                         <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div>
@@ -2720,7 +2708,7 @@
     </footer>
 
     <script>
-        // INTERSECTION OBSERVER FOR SCROLL ANIMATIONS (FLOW LEFT & RIGHT)
+        // Scroll Animations (Flow Left & Right)
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
                 threshold: 0.15
@@ -2866,7 +2854,7 @@
             }
         }
 
-        // CONNECT ALL PORTAL FORMS (HIRING, VENDORS, CONTRACTORS) TO BACKEND
+        // Form Submissions
         document.querySelectorAll('.portal-form').forEach(form => {
             form.addEventListener('submit', async function (e) {
                 e.preventDefault();
@@ -2902,7 +2890,6 @@
             });
         });
 
-        // CONTACT FORM BACKEND CONNECT
         document.getElementById("contactForm").addEventListener("submit", async function (e) {
             e.preventDefault();
 
