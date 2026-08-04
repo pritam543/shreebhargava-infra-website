@@ -1,5 +1,5 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const multer = require('multer');
 const cors = require('cors');
 require('dotenv').config();
@@ -7,12 +7,15 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Initialize Resend with the API key from environment variables
+const resend = new Resend(process.env.EMAIL_API_KEY);
+
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from the root directory (so index.html and other website files load properly)
+// Serve static files from the root directory
 app.use(express.static(__dirname));
 
 // Multer setup for handling resume/file uploads in memory
@@ -21,58 +24,40 @@ const upload = multer({
     limits: { fileSize: 5 * 1024 * 1024 } // Limit: 5MB max file size
 });
 
-// Nodemailer Transporter Configuration with Timeout Fix
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    },
-    family: 4, // Use IPv4
-    connectionTimeout: 60000,
-    greetingTimeout: 60000,
-    socketTimeout: 60000
-});
-// Verify SMTP connection on startup
-transporter.verify((error, success) => {
-    if (error) {
-        console.error('SMTP Connection Error:', error);
-    } else {
-        console.log('Server is ready to take our messages');
-    }
-});
-
-// 1. Contact Form Route
+// 1. Contact Form Route -> Sends to shreebhargavainfra@gmail.com
 app.post('/contact', async (req, res) => {
     try {
-        const { name, email, phone, message } = req.body;
+        const { name, email, phone, subject_text, message } = req.body;
 
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
-            subject: `New Contact Form Submission from ${name}`,
-            text: `
-                Name: ${name}
-                Email: ${email}
-                Phone: ${phone}
-                Message: ${message}
-            `
-        };
+        const emailText = `
+            New Contact Form Submission:
+            
+            Name: ${name}
+            Email: ${email}
+            Phone: ${phone}
+            Subject: ${subject_text || 'Website Contact Message'}
+            Message: ${message}
+        `;
 
-        await transporter.sendMail(mailOptions);
+        const response = await resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: ['shreebhargavainfra@gmail.com'],
+            subject: `New Inquiry from ${name}`,
+            text: emailText
+        });
+
+        console.log('Contact Email Sent:', response);
         res.status(200).json({ success: true, message: 'Email sent successfully!' });
     } catch (error) {
         console.error('Contact Form Error:', error);
-        res.status(500).json({ success: false, message: 'Failed to send email. Connection Timeout or Server Error.' });
+        res.status(500).json({ success: false, message: 'Failed to send email. Server Error.' });
     }
 });
 
-// 2. Careers Form Route (with Resume/File Attachment)
-app.post('/careers', upload.single('resume'), async (req, res) => {
+// 2. Careers Form Route (with Resume/File Attachment) -> Sends to shreebhargava50@gmail.com
+app.post('/careers', upload.single('file_upload'), async (req, res) => {
     try {
-        const { name, email, phone, position } = req.body;
+        const { name, email, phone, position, experience, cover } = req.body;
         const resumeFile = req.file;
 
         let attachments = [];
@@ -83,26 +68,36 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
             });
         }
 
-        const mailOptions = {
-            from: process.env.EMAIL_USER,
-            to: process.env.CONTACT_EMAIL || process.env.EMAIL_USER,
-            subject: `New Job Application for ${position || 'Open Position'}`,
-            text: `
-                New Career Application Details:
-                
-                Name: ${name}
-                Email: ${email}
-                Phone: ${phone}
-                Position Applied For: ${position}
-            `,
-            attachments: attachments
+        const emailText = `
+            New Career / Vendor / Contractor Submission:
+            
+            Name: ${name}
+            Email: ${email}
+            Phone: ${phone}
+            Position / Category: ${position || 'N/A'}
+            Experience / Details: ${experience || 'N/A'}
+            Message: ${cover || 'N/A'}
+        `;
+
+        const emailPayload = {
+            from: 'onboarding@resend.dev',
+            to: ['shreebhargava50@gmail.com'],
+            subject: `New Application/Partnership from ${name}`,
+            text: emailText
         };
 
-        await transporter.sendMail(mailOptions);
+        // Attach file if uploaded
+        if (attachments.length > 0) {
+            emailPayload.attachments = attachments;
+        }
+
+        const response = await resend.emails.send(emailPayload);
+
+        console.log('Careers Email Sent:', response);
         res.status(200).json({ success: true, message: 'Application submitted successfully!' });
     } catch (error) {
         console.error('Careers Form Error:', error);
-        res.status(500).json({ success: false, message: 'Failed to submit application. Connection Timeout or Server Error.' });
+        res.status(500).json({ success: false, message: 'Failed to submit application. Server Error.' });
     }
 });
 
