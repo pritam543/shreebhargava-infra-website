@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-dark: #11161e;
@@ -23,237 +21,60 @@
             --white: #ffffff;
             --transition: all 0.4s ease;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
+        header { background-color: var(--primary-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 102, 0, 0.2); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; max-width: 1200px; margin: 0 auto; }
+        .logo h1 { color: var(--gold); font-size: 1.4rem; font-weight: 700; }
+        .logo span { display: block; font-size: 0.65rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; text-decoration: none; }
+        .nav-links a:hover { color: var(--gold); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        .page-header { background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 80px 20px; text-align: center; color: var(--white); }
+        .page-header h1 { color: var(--gold); font-size: 2.2rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
+        .page-header p { color: var(--text-muted); font-size: 1rem; max-width: 700px; margin: 0 auto; }
+        
+        /* Gallery Section - Perfectly Equal 3-Column Grid */
+        .gallery-section { padding: 60px 0; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); position: relative; display: inline-block; padding-bottom: 15px; }
+        .section-header h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background-color: var(--gold); }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
+        .gallery-card { background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.04); transition: var(--transition); display: flex; flex-direction: column; }
+        .gallery-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(255,165,0,0.2); border-color: var(--gold); }
+        .gallery-img-box { height: 240px; width: 100%; overflow: hidden; position: relative; }
+        .gallery-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-card:hover .gallery-img-box img { transform: scale(1.08); }
+        .gallery-info { padding: 18px; text-align: center; background: var(--bg-light); flex-grow: 1; display: flex; align-items: center; justify-content: center; }
+        .gallery-info h4 { font-size: 0.95rem; color: var(--primary-dark); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        /* Contact Section */
+        .contact { background-color: var(--primary-dark); color: var(--text-light); padding: 80px 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; width: 100%; }
+        .contact-details h3, .contact-form h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 25px; }
+        .contact-info-list { list-style: none; margin-bottom: 30px; }
+        .contact-info-list li { display: flex; gap: 15px; margin-bottom: 20px; color: var(--text-muted); word-break: break-word; }
+        .contact-form { background: var(--secondary-dark); padding: 30px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); width: 100%; }
+        #contactForm { display: flex; flex-direction: column; gap: 18px; width: 100%; }
+        #contactForm input, #contactForm textarea { width: 100%; padding: 15px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--white); font-family: inherit; font-size: 0.95rem; }
+        #contactForm button { width: 100%; padding: 15px; background: var(--gold); color: #fff; border: none; border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        #contactForm button:hover { background: transparent; border: 2px solid var(--gold); color: var(--gold); }
+        footer { background-color: #0b0f14; color: var(--text-muted); text-align: center; padding: 25px 0; font-size: 0.8rem; }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        header {
-            background-color: var(--primary-dark);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo h1 {
-            color: var(--gold);
-            font-size: 1.4rem;
-            font-weight: 700;
-        }
-
-        .logo span {
-            display: block;
-            font-size: 0.65rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .nav-links a:hover {
-            color: var(--gold);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
-        .page-header {
-            background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
-            padding: 80px 20px;
-            text-align: center;
-            color: var(--white);
-        }
-
-        .page-header h1 {
-            color: var(--gold);
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .page-header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .gallery-section {
-            padding: 60px 0;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .gallery-item {
-            height: 280px;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-
-        /* Contact Section & Mobile Fixes */
-        .contact {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            padding: 80px 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 50px;
-            width: 100%;
-        }
-
-        .contact-details h3,
-        .contact-form h3 {
-            color: var(--gold);
-            text-transform: uppercase;
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-        }
-
-        .contact-info-list {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .contact-info-list li {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-            color: var(--text-muted);
-            word-break: break-word;
-        }
-
-        .contact-form {
-            background: var(--secondary-dark);
-            padding: 30px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 102, 0, 0.2);
-            width: 100%;
-        }
-
-        #contactForm {
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-            width: 100%;
-        }
-
-        #contactForm input,
-        #contactForm textarea {
-            width: 100%;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 6px;
-            color: var(--white);
-            font-family: inherit;
-            font-size: 0.95rem;
-        }
-
-        #contactForm button {
-            width: 100%;
-            padding: 15px;
-            background: var(--gold);
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-weight: 600;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        #contactForm button:hover {
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-        }
-
-        footer {
-            background-color: #0b0f14;
-            color: var(--text-muted);
-            text-align: center;
-            padding: 25px 0;
-            font-size: 0.8rem;
-        }
-
-        /* Responsive Breakpoint for Mobile */
         @media (max-width: 992px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-form { padding: 20px; }
+            .page-header h1 { font-size: 1.8rem; }
+        }
 
-            .contact-form {
-                padding: 20px;
-            }
-
-            .page-header h1 {
-                font-size: 1.8rem;
-            }
+        @media (max-width: 576px) {
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-
 <body>
 
     <header>
@@ -283,7 +104,7 @@
             <h2>Project Gallery & Execution Samples</h2>
         </div>
         <div class="gallery-grid" id="galleryContainer">
-            <!-- Dynamic Images will load here -->
+            <!-- Dynamic Images with Labels will load here -->
         </div>
     </section>
 
@@ -292,19 +113,13 @@
             <div class="contact-details">
                 <h3>Get In Touch</h3>
                 <ul class="contact-info-list">
-                    <li><i class="fa-solid fa-phone"></i>
-                        <div>8818887770 | 9669561234</div>
-                    </li>
-                    <li><i class="fa-solid fa-location-dot"></i>
-                        <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div>
-                    </li>
+                    <li><i class="fa-solid fa-phone"></i> <div>8818887770 | 9669561234</div></li>
+                    <li><i class="fa-solid fa-location-dot"></i> <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div></li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
                         <div>
-                            <a href="mailto:shreebhargavainfra@gmail.com"
-                                style="color:var(--text-muted); text-decoration:underline;">shreebhargavainfra@gmail.com</a><br>
-                            <a href="mailto:shreebhargava@gmail.com"
-                                style="color:var(--text-muted); text-decoration:underline;">shreebhargava@gmail.com</a>
+                            <a href="mailto:shreebhargava50@gmail.com" style="color:var(--text-muted); text-decoration:underline;">shreebhargava50@gmail.com</a><br>
+                            <a href="mailto:shreebhargava50@gmail.com" style="color:var(--text-muted); text-decoration:underline;">shreebhargava50@gmail.com</a>
                         </div>
                     </li>
                 </ul>
@@ -333,134 +148,134 @@
         const serviceData = {
             architecture: {
                 title: "Architecture Design",
-                desc: "Innovative, sustainable, and functional architectural blueprints tailored to your custom layout.",
-                images: [
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80"
+                desc: "Innovative, sustainable, and functional architectural blueprints tailored to custom layouts.",
+                projects: [
+                    { name: "Modern Elevation Blueprint", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Urban Structural Planning", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Luxury Villa Architecture", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Concept Facade Design", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Duplex 3D Exterior Plan", img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Contemporary Building Structure", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             interior: {
                 title: "Interior Design",
                 desc: "Creating luxurious, ergonomic, and aesthetic living and working spaces.",
-                images: [
-                    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Luxury Living Room Decor", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Minimalist Master Bedroom", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Modular Kitchen Setup", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Executive Office Cabin", img: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "False Ceiling & Lighting", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Premium Dining Interior", img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             residential: {
                 title: "Residential Design",
                 desc: "Custom homes, duplexes, and luxury villas built to suit your family lifestyle.",
-                images: [
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Indore Luxury Bungalow", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Family Duplex Residence", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Private Poolside Villa", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Independent Kothi Design", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Terrace Garden Residence", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Modern Row House", img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             commercial: {
                 title: "Commercial Design",
                 desc: "Modern corporate offices, retail spaces, and showrooms optimized for maximum business growth.",
-                images: [
-                    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "IT Corporate Workspace", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Multi-Brand Retail Showroom", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Commercial Plaza Frontage", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Glass-Facade Boutique Store", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Conference & Board Room", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Co-working Hub Layout", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             landscape: {
                 title: "Landscape Design",
                 desc: "Green spaces, gardens, courtyards, and sustainable outdoor master planning.",
-                images: [
-                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1558904541-efa873a8160d?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Urban Eco Park Walkway", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Residential Lawn & Fountain", img: "https://images.unsplash.com/photo-1558904541-efa873a8160d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Resort Open Green Courtyard", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Botanical Pathway Setup", img: "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Terrace Landscape Garden", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" },
+                    { name: "External Lighting & Greens", img: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             turnkey: {
                 title: "Turnkey Execution",
                 desc: "End-to-end comprehensive project handling from scratch to final key handover.",
-                images: [
-                    "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Complete Turnkey Villa", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Structural Construction Phase", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Site Execution & Labor Work", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Material Quality Testing", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Finishing & Polish Stage", img: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Ready Key Handover Project", img: "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             renovation: {
                 title: "Renovation",
                 desc: "Transforming older residential and commercial properties into modern masterpieces.",
-                images: [
-                    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Old Home Exterior Facelift", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Interior Space Remodeling", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Commercial Office Upgrade", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Modern Kitchen Modernization", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Structural Retrofitting", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Complete Living Area Makeover", img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             space: {
                 title: "Space Creation",
                 desc: "Maximizing utility and layout ergonomics for compact or expansive properties.",
-                images: [
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Smart Utility Room Layout", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Open-Plan Studio Design", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Partition & Zoning Plan", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Ergonomic Floor Optimization", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Compact Apartment Planning", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Multi-Functional Hall Layout", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             sustainable: {
                 title: "Sustainable Solution & Innovation",
                 desc: "Eco-friendly construction techniques, energy-efficient planning, and green architecture.",
-                images: [
-                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1508873696983-2df5c92091c7?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Solar Integrated Roof Design", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Rainwater Harvesting Layout", img: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Natural Ventilation Building", img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Eco-Friendly Material Setup", img: "https://images.unsplash.com/photo-1508873696983-2df5c92091c7?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Green Wall Architecture", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Energy Efficient Facade", img: "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             government: {
                 title: "Government Consultancy",
                 desc: "Public infrastructure planning, civic complexes, and government project advisory.",
-                images: [
-                    "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Public Civic Complex", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Municipal Building Structure", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Govt Infrastructure Layout", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Public Accessibility Planning", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Civic Development Project", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Urban Planning & Zoning", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             pmc: {
                 title: "Project Management Consultancy",
                 desc: "Professional oversight, structural quality audits, billing, and scheduling.",
-                images: [
-                    "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80"
+                projects: [
+                    { name: "Site Supervision & Audit", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Construction Quality Check", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Project Scheduling & Timing", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Billing & Estimation Review", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Safety Inspection Protocol", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Technical Execution Review", img: "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80" }
                 ]
             }
         };
@@ -473,13 +288,19 @@
         document.getElementById('serviceDesc').innerText = currentService.desc;
 
         const galleryContainer = document.getElementById('galleryContainer');
-        currentService.images.forEach(imgUrl => {
-            const div = document.createElement('div');
-            div.className = 'gallery-item';
-            div.innerHTML = `<img src="${imgUrl}" alt="Project Sample">`;
-            galleryContainer.appendChild(div);
+        currentService.projects.forEach(proj => {
+            const card = document.createElement('div');
+            card.className = 'gallery-card';
+            card.innerHTML = `
+                <div class="gallery-img-box">
+                    <img src="${proj.img}" alt="${proj.name}">
+                </div>
+                <div class="gallery-info">
+                    <h4>${proj.name}</h4>
+                </div>
+            `;
+            galleryContainer.appendChild(card);
         });
     </script>
 </body>
-
 </html>
