@@ -2464,7 +2464,10 @@
                 <div class="careers-form-card scroll-slide-right">
 
                     <!-- 1. WE ARE HIRING FORM -->
-                    <form id="hiringForm" class="portal-form active" action="https://formspree.io/f/xgawwobj" method="POST" enctype="multipart/form-data">
+                    <form id="hiringForm" class="portal-form active" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
+                        <input type="hidden" name="subject" value="New Job Application Received">
+                        
                         <h3 class="form-heading">Apply Now (Job Application)</h3>
                         <p class="form-subtext">Fill in your details to join our internal team.</p>
 
@@ -2494,7 +2497,7 @@
 
                         <div class="file-upload-group">
                             <label>Upload Resume / Portfolio (PDF / DOC):</label>
-                            <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
+                            <input type="file" name="attachment" accept=".pdf,.doc,.docx" required>
                         </div>
 
                         <textarea name="cover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
@@ -2503,7 +2506,10 @@
                     </form>
 
                     <!-- 2. VENDORS FORM -->
-                    <form id="vendorsForm" class="portal-form" action="https://formspree.io/f/xgawwobj" method="POST" enctype="multipart/form-data">
+                    <form id="vendorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
+                        <input type="hidden" name="subject" value="New Vendor Inquiry Received">
+
                         <h3 class="form-heading">Vendor / Supplier Registration</h3>
                         <p class="form-subtext">Register as an approved material vendor.</p>
 
@@ -2530,7 +2536,7 @@
 
                         <div class="file-upload-group">
                             <label>Company Profile / Material Catalog (PDF/DOC):</label>
-                            <input type="file" name="resume" accept=".pdf,.doc,.docx">
+                            <input type="file" name="attachment" accept=".pdf,.doc,.docx">
                         </div>
 
                         <textarea name="cover" placeholder="Specify brand names, products supplied, or business message..."></textarea>
@@ -2539,7 +2545,10 @@
                     </form>
 
                     <!-- 3. CONTRACTORS FORM -->
-                    <form id="contractorsForm" class="portal-form" action="https://formspree.io/f/xgawwobj" method="POST" enctype="multipart/form-data">
+                    <form id="contractorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
+                        <input type="hidden" name="subject" value="New Contractor Registration Received">
+
                         <h3 class="form-heading">Contractor Registration</h3>
                         <p class="form-subtext">Partner with us as an execution contractor.</p>
 
@@ -2572,7 +2581,7 @@
 
                         <div class="file-upload-group">
                             <label>Company Profile / Past Work Proof (PDF/DOC):</label>
-                            <input type="file" name="resume" accept=".pdf,.doc,.docx">
+                            <input type="file" name="attachment" accept=".pdf,.doc,.docx">
                         </div>
 
                         <textarea name="cover" placeholder="Mention key past projects executed, workforce strength, etc..."></textarea>
@@ -2659,11 +2668,14 @@
 
             <div class="contact-form scroll-slide-right">
                 <h3 style="color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;">Send a Message</h3>
-                <form id="contactForm" action="https://formspree.io/f/xgawwobj" method="POST">
+                <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
+                    <input type="hidden" name="subject" value="New Contact Message from Website">
+                    
                     <input name="name" type="text" placeholder="Full Name" required>
                     <input name="email" type="email" placeholder="Email Address" required>
                     <input name="phone" type="tel" placeholder="Phone Number" required>
-                    <input name="subject" type="text" placeholder="Subject" required>
+                    <input name="subject_text" type="text" placeholder="Subject" required>
                     <textarea name="message" placeholder="Your Message" required></textarea>
                     <button type="submit" id="contactSubmitBtn">Send Message</button>
                 </form>
