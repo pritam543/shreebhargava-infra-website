@@ -11,7 +11,9 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static('public')); // Agar aapki static files public folder mein hain
+
+// Serve static files from the root directory (so index.html and other website files load properly)
+app.use(express.static(__dirname));
 
 // Multer setup for handling resume/file uploads in memory
 const upload = multer({ 
@@ -102,11 +104,6 @@ app.post('/careers', upload.single('resume'), async (req, res) => {
         console.error('Careers Form Error:', error);
         res.status(500).json({ success: false, message: 'Failed to submit application. Connection Timeout or Server Error.' });
     }
-});
-
-// Root route
-app.get('/', (req, res) => {
-    res.send('Server is running and active!');
 });
 
 // Start Server
