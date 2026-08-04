@@ -478,78 +478,6 @@
             line-height: 1.5;
         }
 
-        /* Rewards & Recognition */
-        .rewards-section {
-            margin-top: 50px;
-            background: var(--bg-light);
-            padding: 50px 25px;
-            border-radius: 12px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .rewards-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .reward-card {
-            background: var(--white);
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #e5e5e5;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.04);
-            transition: var(--transition);
-            text-align: center;
-        }
-
-        .reward-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--gold);
-            box-shadow: 0 12px 25px rgba(255, 165, 0, 0.2);
-        }
-
-        .reward-img {
-            height: 220px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            background: #11161e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .reward-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            padding: 5px;
-            transition: transform 0.5s ease;
-        }
-
-        .reward-card:hover .reward-img img {
-            transform: scale(1.05);
-        }
-
-        .reward-info {
-            padding: 15px;
-        }
-
-        .reward-info h4 {
-            font-size: 0.95rem;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .reward-info p {
-            font-size: 0.78rem;
-            color: #666;
-        }
-
         /* Scroll Animations */
         .scroll-slide-left {
             opacity: 0;
@@ -743,12 +671,10 @@
 
         @media (max-width: 1200px) {
             .prof-grid-6 { grid-template-columns: repeat(3, 1fr); }
-            .rewards-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
             .prof-grid-6 { grid-template-columns: repeat(2, 1fr); }
-            .rewards-grid { grid-template-columns: repeat(1, 1fr); }
         }
 
         @media (max-width: 480px) {
@@ -772,6 +698,8 @@
             text-align: center;
             transition: var(--transition);
             border: 1px solid #eee;
+            display: block;
+            cursor: pointer;
         }
 
         .service-card:hover {
@@ -1757,31 +1685,30 @@
             </div>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
 
                 <li class="dropdown">
-                    <a href="#about">About Us <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="index.html#about">About Us <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#why-us">Why Choose Us</a></li>
-                        <li><a href="#team">Founder, Co-Founder & Leadership</a></li>
-                        <li><a href="#prof-team">Our Professional Team</a></li>
+                        <li><a href="index.html#why-us">Why Choose Us</a></li>
+                        <li><a href="index.html#team">Founder, Co-Founder & Leadership</a></li>
+                        <li><a href="index.html#prof-team">Our Professional Team</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#services">Services</a></li>
+                <li><a href="index.html#services">Services</a></li>
 
                 <li class="dropdown">
-                    <a href="#projects">Projects <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="index.html#projects">Projects <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#projects">Featured Projects</a></li>
-                        <li><a href="#process">Our Working Process</a></li>
-                        <li><a href="#rewards">Rewards & Recognition</a></li>
-                        <li><a href="#testimonials">Client Testimonials</a></li>
+                        <li><a href="index.html#projects">Featured Projects</a></li>
+                        <li><a href="index.html#process">Our Working Process</a></li>
+                        <li><a href="index.html#testimonials">Client Testimonials</a></li>
                     </ul>
                 </li>
 
-                <li><a href="#careers">Careers</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html#careers">Careers</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
             </ul>
 
             <div class="hamburger" id="hamburger">
@@ -2031,60 +1958,6 @@
 
     </section>
 
-    <!-- ==========================================
-        🏅 REWARDS & RECOGNITION (JUST ABOVE SERVICES)
-        ========================================== -->
-    <section id="rewards" class="section-padding rewards-section-wrapper" style="background-color: #fff;">
-        <div class="container">
-            <div class="rewards-section scroll-slide-left" style="margin-top:0;">
-                <div class="section-header">
-                    <h2>Rewards & Recognition</h2>
-                </div>
-                <div class="rewards-grid">
-                    <div class="reward-card scroll-slide-left">
-                        <div class="reward-img">
-                            <img src="images/reward 1.jpg" alt="Architects Under 50" onError="this.src='https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=600&q=80';">
-                        </div>
-                        <div class="reward-info">
-                            <h4>Architects Under 50</h4>
-                            <p>Recognized for exceptional design excellence and leadership in modern architecture.</p>
-                        </div>
-                    </div>
-
-                    <div class="reward-card scroll-slide-right">
-                        <div class="reward-img">
-                            <img src="images/reward 2.jpg" alt="Firm of the Year 2021" onError="this.src='https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&w=600&q=80';">
-                        </div>
-                        <div class="reward-info">
-                            <h4>Firm of the Year 2021</h4>
-                            <p>Awarded Most Promising & Leading Architecture & Design Firm in Madhya Pradesh.</p>
-                        </div>
-                    </div>
-
-                    <div class="reward-card scroll-slide-left">
-                        <div class="reward-img">
-                            <img src="images/reward 3.jpg" alt="National Edition Excellence" onError="this.src='https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80';">
-                        </div>
-                        <div class="reward-info">
-                            <h4>National Edition Excellence</h4>
-                            <p>Honored at Architecture & Interior Design Excellence Awards, Bengaluru.</p>
-                        </div>
-                    </div>
-
-                    <div class="reward-card scroll-slide-right">
-                        <div class="reward-img">
-                            <img src="images/reward 4.jpg" alt="Architects Conclave 2019" onError="this.src='https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=600&q=80';">
-                        </div>
-                        <div class="reward-info">
-                            <h4>Architects Conclave 2019</h4>
-                            <p>Presented by The Times of India & Sahil Empire at Bhagwati Palace, Indore.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Services Section -->
     <section id="services" class="section-padding services">
         <div class="container">
@@ -2092,46 +1965,61 @@
                 <h2>Our Services</h2>
             </div>
             <div class="services-grid">
-                <div class="service-card scroll-slide-left">
+                <a href="service-detail.html?service=architecture" class="service-card scroll-slide-left">
                     <i class="fa-solid fa-compass-drafting"></i>
                     <h3>Architecture Design</h3>
                     <p>Innovative & functional architectural solutions.</p>
-                </div>
-                <div class="service-card scroll-slide-right">
+                </a>
+                <a href="service-detail.html?service=interior" class="service-card scroll-slide-right">
                     <i class="fa-solid fa-couch"></i>
                     <h3>Interior Design</h3>
                     <p>Elegant & personalized interior spaces.</p>
-                </div>
-                <div class="service-card scroll-slide-left">
+                </a>
+                <a href="service-detail.html?service=residential" class="service-card scroll-slide-left">
                     <i class="fa-solid fa-home"></i>
-                    <h3>Residential Projects</h3>
+                    <h3>Residential Design</h3>
                     <p>Beautiful homes designed specifically for you.</p>
-                </div>
-                <div class="service-card scroll-slide-right">
+                </a>
+                <a href="service-detail.html?service=commercial" class="service-card scroll-slide-right">
                     <i class="fa-solid fa-building"></i>
-                    <h3>Commercial Projects</h3>
+                    <h3>Commercial Design</h3>
                     <p>Modern spaces optimized for business & growth.</p>
-                </div>
-                <div class="service-card scroll-slide-left">
+                </a>
+                <a href="service-detail.html?service=landscape" class="service-card scroll-slide-left">
                     <i class="fa-solid fa-tree"></i>
                     <h3>Landscape Design</h3>
                     <p>Green & sustainable outdoor spaces.</p>
-                </div>
-                <div class="service-card scroll-slide-right">
+                </a>
+                <a href="service-detail.html?service=turnkey" class="service-card scroll-slide-right">
                     <i class="fa-solid fa-key"></i>
                     <h3>Turnkey Execution</h3>
                     <p>End-to-end comprehensive project management.</p>
-                </div>
-                <div class="service-card scroll-slide-left">
+                </a>
+                <a href="service-detail.html?service=renovation" class="service-card scroll-slide-left">
                     <i class="fa-solid fa-screwdriver-wrench"></i>
                     <h3>Renovation</h3>
                     <p>Transforming existing spaces beautifully.</p>
-                </div>
-                <div class="service-card scroll-slide-right">
-                    <i class="fa-solid fa-cubes"></i>
-                    <h3>3D Visualization</h3>
-                    <p>Realistic 3D renders to easily visualize your dream.</p>
-                </div>
+                </a>
+                <a href="service-detail.html?service=space" class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-expand"></i>
+                    <h3>Space Creation</h3>
+                    <p>Optimizing layouts for enhanced utilization.</p>
+                </a>
+                <a href="service-detail.html?service=sustainable" class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h3>Sustainable Solution & Innovation</h3>
+                    <p>Eco-friendly designs and smart engineering.</p>
+                </a>
+                <a href="service-detail.html?service=government" class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-landmark"></i>
+                    <h3>Government Consultancy</h3>
+                    <p>Civic and public infrastructure consulting.</p>
+                </a>
+                <a href="service-detail.html?service=pmc" class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-tasks"></i>
+                    <h3>Project Management Consultancy</h3>
+                    <p>Expert supervision and quality oversight.</p>
+                </a>
             </div>
         </div>
     </section>
@@ -2406,7 +2294,7 @@
         </div>
     </section>
 
-    <!-- Careers, Vendors & Contractors Section -->
+    <!-- Careers Section -->
     <section id="careers" class="section-padding careers">
         <div class="container">
             <div class="section-header">
@@ -2462,122 +2350,77 @@
                 </div>
 
                 <div class="careers-form-card scroll-slide-right">
-
-                    <!-- 1. WE ARE HIRING FORM -->
                     <form id="hiringForm" class="portal-form active" action="/careers" method="POST" enctype="multipart/form-data">
                         <h3 class="form-heading">Apply Now (Job Application)</h3>
                         <p class="form-subtext">Fill in your details to join our internal team.</p>
-
                         <input type="text" name="name" placeholder="Full Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
                         <input type="tel" name="phone" placeholder="Phone Number" required>
-
                         <select name="position" required>
                             <option value="" disabled selected>Select Desired Position</option>
                             <option value="Senior Architect">Senior Architect</option>
                             <option value="Junior Architect / Intern">Junior Architect / Intern</option>
                             <option value="Interior Designer">Interior Designer</option>
-                            <option value="Electrical Engineer">Electrical Engineer</option>
                             <option value="Project Manager">Project Manager</option>
-                            <option value="3D Visualizer / Draftsman">3D Visualizer / Draftsman</option>
-                            <option value="Site Civil Engineer">Site Civil Engineer</option>
-                            <option value="Other Position">Other Position</option>
                         </select>
-
                         <select name="experience" required>
                             <option value="" disabled selected>Select Experience Level</option>
                             <option value="Fresher / Intern">Fresher / Intern</option>
                             <option value="1 - 3 Years">1 - 3 Years</option>
-                            <option value="3 - 5 Years">3 - 5 Years</option>
-                            <option value="5+ Years">5+ Years</option>
+                            <option value="3+ Years">3+ Years</option>
                         </select>
-
                         <div class="file-upload-group">
-                            <label>Upload Resume / Portfolio (PDF / DOC):</label>
+                            <label>Upload Resume / Portfolio:</label>
                             <input type="file" name="resume" accept=".pdf,.doc,.docx" required>
                         </div>
-
-                        <textarea name="cover" placeholder="Short intro about yourself & key skills (Optional)"></textarea>
-
+                        <textarea name="cover" placeholder="Short intro about yourself..."></textarea>
                         <button type="submit">Submit Job Application</button>
                     </form>
 
-                    <!-- 2. VENDORS FORM -->
                     <form id="vendorsForm" class="portal-form" action="/careers" method="POST" enctype="multipart/form-data">
                         <h3 class="form-heading">Vendor / Supplier Registration</h3>
                         <p class="form-subtext">Register as an approved material vendor.</p>
-
                         <input type="text" name="name" placeholder="Vendor / Company Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
                         <input type="tel" name="phone" placeholder="Phone Number" required>
-
                         <select name="position" required>
-                            <option value="" disabled selected>Select Supplied Material Category</option>
-                            <option value="Iron & Steel">Iron & Steel (TMT, Beams)</option>
-                            <option value="Cement & Aggregates">Cement, Sand & Aggregates</option>
-                            <option value="Electrical Wires & Cables">Electrical Wires, Switches & Cables</option>
-                            <option value="HVAC & AC Systems">HVAC & AC Systems</option>
-                            <option value="Lighting & Fixtures">Lights & Lighting Fixtures</option>
-                            <option value="Plumbing Materials">Plumbing Pipes, Fittings & Pumps</option>
-                            <option value="Tiles & Sanitary">Tiles, Marble & Sanitaryware</option>
-                            <option value="Paint & Waterproofing">Paints, Putty & Waterproofing</option>
-                            <option value="Decorative & Interior Materials">Plywood, Veneer & Hardware</option>
-                            <option value="Other Material Supplier">Other Material Category</option>
+                            <option value="" disabled selected>Select Material Category</option>
+                            <option value="Iron & Steel">Iron & Steel</option>
+                            <option value="Cement & Aggregates">Cement & Aggregates</option>
+                            <option value="Electrical">Electrical Wires & Switches</option>
                         </select>
-
-                        <input type="text" name="experience" placeholder="GST Number / Registration (Optional)">
-
+                        <input type="text" name="experience" placeholder="GST Number (Optional)">
                         <div class="file-upload-group">
-                            <label>Company Profile / Material Catalog (PDF/DOC):</label>
+                            <label>Company Profile / Catalog:</label>
                             <input type="file" name="resume" accept=".pdf,.doc,.docx">
                         </div>
-
-                        <textarea name="cover" placeholder="Specify brand names, products supplied, or business message..."></textarea>
-
+                        <textarea name="cover" placeholder="Business message..."></textarea>
                         <button type="submit">Submit Vendor Inquiry</button>
                     </form>
 
-                    <!-- 3. CONTRACTORS FORM -->
                     <form id="contractorsForm" class="portal-form" action="/careers" method="POST" enctype="multipart/form-data">
                         <h3 class="form-heading">Contractor Registration</h3>
                         <p class="form-subtext">Partner with us as an execution contractor.</p>
-
                         <input type="text" name="name" placeholder="Contractor / Firm Name" required>
                         <input type="email" name="email" placeholder="Email Address" required>
                         <input type="tel" name="phone" placeholder="Phone Number" required>
-
                         <select name="position" required>
-                            <option value="" disabled selected>Select Contractor Specialization</option>
-                            <option value="Civil Engineering Contractor">Civil & Structural Contractor</option>
-                            <option value="HVAC Contractor">HVAC & Ducting Contractor</option>
-                            <option value="Electrical Contractor">Electrical Work Contractor</option>
-                            <option value="Plumbing Contractor">Plumbing Contractor</option>
-                            <option value="Interior & Carpentry Contractor">Interior, Furniture & Carpentry</option>
-                            <option value="Painting Contractor">Painting & Waterproofing Contractor</option>
-                            <option value="Glass & Aluminum Work">Glass & Aluminum Glazing Contractor</option>
-                            <option value="Fabricators & Metal Work">Fabrication & Steel Structure</option>
-                            <option value="Landscaping Contractor">Landscaping & Garden Contractor</option>
-                            <option value="Other Execution Work">Other Specialty Work</option>
+                            <option value="" disabled selected>Select Specialization</option>
+                            <option value="Civil & Structural">Civil & Structural</option>
+                            <option value="Interior & Carpentry">Interior & Carpentry</option>
                         </select>
-
                         <select name="experience" required>
                             <option value="" disabled selected>Work Experience In Years</option>
                             <option value="1 - 3 Years">1 - 3 Years</option>
-                            <option value="3 - 5 Years">3 - 5 Years</option>
-                            <option value="5 - 10 Years">5 - 10 Years</option>
-                            <option value="10+ Years">10+ Years</option>
+                            <option value="3+ Years">3+ Years</option>
                         </select>
-
                         <div class="file-upload-group">
-                            <label>Company Profile / Past Work Proof (PDF/DOC):</label>
+                            <label>Past Work Proof:</label>
                             <input type="file" name="resume" accept=".pdf,.doc,.docx">
                         </div>
-
-                        <textarea name="cover" placeholder="Mention key past projects executed, workforce strength, etc..."></textarea>
-
+                        <textarea name="cover" placeholder="Workforce strength, past projects..."></textarea>
                         <button type="submit">Submit Contractor Registration</button>
                     </form>
-
                 </div>
             </div>
         </div>
@@ -2631,23 +2474,19 @@
                     </li>
                 </ul>
 
-                <!-- Real App Color Logos -->
                 <div class="social-qr-grid">
                     <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="qr-item whatsapp-brand">
                         <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div>
                         <span>WhatsApp</span>
                     </a>
-
                     <div class="qr-item google-brand">
                         <div class="qr-placeholder"><i class="fa-solid fa-g"></i></div>
                         <span>Google Review</span>
                     </div>
-
                     <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="qr-item insta-brand">
                         <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div>
                         <span>Instagram</span>
                     </a>
-
                     <a href="https://shreebhargava-infra-website.onrender.com" target="_blank" class="qr-item web-brand">
                         <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div>
                         <span>Website</span>
@@ -2676,12 +2515,8 @@
     </footer>
 
     <script>
-        // Scroll Animations (Flow Left & Right)
         document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = {
-                threshold: 0.15
-            };
-
+            const observerOptions = { threshold: 0.15 };
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -2694,7 +2529,6 @@
             animElements.forEach(el => observer.observe(el));
         });
 
-        // Toggle On-Site Execution Drawer
         function toggleOnsiteTeam() {
             const drawer = document.getElementById('onsiteDrawer');
             const btnText = document.getElementById('onsiteBtnText');
@@ -2712,7 +2546,6 @@
             }
         }
 
-        // Navigation
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
         const links = document.querySelectorAll('.nav-links a');
@@ -2730,18 +2563,8 @@
             });
         });
 
-        links.forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (!link.parentElement.classList.contains('dropdown')) {
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-
-        // Slideshow
         const slides = document.querySelectorAll('.hero-slide');
         let currentSlide = 0;
-
         function nextSlide() {
             slides[currentSlide].classList.remove('active');
             currentSlide = (currentSlide + 1) % slides.length;
@@ -2749,7 +2572,6 @@
         }
         setInterval(nextSlide, 4000);
 
-        // Filter
         function filterProjects(category, btnElement) {
             document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
             btnElement.classList.add('active');
@@ -2765,7 +2587,6 @@
             });
         }
 
-        // Process Section
         const processDescriptions = {
             1: { title: "1. Consultation & Requirement Analysis", text: "We begin with a detailed discussion..." },
             2: { title: "2. Site Visit & Feasibility Study", text: "Our architectural experts conduct an in-depth on-site evaluation..." },
@@ -2793,23 +2614,16 @@
             document.querySelectorAll('.process-step').forEach(s => s.classList.remove('active'));
         }
 
-        // Form Switcher
         function switchPortalForm(type, element) {
             if (element.classList.contains('active')) return;
-
             document.querySelectorAll('.action-tab-btn').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
 
             const currentActiveForm = document.querySelector('.portal-form.active');
             let targetForm;
-
-            if (type === 'hiring') {
-                targetForm = document.getElementById('hiringForm');
-            } else if (type === 'vendors') {
-                targetForm = document.getElementById('vendorsForm');
-            } else if (type === 'contractors') {
-                targetForm = document.getElementById('contractorsForm');
-            }
+            if (type === 'hiring') targetForm = document.getElementById('hiringForm');
+            else if (type === 'vendors') targetForm = document.getElementById('vendorsForm');
+            else if (type === 'contractors') targetForm = document.getElementById('contractorsForm');
 
             if (currentActiveForm) {
                 currentActiveForm.classList.add('slide-out');
