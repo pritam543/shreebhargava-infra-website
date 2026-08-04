@@ -290,7 +290,6 @@
             line-height: 1.2;
         }
 
-        /* Clean Bold Text Without Border/Background */
         .hero-content p {
             font-size: 1.15rem;
             color: #ffffff;
@@ -1491,7 +1490,6 @@
             margin-top: 3px;
         }
 
-        /* Real Brand Colors For Contact Logos */
         .social-qr-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -1523,45 +1521,17 @@
             transition: var(--transition);
         }
 
-        .qr-item.whatsapp-brand .qr-placeholder {
-            background: #25D366;
-        }
+        .qr-item.whatsapp-brand .qr-placeholder { background: #25D366; }
+        .qr-item.whatsapp-brand:hover { border-color: #25D366; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3); }
 
-        .qr-item.whatsapp-brand:hover {
-            border-color: #25D366;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
-        }
+        .qr-item.google-brand .qr-placeholder { background: #4285F4; }
+        .qr-item.google-brand:hover { border-color: #4285F4; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3); }
 
-        .qr-item.google-brand .qr-placeholder {
-            background: #4285F4;
-        }
+        .qr-item.insta-brand .qr-placeholder { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .qr-item.insta-brand:hover { border-color: #dc2743; transform: translateY(-5px); box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3); }
 
-        .qr-item.google-brand:hover {
-            border-color: #4285F4;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(66, 133, 244, 0.3);
-        }
-
-        .qr-item.insta-brand .qr-placeholder {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-
-        .qr-item.insta-brand:hover {
-            border-color: #dc2743;
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(220, 39, 67, 0.3);
-        }
-
-        .qr-item.web-brand .qr-placeholder {
-            background: var(--gold);
-        }
-
-        .qr-item.web-brand:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3);
-        }
+        .qr-item.web-brand .qr-placeholder { background: var(--gold); }
+        .qr-item.web-brand:hover { border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(255, 165, 0, 0.3); }
 
         .qr-item span {
             font-size: 0.72rem;
@@ -2062,8 +2032,8 @@
     </section>
 
     <!-- ==========================================
-         🏅 REWARDS & RECOGNITION (JUST ABOVE SERVICES)
-         ========================================== -->
+        🏅 REWARDS & RECOGNITION (JUST ABOVE SERVICES)
+        ========================================== -->
     <section id="rewards" class="section-padding rewards-section-wrapper" style="background-color: #fff;">
         <div class="container">
             <div class="rewards-section scroll-slide-left" style="margin-top:0;">
@@ -2494,7 +2464,7 @@
                 <div class="careers-form-card scroll-slide-right">
 
                     <!-- 1. WE ARE HIRING FORM -->
-                    <form id="hiringForm" class="portal-form active">
+                    <form id="hiringForm" class="portal-form active" action="https://formspree.io/f/xgawwobj" method="POST" enctype="multipart/form-data">
                         <h3 class="form-heading">Apply Now (Job Application)</h3>
                         <p class="form-subtext">Fill in your details to join our internal team.</p>
 
@@ -2533,7 +2503,7 @@
                     </form>
 
                     <!-- 2. VENDORS FORM -->
-                    <form id="vendorsForm" class="portal-form">
+                    <form id="vendorsForm" class="portal-form" action="https://formspree.io/f/xgawwobj" method="POST" enctype="multipart/form-data">
                         <h3 class="form-heading">Vendor / Supplier Registration</h3>
                         <p class="form-subtext">Register as an approved material vendor.</p>
 
@@ -2569,7 +2539,7 @@
                     </form>
 
                     <!-- 3. CONTRACTORS FORM -->
-                    <form id="contractorsForm" class="portal-form">
+                    <form id="contractorsForm" class="portal-form" action="https://formspree.io/f/xgawwobj" method="POST" enctype="multipart/form-data">
                         <h3 class="form-heading">Contractor Registration</h3>
                         <p class="form-subtext">Partner with us as an execution contractor.</p>
 
@@ -2689,12 +2659,12 @@
 
             <div class="contact-form scroll-slide-right">
                 <h3 style="color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;">Send a Message</h3>
-                <form id="contactForm">
-                    <input id="name" type="text" placeholder="Full Name" required>
-                    <input id="email" type="email" placeholder="Email Address" required>
-                    <input id="phone" type="tel" placeholder="Phone Number" required>
-                    <input id="subject" type="text" placeholder="Subject" required>
-                    <textarea id="message" placeholder="Your Message" required></textarea>
+                <form id="contactForm" action="https://formspree.io/f/xgawwobj" method="POST">
+                    <input name="name" type="text" placeholder="Full Name" required>
+                    <input name="email" type="email" placeholder="Email Address" required>
+                    <input name="phone" type="tel" placeholder="Phone Number" required>
+                    <input name="subject" type="text" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
                     <button type="submit" id="contactSubmitBtn">Send Message</button>
                 </form>
             </div>
@@ -2853,83 +2823,6 @@
                 targetForm.classList.add('active');
             }
         }
-
-        // Form Submissions
-        document.querySelectorAll('.portal-form').forEach(form => {
-            form.addEventListener('submit', async function (e) {
-                e.preventDefault();
-
-                const submitBtn = form.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerText;
-                submitBtn.innerText = "Submitting Details...";
-                submitBtn.disabled = true;
-
-                const formData = new FormData(form);
-
-                try {
-                    const response = await fetch('/careers', {
-                        method: 'POST',
-                        body: formData
-                    });
-
-                    const result = await response.json();
-
-                    if (response.ok && result.success) {
-                        alert("✅ " + (result.message || "Submitted successfully!"));
-                        form.reset();
-                    } else {
-                        alert("❌ " + (result.message || "Failed to submit. Please try again."));
-                    }
-                } catch (error) {
-                    console.error("Submission Error:", error);
-                    alert("❌ Server Connection Error! Make sure server is running.");
-                } finally {
-                    submitBtn.innerText = originalText;
-                    submitBtn.disabled = false;
-                }
-            });
-        });
-
-        document.getElementById("contactForm").addEventListener("submit", async function (e) {
-            e.preventDefault();
-
-            const submitBtn = document.getElementById("contactSubmitBtn");
-            submitBtn.innerText = "Sending Message...";
-            submitBtn.disabled = true;
-
-            const data = {
-                name: document.getElementById("name").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                subject: document.getElementById("subject").value,
-                message: document.getElementById("message").value
-            };
-
-            try {
-                const response = await fetch("/contact", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                const result = await response.json();
-
-                if (response.ok && result.success) {
-                    alert("✅ Message sent successfully!");
-                    document.getElementById("contactForm").reset();
-                } else {
-                    alert("❌ " + (result.message || "Something went wrong!"));
-                }
-            } catch (error) {
-                console.error("Error:", error);
-                alert("❌ Cannot connect to server!");
-            } finally {
-                submitBtn.innerText = "Send Message";
-                submitBtn.disabled = false;
-            }
-        });
     </script>
 </body>
 
