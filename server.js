@@ -30,9 +30,10 @@ const transporter = nodemailer.createTransport({
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
     },
-    connectionTimeout: 30000, // 30 seconds
-    greetingTimeout: 30000,
-    socketTimeout: 30000
+    family: 4, // Use IPv4
+    connectionTimeout: 60000,
+    greetingTimeout: 60000,
+    socketTimeout: 60000
 });
 // Verify SMTP connection on startup
 transporter.verify((error, success) => {
