@@ -31,11 +31,15 @@
         .nav-links a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; text-decoration: none; }
         .nav-links a:hover { color: var(--gold); }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
         .page-header { background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 80px 20px; text-align: center; color: var(--white); }
         .page-header h1 { color: var(--gold); font-size: 2.2rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
         .page-header p { color: var(--text-muted); font-size: 1rem; max-width: 700px; margin: 0 auto; }
         
-        /* Gallery Section - Perfectly Equal 3-Column Grid */
+        .scroll-slide-left { opacity: 0; transform: translateX(-80px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .scroll-slide-right { opacity: 0; transform: translateX(80px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .scroll-slide-left.show, .scroll-slide-right.show { opacity: 1; transform: translateX(0); }
+
         .gallery-section { padding: 60px 0; }
         .section-header { text-align: center; margin-bottom: 40px; }
         .section-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); position: relative; display: inline-block; padding-bottom: 15px; }
@@ -50,7 +54,6 @@
         .gallery-info { padding: 18px; text-align: center; background: var(--bg-light); flex-grow: 1; display: flex; align-items: center; justify-content: center; }
         .gallery-info h4 { font-size: 0.95rem; color: var(--primary-dark); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
 
-        /* Contact Section */
         .contact { background-color: var(--primary-dark); color: var(--text-light); padding: 80px 0; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; width: 100%; }
         .contact-details h3, .contact-form h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 25px; }
@@ -66,10 +69,7 @@
         @media (max-width: 992px) {
             .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-            .contact-form { padding: 20px; }
-            .page-header h1 { font-size: 1.8rem; }
         }
-
         @media (max-width: 576px) {
             .gallery-grid { grid-template-columns: 1fr; }
         }
@@ -87,31 +87,30 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
     </header>
 
     <div class="page-header">
-        <div class="container">
+        <div class="container scroll-slide-left">
             <h1 id="serviceTitle">Service Details</h1>
             <p id="serviceDesc">Explore our specialized works, 3D renders, and technical drawings.</p>
         </div>
     </div>
 
     <section class="gallery-section container">
-        <div class="section-header">
+        <div class="section-header scroll-slide-left">
             <h2>3D Renders & Technical Drawings Gallery</h2>
         </div>
-        <div class="gallery-grid" id="galleryContainer">
-            <!-- Dynamic 3D and Drawing Images will load here -->
-        </div>
+        <div class="gallery-grid" id="galleryContainer"></div>
     </section>
 
     <section class="contact section-padding">
         <div class="container contact-grid">
-            <div class="contact-details">
-                <h3>Get In Touch</h3>
+            <div class="contact-details scroll-slide-left">
+                <h3>Contact Us</h3>
                 <ul class="contact-info-list">
                     <li><i class="fa-solid fa-phone"></i> <div>8818887770 | 9669561234</div></li>
                     <li><i class="fa-solid fa-location-dot"></i> <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div></li>
@@ -124,7 +123,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="contact-form">
+            <div class="contact-form scroll-slide-right">
                 <h3>Send a Message Regarding This Service</h3>
                 <form id="contactForm" action="/contact" method="POST">
                     <input name="name" type="text" placeholder="Full Name" required>
@@ -139,143 +138,217 @@
     </section>
 
     <footer>
-        <div class="container">
-            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p>
-        </div>
+        <div class="container"><p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p></div>
     </footer>
 
     <script>
         const serviceData = {
             architecture: {
                 title: "Architecture Design",
-                desc: "Explore our precise 2D floor plans, elevation drawings, and photorealistic 3D architectural renders.",
+                desc: "Explore 10+ precise 2D floor plans, elevation drawings, and photorealistic 3D architectural renders.",
                 projects: [
-                    { name: "3D Front Elevation Render", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Technical Floor Plan Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "3D Front Elevation Render 1", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Technical Floor Plan 2D", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Modern Exterior 3D View", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
                     { name: "Structural Layout Blueprint", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Luxury Villa 3D Concept", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
-                    { name: "CAD Architectural Detailing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "CAD Architectural Detailing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Facade Design Blueprint", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Duplex Elevation Sketch", img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Urban Master Plan 3D", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Commercial Frontage Drawing", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             interior: {
                 title: "Interior Design",
-                desc: "High-resolution 3D interior walkthrough renders and detailed furniture placement drawings.",
+                desc: "Explore all our exclusive unique interior design executions, 3D walkthroughs, and custom folders.",
                 projects: [
-                    { name: "Living Room 3D Visualization", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Interior False Ceiling Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Master Bedroom 3D Render", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Modular Kitchen Layout Plan", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Executive Office 3D View", img: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Lighting & Electrical Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "", img: "interior images/interior1.jpg" },
+                    { name: "", img: "interior images/interior2.jpg" },
+                    { name: "", img: "interior images/interior3.jpg" },
+                    { name: "", img: " interior images/interior4.jpg" },
+                    { name: "", img: "interior images/interior5.jpg" },
+                    { name: "", img: " interior images/interior6.jpg" },
+                    { name: "", img: "interior images/interior7.jpg" },
+                    { name: "", img: "interior images/interior8.jpg" },
+                    { name: "", img: "interior images/interior9.jpg" },
+                    { name: "", img: " interior images/interior10.jpg" },
+                    { name: "", img: "interior images/interior11.jpg" },
+                    { name: "", img: " interior images/interior12.jpg" },
+                    { name: "", img: "interior images/interior13.jpg" },
+                    { name: "", img: "interior images/interior14.jpg" },
+                    { name: "", img: " interior images/interior15.jpg" },
+                    { name: "", img: " interior images/interior16.jpg" },
+                    { name: "", img: "interior images/interior17.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.45.58 PM.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.45.59 PM.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.00 PM.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.01 PM.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.02 PM.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.03 PM (1).jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.03 PM.jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.04 PM (1).jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.04 PM (2).jpg" },
+                    { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.04 PM.jpg" },
+                    { name: "Living Room Design", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.05 PM (1).jpg" },
+                    { name: "Master Bedroom Setup", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.05 PM (2).jpg" },
+                    { name: "Modular Kitchen View", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.05 PM.jpg" },
+                    { name: "False Ceiling & Lighting", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.06 PM (1).jpg" },
+                    { name: "Luxury Dining Space", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.06 PM (2).jpg" },
+                    { name: "Office Executive Cabin", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.06 PM.jpg" },
+                    { name: "Wardrobe Detailing", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.07 PM (1).jpg" },
+                    { name: "TV Unit Wall Design", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.07 PM (2).jpg" },
+                    { name: "Bathroom Interior", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.07 PM.jpg" },
+                    { name: "Balcony Seating Decor", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.08 PM (1).jpg" },
+                    { name: "Lobby & Reception Area", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.08 PM (2).jpg" },
+                    { name: "Kids Room Interior", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.08 PM (3).jpg" },
+                    { name: "Pooja Unit Architecture", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.08 PM.jpg" },
+                    { name: "Staircase Glass Railing", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.09 PM (1).jpg" },
+                    { name: "Dressing Room Setup", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.09 PM.jpg" }
                 ]
             },
             residential: {
                 title: "Residential Design",
-                desc: "Complete 3D home models, duplex plans, and Vaastu-compliant architectural drawings.",
+                desc: "10+ complete 3D home models, duplex plans, and Vaastu-compliant architectural drawings.",
                 projects: [
                     { name: "Luxury Bungalow 3D Render", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
                     { name: "Duplex 2D Working Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Modern Villa 3D Exterior", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Modern Villa Exterior", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
                     { name: "Vaastu Floor Plan Layout", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Independent Kothi 3D View", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Residential Plumbing & MEP Plan", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Independent Kothi View", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" },
+                    { name: "MEP & Plumbing Blueprint", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Row House 3D Elevation", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Terrace Garden Plan", img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Private Pool Villa 3D", img: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Bungalow Electrical Drawing", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             commercial: {
                 title: "Commercial Design",
-                desc: "Corporate office 3D modeling, retail showroom layouts, and commercial structural drawings.",
+                desc: "10+ corporate office 3D models, retail showroom layouts, and commercial structural drawings.",
                 projects: [
                     { name: "Corporate Office 3D Render", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Commercial Floor Plan Blueprint", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Commercial Floor Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Retail Showroom 3D View", img: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=800&q=80" },
                     { name: "Plaza Frontage CAD Drawing", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Conference Room 3D Render", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
-                    { name: "HVAC & Ducting Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "HVAC & Ducting Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Boutique Store 3D View", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Co-working Hub Blueprint", img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Shopping Mall 3D Model", img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Commercial Zoning Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             landscape: {
                 title: "Landscape Design",
-                desc: "Green garden 3D landscaping renders, master layout plans, and outdoor drawing execution.",
+                desc: "10+ green garden 3D landscaping renders, master layout plans, and outdoor drawings.",
                 projects: [
                     { name: "Eco Park 3D Landscape View", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" },
                     { name: "Master Garden Layout Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Resort Lawn 3D Visualization", img: "https://images.unsplash.com/photo-1558904541-efa873a8160d?auto=format&fit=crop&w=800&q=80" },
                     { name: "Plantation & Pathway Drawing", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Terrace Garden 3D Render", img: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Landscape Irrigation Plan", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Landscape Irrigation Plan", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Courtyard Water Fountain 3D", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Botanical Garden Blueprint", img: "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Lawn Lighting Layout", img: "https://images.unsplash.com/photo-1519331379826-f10be5486c6f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Open Green Master Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             turnkey: {
                 title: "Turnkey Execution",
-                desc: "Comprehensive working drawings, 3D structural models, and end-to-end execution plans.",
+                desc: "10+ comprehensive working drawings, 3D structural models, and end-to-end execution plans.",
                 projects: [
                     { name: "Turnkey Project 3D Model", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
                     { name: "Structural Working Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Site Execution 3D View", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Complete MEP Drawing Set", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" },
                     { name: "Interior & Civil 3D Render", img: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Final Handover Blueprint", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Final Handover Blueprint", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Construction Quality Audit", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Material Procurement Plan", img: "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Site Supervision Chart", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Turnkey Finishing Schedule", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             renovation: {
                 title: "Renovation",
-                desc: "Before-after 3D renovation renders, structural remodeling plans, and conversion drawings.",
+                desc: "10+ before-after 3D renovation renders and structural remodeling blueprints.",
                 projects: [
                     { name: "Exterior Remodeling 3D View", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Renovation Floor Plan Drawing", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
                     { name: "Interior Makeover 3D Render", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80" },
                     { name: "Retrofitting CAD Plan", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Office Upgrade 3D Visualization", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Structural Modification Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Office Upgrade 3D View", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Structural Modification Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Kitchen Remodel Blueprint", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Façade Modernization 3D", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Old Home Conversion Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Structural Reinforcement Drawing", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             space: {
                 title: "Space Creation",
-                desc: "Ergonomic space optimization 3D models, partitioning drawings, and layout plans.",
+                desc: "10+ ergonomic space optimization 3D models and partitioning drawings.",
                 projects: [
                     { name: "Smart Space 3D Model", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" },
                     { name: "Layout Optimization Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Open-Plan Studio 3D View", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" },
                     { name: "Zoning & Partition CAD Plan", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Compact Room 3D Render", img: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Ergonomic Blueprint", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Ergonomic Blueprint", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Multi-Functional Hall Layout", img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Studio Apartment 3D View", img: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Space Saving Furniture Plan", img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Partition Zoning Blueprint", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             sustainable: {
                 title: "Sustainable Solution & Innovation",
-                desc: "Green building 3D designs, solar & rainwater system drawings, and eco-friendly layouts.",
+                desc: "10+ green building 3D designs, solar & rainwater system drawings.",
                 projects: [
                     { name: "Solar Integration 3D View", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80" },
                     { name: "Green Architecture Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Natural Ventilation 3D Model", img: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80" },
                     { name: "Rainwater System CAD Plan", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Eco Facade 3D Render", img: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Energy Efficient Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Energy Efficient Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Green Wall Architecture", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Eco Material Layout", img: "https://images.unsplash.com/photo-1508873696983-2df5c92091c7?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Sustainable Master Plan", img: "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Green Roof Detail Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             government: {
                 title: "Government Consultancy",
-                desc: "Civic complex 3D renders, public infrastructure master plans, and government compliance drawings.",
+                desc: "10+ civic complex 3D renders, public infrastructure master plans, and compliance drawings.",
                 projects: [
                     { name: "Civic Complex 3D Render", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
                     { name: "Public Infrastructure Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Municipal Building 3D View", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" },
                     { name: "Govt Project Master Plan", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Urban Zoning CAD Design", img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Civic Compliance Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Civic Compliance Drawing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Public Accessibility Blueprint", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Govt Office Interior 3D", img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Infrastructure Audit Plan", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Civic Master Layout", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" }
                 ]
             },
             pmc: {
                 title: "Project Management Consultancy",
-                desc: "Structural audit reports, construction scheduling charts, and quality control drawings.",
+                desc: "10+ structural audit reports, construction scheduling charts, and quality control drawings.",
                 projects: [
                     { name: "Site Supervision 3D View", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
                     { name: "Project Scheduling Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
                     { name: "Quality Audit 3D Model", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
                     { name: "Construction Progress Plan", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80" },
                     { name: "Safety Protocol 3D View", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" },
-                    { name: "Technical Audit Blueprint", img: "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80" }
+                    { name: "Technical Audit Blueprint", img: "https://images.unsplash.com/photo-1531834685032-c34f0d84c67b?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Billing & Estimation Chart", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Structural Inspection Plan", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" },
+                    { name: "PMC Timeline Blueprint", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80" },
+                    { name: "Quality Assurance Report", img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" }
                 ]
             }
         };
@@ -290,7 +363,7 @@
         const galleryContainer = document.getElementById('galleryContainer');
         currentService.projects.forEach(proj => {
             const card = document.createElement('div');
-            card.className = 'gallery-card';
+            card.className = 'gallery-card scroll-slide-left';
             card.innerHTML = `
                 <div class="gallery-img-box">
                     <img src="${proj.img}" alt="${proj.name}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
@@ -300,6 +373,17 @@
                 </div>
             `;
             galleryContainer.appendChild(card);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => observer.observe(el));
         });
     </script>
 </body>

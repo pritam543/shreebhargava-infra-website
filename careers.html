@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers & Partnerships - Shree Bhargava Infrastructure & Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #11161e;
+            --secondary-dark: #1a212d;
+            --gold: #ffa500;
+            --gold-hover: #e65c00;
+            --text-light: #ffffff;
+            --text-muted: #a0aab5;
+            --text-dark: #333333;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.4s ease;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
+        
+        header { background-color: var(--primary-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 102, 0, 0.2); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; max-width: 1200px; margin: 0 auto; }
+        .logo h1 { color: var(--gold); font-size: 1.4rem; font-weight: 700; }
+        .logo span { display: block; font-size: 0.65rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
+        .nav-links a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; text-decoration: none; transition: var(--transition); }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
+        
+        .page-header { background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 80px 20px; text-align: center; color: var(--white); }
+        .page-header h1 { color: var(--gold); font-size: 2.2rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
+        .page-header p { color: var(--text-muted); font-size: 1rem; }
+
+        .scroll-slide-left { opacity: 0; transform: translateX(-80px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .scroll-slide-right { opacity: 0; transform: translateX(80px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .scroll-slide-left.show, .scroll-slide-right.show { opacity: 1; transform: translateX(0); }
+
+        .section-padding { padding: 80px 0; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); position: relative; display: inline-block; padding-bottom: 15px; }
+        .section-header h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background-color: var(--gold); }
+
+        .careers-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: stretch; }
+        .careers-info { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
+        .careers-info h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 10px; }
+        .careers-info p.lead-desc { color: #555; margin-bottom: 15px; font-size: 0.9rem; }
+        
+        .action-banner-tabs { margin-top: 15px; display: flex; flex-direction: column; gap: 12px; }
+        .action-tab-btn { background: linear-gradient(135deg, #11161e 0%, #1a212d 100%); border: 2px solid rgba(255, 165, 0, 0.3); border-left: 5px solid rgba(255, 165, 0, 0.5); border-radius: 8px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: var(--transition); }
+        .tab-btn-content { display: flex; align-items: center; gap: 12px; text-align: left; }
+        .tab-btn-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 165, 0, 0.12); border: 1px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center; }
+        .tab-btn-text h2 { font-size: 1rem; font-weight: 800; color: var(--gold); text-transform: uppercase; }
+        .tab-btn-text span { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; }
+        .action-tab-btn.active { border-color: var(--gold); background: linear-gradient(135deg, #1f2a3a 0%, #2a384e 100%); }
+
+        .careers-form-card { background: var(--secondary-dark); padding: 30px 35px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); color: var(--text-light); }
+        .portal-form { display: none; flex-direction: column; gap: 14px; }
+        .portal-form.active { display: flex; }
+        .form-heading { color: var(--gold); margin-bottom: 2px; text-transform: uppercase; font-size: 1.05rem; }
+        .form-subtext { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; }
+        .portal-form input, .portal-form select, .portal-form textarea { width: 100%; padding: 11px 15px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: var(--text-light); font-family: inherit; font-size: 0.88rem; }
+        .portal-form select option { background: var(--secondary-dark); color: var(--text-light); }
+        .file-upload-group { display: flex; flex-direction: column; gap: 4px; }
+        .file-upload-group label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; }
+        .portal-form input[type="file"] { padding: 8px; cursor: pointer; }
+        .portal-form textarea { min-height: 70px; resize: vertical; }
+        .portal-form button { width: 100%; padding: 13px; background: var(--gold); color: #ffffff; border: 2px solid var(--gold); border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .portal-form button:hover { background: transparent; color: var(--gold); }
+
+        .contact { background-color: var(--primary-dark); color: var(--text-light); padding: 80px 0; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; width: 100%; }
+        .contact-details h3, .contact-form h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 25px; }
+        .contact-info-list { list-style: none; margin-bottom: 30px; }
+        .contact-info-list li { display: flex; gap: 15px; margin-bottom: 20px; color: var(--text-muted); word-break: break-word; }
+        .contact-form { background: var(--secondary-dark); padding: 30px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); width: 100%; }
+        #contactForm { display: flex; flex-direction: column; gap: 18px; width: 100%; }
+        #contactForm input, #contactForm textarea { width: 100%; padding: 15px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--white); font-family: inherit; }
+        #contactForm button { width: 100%; padding: 15px; background: var(--gold); color: #fff; border: none; border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; }
+        footer { background-color: #0b0f14; color: var(--text-muted); text-align: center; padding: 25px 0; font-size: 0.8rem; }
+
+        @media (max-width: 992px) { .careers-grid, .contact-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>SHREE BHARGAVA</h1>
+                <span>Infrastructure & Development</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="careers.html" class="active">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container scroll-slide-left">
+            <h1>Work & Partner With Us</h1>
+            <p>Collaborate with us on prestigious residential, commercial, and urban projects.</p>
+        </div>
+    </div>
+
+    <section class="section-padding container">
+        <div class="careers-grid">
+            <div class="careers-info scroll-slide-left">
+                <div>
+                    <h3>Join Our Network</h3>
+                    <p class="lead-desc">Collaborate with Shree Bhargava Infrastructure & Development on prestigious projects.</p>
+                </div>
+                <div class="action-banner-tabs">
+                    <div class="action-tab-btn active" onclick="switchPortalForm('hiring', this)">
+                        <div class="tab-btn-content">
+                            <div class="tab-btn-icon"><i class="fa-solid fa-user-tie"></i></div>
+                            <div class="tab-btn-text"><h2>WE ARE HIRING</h2><span>Apply for Jobs</span></div>
+                        </div>
+                    </div>
+                    <div class="action-tab-btn" onclick="switchPortalForm('vendors', this)">
+                        <div class="tab-btn-content">
+                            <div class="tab-btn-icon"><i class="fa-solid fa-truck-field"></i></div>
+                            <div class="tab-btn-text"><h2>VENDORS PARTNERSHIP</h2><span>Supply Materials</span></div>
+                        </div>
+                    </div>
+                    <div class="action-tab-btn" onclick="switchPortalForm('contractors', this)">
+                        <div class="tab-btn-content">
+                            <div class="tab-btn-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+                            <div class="tab-btn-text"><h2>CONTRACTORS CONNECT</h2><span>Execute On-Site</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="careers-form-card scroll-slide-right">
+                <form id="hiringForm" class="portal-form active" action="/careers" method="POST" enctype="multipart/form-data">
+                    <h3 class="form-heading">Apply Now (Job Application)</h3>
+                    <p class="form-subtext">Fill in your details to join our internal team.</p>
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <select name="position" required>
+                        <option value="" disabled selected>Select Desired Position</option>
+                        <option value="Senior Architect">Senior Architect</option>
+                        <option value="Interior Designer">Interior Designer</option>
+                        <option value="Project Manager">Project Manager</option>
+                    </select>
+                    <select name="experience" required>
+                        <option value="" disabled selected>Select Experience Level</option>
+                        <option value="Fresher / Intern">Fresher / Intern</option>
+                        <option value="1 - 3 Years">1 - 3 Years</option>
+                        <option value="3+ Years">3+ Years</option>
+                    </select>
+                    <div class="file-upload-group"><label>Upload Resume / Portfolio:</label><input type="file" name="resume" accept=".pdf,.doc,.docx" required></div>
+                    <textarea name="cover" placeholder="Short intro about yourself..."></textarea>
+                    <button type="submit">Submit Job Application</button>
+                </form>
+
+                <form id="vendorsForm" class="portal-form" action="/careers" method="POST" enctype="multipart/form-data">
+                    <h3 class="form-heading">Vendor Registration</h3>
+                    <p class="form-subtext">Register as an approved material vendor.</p>
+                    <input type="text" name="name" placeholder="Vendor / Company Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <select name="position" required>
+                        <option value="" disabled selected>Select Material Category</option>
+                        <option value="Iron & Steel">Iron & Steel</option>
+                        <option value="Cement">Cement & Aggregates</option>
+                        <option value="Electrical">Electrical Wires & Switches</option>
+                    </select>
+                    <input type="text" name="experience" placeholder="GST Number (Optional)">
+                    <div class="file-upload-group"><label>Company Profile / Catalog:</label><input type="file" name="resume" accept=".pdf,.doc,.docx"></div>
+                    <textarea name="cover" placeholder="Business message..."></textarea>
+                    <button type="submit">Submit Vendor Inquiry</button>
+                </form>
+
+                <form id="contractorsForm" class="portal-form" action="/careers" method="POST" enctype="multipart/form-data">
+                    <h3 class="form-heading">Contractor Registration</h3>
+                    <p class="form-subtext">Partner with us as an execution contractor.</p>
+                    <input type="text" name="name" placeholder="Contractor / Firm Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <select name="position" required>
+                        <option value="" disabled selected>Select Specialization</option>
+                        <option value="Civil & Structural">Civil & Structural Contractor</option>
+                        <option value="Interior & Carpentry">Interior & Carpentry</option>
+                    </select>
+                    <select name="experience" required>
+                        <option value="" disabled selected>Work Experience In Years</option>
+                        <option value="1 - 3 Years">1 - 3 Years</option>
+                        <option value="3+ Years">3+ Years</option>
+                    </select>
+                    <div class="file-upload-group"><label>Past Work Proof:</label><input type="file" name="resume" accept=".pdf,.doc,.docx"></div>
+                    <textarea name="cover" placeholder="Workforce strength, past projects..."></textarea>
+                    <button type="submit">Submit Contractor Registration</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section-padding">
+        <div class="container contact-grid">
+            <div class="contact-details scroll-slide-left">
+                <h3>Contact Us</h3>
+                <ul class="contact-info-list">
+                    <li><i class="fa-solid fa-phone"></i> <div>8818887770 | 9669561234</div></li>
+                    <li><i class="fa-solid fa-location-dot"></i> <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div></li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <a href="mailto:shreebhargavainfra@gmail.com" style="color:var(--text-muted); text-decoration:underline;">shreebhargavainfra@gmail.com</a><br>
+                            <a href="mailto:shreebhargava50@gmail.com" style="color:var(--text-muted); text-decoration:underline;">shreebhargava50@gmail.com</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="contact-form scroll-slide-right">
+                <h3>Send a Message</h3>
+                <form id="contactForm" action="/contact" method="POST">
+                    <input name="name" type="text" placeholder="Full Name" required>
+                    <input name="email" type="email" placeholder="Email Address" required>
+                    <input name="phone" type="tel" placeholder="Phone Number" required>
+                    <input name="subject_text" type="text" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container"><p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p></div>
+    </footer>
+
+    <script>
+        function switchPortalForm(type, element) {
+            if (element.classList.contains('active')) return;
+            document.querySelectorAll('.action-tab-btn').forEach(btn => btn.classList.remove('active'));
+            element.classList.add('active');
+            document.querySelectorAll('.portal-form').forEach(f => f.classList.remove('active'));
+            const targetForm = document.getElementById(type + 'Form');
+            if (targetForm) targetForm.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
+
+
+
+
