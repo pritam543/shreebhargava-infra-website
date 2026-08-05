@@ -98,7 +98,7 @@ def contact():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-# Careers & Partnership Form API (Data goes to shreebhargava50@gmail.com)
+# Careers & Partnership Form API (Data goes to hr.sbacia@gmail.com)
 @app.route("/careers", methods=["POST"])
 def careers():
     data = request.form
@@ -127,7 +127,7 @@ def careers():
 
     try:
         # Careers email notification
-        send_email_notification(f"New Application/Partnership from {name}", email_body, "shreebhargava50@gmail.com")
+        send_email_notification(f"New Application/Partnership from {name}", email_body, "hr.sbacia@gmail.com")
         
         return jsonify({"message": "Application Submitted Successfully"})
     except Exception as e:

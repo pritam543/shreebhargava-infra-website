@@ -54,7 +54,7 @@ app.post('/contact', async (req, res) => {
     }
 });
 
-// 2. Careers Form Route (with Resume/File Attachment) -> Sends to shreebhargava50@gmail.com
+// 2. Careers Form Route (with Resume/File Attachment) -> Sends to hr.sbacia@gmail.com
 app.post('/careers', upload.single('file_upload'), async (req, res) => {
     try {
         const { name, email, phone, position, experience, cover } = req.body;
@@ -81,7 +81,7 @@ app.post('/careers', upload.single('file_upload'), async (req, res) => {
 
         const emailPayload = {
             from: 'onboarding@resend.dev',
-            to: ['shreebhargava50@gmail.com'],
+            to: ['hr.sbacia@gmail.com'],
             subject: `New Application/Partnership from ${name}`,
             text: emailText
         };
