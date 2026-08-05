@@ -48,12 +48,16 @@
         .section-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); position: relative; display: inline-block; padding-bottom: 15px; }
         .section-header h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background-color: var(--gold); }
         
-        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 30px; }
-        .gallery-card { background: var(--white); border-radius: 8px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 5px 15px rgba(0,0,0,0.04); transition: var(--transition); display: flex; flex-direction: column; }
-        .gallery-card:hover { transform: translateY(-6px); box-shadow: 0 12px 25px rgba(255,165,0,0.2); border-color: var(--gold); }
-        .gallery-img-box { height: 240px; width: 100%; overflow: hidden; position: relative; background: #111; }
-        .gallery-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-card:hover .gallery-img-box img { transform: scale(1.08); }
+        /* 2 Columns Grid Layout */
+        .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 30px; }
+        .gallery-card { background: var(--white); border-radius: 10px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 6px 20px rgba(0,0,0,0.06); transition: var(--transition); display: flex; flex-direction: column; }
+        .gallery-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(255,165,0,0.25); border-color: var(--gold); }
+        
+        /* Image container maintained so images don't cut */
+        .gallery-img-box { width: 100%; max-height: 450px; overflow: hidden; position: relative; background: #0b0f14; display: flex; align-items: center; justify-content: center; }
+        .gallery-img-box img { width: 100%; height: auto; max-height: 450px; object-fit: contain; transition: transform 0.5s ease; }
+        .gallery-card:hover .gallery-img-box img { transform: scale(1.04); }
+        
         .gallery-info { padding: 18px; text-align: center; background: var(--bg-light); flex-grow: 1; display: flex; align-items: center; justify-content: center; }
         .gallery-info h4 { font-size: 0.95rem; color: var(--primary-dark); text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
         .gallery-info h4:empty { display: none; }
@@ -86,12 +90,9 @@
         footer { background-color: #0b0f14; color: var(--text-muted); text-align: center; padding: 25px 0; font-size: 0.8rem; }
 
         @media (max-width: 992px) {
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+            .gallery-grid { grid-template-columns: 1fr; gap: 25px; }
             .contact-grid { grid-template-columns: 1fr; gap: 40px; }
             .social-qr-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media (max-width: 576px) {
-            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -263,9 +264,8 @@
                     { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.08 PM.jpeg" },
                     { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.14 PM (1).jpeg" },
                     { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.34 PM.jpeg" }, 
-                      { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (2).jpeg" }, 
-                        { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM (2).jpeg" }, 
-
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (2).jpeg" }, 
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM (2).jpeg" }
                 ]
             },
             commercial: {
