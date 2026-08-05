@@ -11,6 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("bFfeGn9ujKWbOR7a5"); // Public Key integrated
+        })();
+    </script>
+
     <style>
         :root {
             --primary-dark: #11161e;
@@ -2350,7 +2358,8 @@
                 </div>
 
                 <div class="careers-form-card scroll-slide-right">
-                    <form id="hiringForm" class="portal-form active" action="/careers" method="POST" enctype="multipart/form-data">
+                    <!-- Hiring Form -->
+                    <form id="hiringForm" class="portal-form active" onsubmit="sendEmailJS(event, 'hiringForm')">
                         <h3 class="form-heading">Apply Now (Job Application)</h3>
                         <p class="form-subtext">Fill in your details to join our internal team.</p>
                         <input type="text" name="name" placeholder="Full Name" required>
@@ -2371,13 +2380,14 @@
                         </select>
                         <div class="file-upload-group">
                             <label>Upload Resume / Portfolio:</label>
-                            <input type="file" name="file_upload" accept=".pdf,.doc,.docx" required>
+                            <input type="file" name="file_upload" accept=".pdf,.doc,.docx">
                         </div>
                         <textarea name="cover" placeholder="Short intro about yourself..."></textarea>
                         <button type="submit">Submit Job Application</button>
                     </form>
 
-                    <form id="vendorsForm" class="portal-form" action="/careers" method="POST" enctype="multipart/form-data">
+                    <!-- Vendor Form -->
+                    <form id="vendorsForm" class="portal-form" onsubmit="sendEmailJS(event, 'vendorsForm')">
                         <h3 class="form-heading">Vendor / Supplier Registration</h3>
                         <p class="form-subtext">Register as an approved material vendor.</p>
                         <input type="text" name="name" placeholder="Vendor / Company Name" required>
@@ -2398,7 +2408,8 @@
                         <button type="submit">Submit Vendor Inquiry</button>
                     </form>
 
-                    <form id="contractorsForm" class="portal-form" action="/careers" method="POST" enctype="multipart/form-data">
+                    <!-- Contractor Form -->
+                    <form id="contractorsForm" class="portal-form" onsubmit="sendEmailJS(event, 'contractorsForm')">
                         <h3 class="form-heading">Contractor Registration</h3>
                         <p class="form-subtext">Partner with us as an execution contractor.</p>
                         <input type="text" name="name" placeholder="Contractor / Firm Name" required>
@@ -2499,7 +2510,7 @@
 
             <div class="contact-form scroll-slide-right">
                 <h3 style="color: var(--gold); margin-bottom: 20px; text-transform: uppercase; font-size: 1.1rem;">Send a Message</h3>
-                <form id="contactForm" action="/contact" method="POST">
+                <form id="contactForm" onsubmit="sendContactEmailJS(event)">
                     <input name="name" type="text" placeholder="Full Name" required>
                     <input name="email" type="email" placeholder="Email Address" required>
                     <input name="phone" type="tel" placeholder="Phone Number" required>
@@ -2530,61 +2541,71 @@
 
             const animElements = document.querySelectorAll('.scroll-slide-left, .scroll-slide-right');
             animElements.forEach(el => observer.observe(el));
-
-            // 1. Contact Form AJAX Handler
-            const contactForm = document.getElementById('contactForm');
-            if (contactForm) {
-                contactForm.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const formData = new FormData(contactForm);
-                    const data = Object.fromEntries(formData.entries());
-
-                    try {
-                        const response = await fetch('/contact', {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify(data)
-                        });
-                        const result = await response.json();
-                        if (result.success) {
-                            alert('Thank you! Your message has been sent successfully.');
-                            contactForm.reset();
-                        } else {
-                            alert('Something went wrong. Please try again.');
-                        }
-                    } catch (err) {
-                        console.error(err);
-                        alert('Error submitting form.');
-                    }
-                });
-            }
-
-            // 2. Careers / Portal Forms AJAX Handler
-            const portalForms = document.querySelectorAll('.portal-form');
-            portalForms.forEach(form => {
-                form.addEventListener('submit', async (e) => {
-                    e.preventDefault();
-                    const formData = new FormData(form);
-
-                    try {
-                        const response = await fetch('/careers', {
-                            method: 'POST',
-                            body: formData
-                        });
-                        const result = await response.json();
-                        if (result.success) {
-                            alert('Application submitted successfully!');
-                            form.reset();
-                        } else {
-                            alert('Something went wrong. Please try again.');
-                        }
-                    } catch (err) {
-                        console.error(err);
-                        alert('Error submitting application.');
-                    }
-                });
-            });
         });
+
+        // EmailJS Handler for Careers Forms
+        function sendEmailJS(e, formId) {
+            e.preventDefault();
+            const formElement = document.getElementById(formId);
+            const submitBtn = formElement.querySelector('button[type="submit"]');
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(formElement);
+            const templateParams = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                position: formData.get('position'),
+                experience: formData.get('experience'),
+                cover: formData.get('cover') || 'N/A'
+            };
+
+            emailjs.send('service_d5nn4ji', 'template_mjg6cjm', templateParams)
+                .then(function(response) {
+                    alert('Application submitted successfully! Data sent to email.');
+                    formElement.reset();
+                    submitBtn.innerText = "Submit Application / Inquiry";
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    alert('Something went wrong. Please try again.');
+                    submitBtn.innerText = "Submit Application / Inquiry";
+                    submitBtn.disabled = false;
+                });
+        }
+
+        // EmailJS Handler for Contact Form (Abhi ke liye careers template hi use karega jab tak contact template nahi banta)
+        function sendContactEmailJS(e) {
+            e.preventDefault();
+            const formElement = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('contactSubmitBtn');
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(formElement);
+            const templateParams = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                position: formData.get('subject_text'), // Subject ko position field ki jagah map kar rahe hain temporarily
+                experience: 'Contact Inquiry',
+                cover: formData.get('message')
+            };
+
+            emailjs.send('service_d5nn4ji', 'template_mjg6cjm', templateParams)
+                .then(function(response) {
+                    alert('Thank you! Your message has been sent successfully.');
+                    formElement.reset();
+                    submitBtn.innerText = "Send Message";
+                    submitBtn.disabled = false;
+                }, function(error) {
+                    console.error('FAILED...', error);
+                    alert('Something went wrong. Please try again.');
+                    submitBtn.innerText = "Send Message";
+                    submitBtn.disabled = false;
+                });
+        }
 
         function toggleOnsiteTeam() {
             const drawer = document.getElementById('onsiteDrawer');
@@ -2605,7 +2626,6 @@
 
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
-        const links = document.querySelectorAll('.nav-links a');
 
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
