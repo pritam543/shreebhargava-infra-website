@@ -23,6 +23,8 @@
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        section, div[id] { scroll-margin-top: 90px; }
         
         header { background-color: var(--primary-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 102, 0, 0.2); }
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; max-width: 1200px; margin: 0 auto; }
@@ -42,16 +44,21 @@
         .scroll-slide-left.show, .scroll-slide-right.show { opacity: 1; transform: translateX(0); }
 
         .section-padding { padding: 80px 0; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); position: relative; display: inline-block; padding-bottom: 15px; }
-        .section-header h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background-color: var(--gold); }
-
         .careers-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: stretch; }
-        .careers-info { display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
-        .careers-info h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 10px; }
-        .careers-info p.lead-desc { color: #555; margin-bottom: 15px; font-size: 0.9rem; }
+        .careers-info { display: flex; flex-direction: column; justify-content: space-between; height: 100%; gap: 15px; }
+        .careers-info h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 8px; }
+        .careers-info p.lead-desc { color: #555; font-size: 0.9rem; }
         
-        .action-banner-tabs { margin-top: 15px; display: flex; flex-direction: column; gap: 12px; }
+        /* Filled Gap Support Box & Instruction */
+        .hr-support-box { background: var(--bg-light); border: 1px solid #e0e0e0; border-left: 4px solid var(--gold); padding: 18px; border-radius: 8px; }
+        .hr-support-box h4 { font-size: 0.95rem; color: var(--primary-dark); text-transform: uppercase; margin-bottom: 5px; font-weight: 700; }
+        .hr-support-box p { font-size: 0.82rem; color: #666; margin-bottom: 6px; }
+        .hr-support-box a { color: var(--gold); font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+
+        .careers-sub-desc { background: rgba(255, 165, 0, 0.08); padding: 12px 15px; border-radius: 6px; border: 1px dashed rgba(255, 165, 0, 0.4); }
+        .careers-sub-desc p { font-size: 0.82rem; color: var(--primary-dark); font-weight: 500; }
+
+        .action-banner-tabs { display: flex; flex-direction: column; gap: 12px; }
         .action-tab-btn { background: linear-gradient(135deg, #11161e 0%, #1a212d 100%); border: 2px solid rgba(255, 165, 0, 0.3); border-left: 5px solid rgba(255, 165, 0, 0.5); border-radius: 8px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: var(--transition); }
         .tab-btn-content { display: flex; align-items: center; gap: 12px; text-align: left; }
         .tab-btn-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 165, 0, 0.12); border: 1px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center; }
@@ -59,9 +66,16 @@
         .tab-btn-text span { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; }
         .action-tab-btn.active { border-color: var(--gold); background: linear-gradient(135deg, #1f2a3a 0%, #2a384e 100%); }
 
-        .careers-form-card { background: var(--secondary-dark); padding: 30px 35px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); color: var(--text-light); }
-        .portal-form { display: none; flex-direction: column; gap: 14px; }
-        .portal-form.active { display: flex; }
+        /* Animated Form Card */
+        .careers-form-card { background: var(--secondary-dark); padding: 30px 35px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); color: var(--text-light); position: relative; overflow: hidden; }
+        .portal-form { display: none; flex-direction: column; gap: 14px; opacity: 0; transform: translateY(15px); transition: all 0.5s ease; }
+        .portal-form.active { display: flex; opacity: 1; transform: translateY(0); animation: formSlideUp 0.5s ease forwards; }
+
+        @keyframes formSlideUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
         .form-heading { color: var(--gold); margin-bottom: 2px; text-transform: uppercase; font-size: 1.05rem; }
         .form-subtext { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 6px; }
         .portal-form input, .portal-form select, .portal-form textarea { width: 100%; padding: 11px 15px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px; color: var(--text-light); font-family: inherit; font-size: 0.88rem; }
@@ -70,21 +84,36 @@
         .file-upload-group label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; }
         .portal-form input[type="file"] { padding: 8px; cursor: pointer; }
         .portal-form textarea { min-height: 70px; resize: vertical; }
-        .portal-form button { width: 100%; padding: 13px; background: var(--gold); color: #ffffff; border: 2px solid var(--gold); border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+        .portal-form button { width: 100%; padding: 13px; background: var(--gold); color: #ffffff; border: 2px solid var(--gold); border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: var(--transition); }
         .portal-form button:hover { background: transparent; color: var(--gold); }
 
+        /* Contact Section with Social Brand Boxes */
         .contact { background-color: var(--primary-dark); color: var(--text-light); padding: 80px 0; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; width: 100%; }
         .contact-details h3, .contact-form h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 25px; }
         .contact-info-list { list-style: none; margin-bottom: 30px; }
         .contact-info-list li { display: flex; gap: 15px; margin-bottom: 20px; color: var(--text-muted); word-break: break-word; }
+        
+        .social-qr-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; text-align: center; margin-top: 25px; }
+        .qr-item { background: rgba(255, 255, 255, 0.05); padding: 15px 8px; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 8px; text-decoration: none; color: inherit; display: block; transition: var(--transition); }
+        .qr-placeholder { width: 100%; aspect-ratio: 1; border-radius: 8px; margin-bottom: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #ffffff; }
+        .qr-item.whatsapp-brand .qr-placeholder { background: #25D366; }
+        .qr-item.whatsapp-brand:hover { border-color: #25D366; transform: translateY(-4px); }
+        .qr-item.google-brand .qr-placeholder { background: #4285F4; }
+        .qr-item.google-brand:hover { border-color: #4285F4; transform: translateY(-4px); }
+        .qr-item.insta-brand .qr-placeholder { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+        .qr-item.insta-brand:hover { border-color: #dc2743; transform: translateY(-4px); }
+        .qr-item.web-brand .qr-placeholder { background: var(--gold); }
+        .qr-item.web-brand:hover { border-color: var(--gold); transform: translateY(-4px); }
+        .qr-item span { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; color: var(--text-light); }
+
         .contact-form { background: var(--secondary-dark); padding: 30px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); width: 100%; }
         #contactForm { display: flex; flex-direction: column; gap: 18px; width: 100%; }
         #contactForm input, #contactForm textarea { width: 100%; padding: 15px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--white); font-family: inherit; }
         #contactForm button { width: 100%; padding: 15px; background: var(--gold); color: #fff; border: none; border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; }
         footer { background-color: #0b0f14; color: var(--text-muted); text-align: center; padding: 25px 0; font-size: 0.8rem; }
 
-        @media (max-width: 992px) { .careers-grid, .contact-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 992px) { .careers-grid, .contact-grid { grid-template-columns: 1fr; } .social-qr-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
@@ -118,7 +147,19 @@
                 <div>
                     <h3>Join Our Network</h3>
                     <p class="lead-desc">Collaborate with Shree Bhargava Infrastructure & Development on prestigious projects.</p>
+                    
+                    <div class="hr-support-box" style="margin-top: 15px;">
+                        <h4><i class="fa-solid fa-headset" style="color:var(--gold);"></i> Direct HR Helpline</h4>
+                        <p>Have questions regarding your application or vendor partnership? Reach out directly.</p>
+                        <a href="tel:8818887770"><i class="fa-solid fa-phone"></i> +91 88188 87770</a>
+                    </div>
                 </div>
+
+                <!-- Filled Gap Description right above We Are Hiring tabs -->
+                <div class="careers-sub-desc">
+                    <p><i class="fa-solid fa-circle-check" style="color:var(--gold);"></i> Select a category below to securely submit your application, catalog, or registration details.</p>
+                </div>
+
                 <div class="action-banner-tabs">
                     <div class="action-tab-btn active" onclick="switchPortalForm('hiring', this)">
                         <div class="tab-btn-content">
@@ -141,6 +182,7 @@
                 </div>
             </div>
 
+            <!-- Animated Form Container -->
             <div class="careers-form-card scroll-slide-right">
                 <form id="hiringForm" class="portal-form active" action="/careers" method="POST" enctype="multipart/form-data">
                     <h3 class="form-heading">Apply Now (Job Application)</h3>
@@ -222,7 +264,27 @@
                         </div>
                     </li>
                 </ul>
+
+                <div class="social-qr-grid">
+                    <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="qr-item whatsapp-brand">
+                        <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.google.com" target="_blank" class="qr-item google-brand">
+                        <div class="qr-placeholder"><i class="fa-solid fa-star"></i></div>
+                        <span>Google Review</span>
+                    </a>
+                    <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="qr-item insta-brand">
+                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="index.html" class="qr-item web-brand">
+                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div>
+                        <span>Website</span>
+                    </a>
+                </div>
             </div>
+
             <div class="contact-form scroll-slide-right">
                 <h3>Send a Message</h3>
                 <form id="contactForm" action="/contact" method="POST">
@@ -246,9 +308,12 @@
             if (element.classList.contains('active')) return;
             document.querySelectorAll('.action-tab-btn').forEach(btn => btn.classList.remove('active'));
             element.classList.add('active');
+            
             document.querySelectorAll('.portal-form').forEach(f => f.classList.remove('active'));
             const targetForm = document.getElementById(type + 'Form');
-            if (targetForm) targetForm.classList.add('active');
+            if (targetForm) {
+                targetForm.classList.add('active');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -264,7 +329,3 @@
     </script>
 </body>
 </html>
-
-
-
-
