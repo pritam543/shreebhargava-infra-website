@@ -49,7 +49,6 @@
         .careers-info h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 8px; }
         .careers-info p.lead-desc { color: #555; font-size: 0.9rem; }
         
-        /* Filled Gap Support Box & Instruction */
         .hr-support-box { background: var(--bg-light); border: 1px solid #e0e0e0; border-left: 4px solid var(--gold); padding: 18px; border-radius: 8px; }
         .hr-support-box h4 { font-size: 0.95rem; color: var(--primary-dark); text-transform: uppercase; margin-bottom: 5px; font-weight: 700; }
         .hr-support-box p { font-size: 0.82rem; color: #666; margin-bottom: 6px; }
@@ -66,7 +65,6 @@
         .tab-btn-text span { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; }
         .action-tab-btn.active { border-color: var(--gold); background: linear-gradient(135deg, #1f2a3a 0%, #2a384e 100%); }
 
-        /* Animated Form Card */
         .careers-form-card { background: var(--secondary-dark); padding: 30px 35px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); color: var(--text-light); position: relative; overflow: hidden; }
         .portal-form { display: none; flex-direction: column; gap: 14px; opacity: 0; transform: translateY(15px); transition: all 0.5s ease; }
         .portal-form.active { display: flex; opacity: 1; transform: translateY(0); animation: formSlideUp 0.5s ease forwards; }
@@ -87,7 +85,6 @@
         .portal-form button { width: 100%; padding: 13px; background: var(--gold); color: #ffffff; border: 2px solid var(--gold); border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: var(--transition); }
         .portal-form button:hover { background: transparent; color: var(--gold); }
 
-        /* Contact Section with Social Brand Boxes */
         .contact { background-color: var(--primary-dark); color: var(--text-light); padding: 80px 0; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; width: 100%; }
         .contact-details h3, .contact-form h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 25px; }
@@ -155,7 +152,6 @@
                     </div>
                 </div>
 
-                <!-- Filled Gap Description right above We Are Hiring tabs -->
                 <div class="careers-sub-desc">
                     <p><i class="fa-solid fa-circle-check" style="color:var(--gold);"></i> Select a category below to securely submit your application, catalog, or registration details.</p>
                 </div>
@@ -182,7 +178,7 @@
                 </div>
             </div>
 
-            <!-- Animated Form Container -->
+            <!-- Animated Form Container with File Upload Enabled -->
             <div class="careers-form-card scroll-slide-right">
                 <form id="hiringForm" class="portal-form active" action="/careers" method="POST" enctype="multipart/form-data">
                     <h3 class="form-heading">Apply Now (Job Application)</h3>

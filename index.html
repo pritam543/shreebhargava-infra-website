@@ -54,6 +54,7 @@
         .nav-links > li { position: relative; }
         .nav-links a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; padding: 10px 0; transition: var(--transition); display: flex; align-items: center; gap: 6px; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        
         .dropdown-menu { position: absolute; top: 100%; left: 0; background-color: var(--secondary-dark); min-width: 240px; border-radius: 6px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 102, 0, 0.2); opacity: 0; visibility: hidden; transform: translateY(12px); transition: all 0.3s ease-in-out; z-index: 1100; padding: 10px 0; }
         .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
         .dropdown-menu li a { padding: 10px 20px; font-size: 0.8rem; color: var(--text-light); display: block; text-transform: capitalize; font-weight: 400; }
@@ -85,6 +86,11 @@
         .btn { display: inline-block; padding: 14px 35px; background-color: var(--gold); color: #ffffff; text-transform: uppercase; font-weight: 600; letter-spacing: 1px; font-size: 0.9rem; border: 2px solid var(--gold); transition: var(--transition); cursor: pointer; }
         .btn:hover { background-color: transparent; color: var(--gold); }
 
+        /* Uniform Hero Social Icons */
+        .hero-social-icons { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+        .hero-social-btn { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: 1.2rem; transition: var(--transition); text-decoration: none; background: var(--secondary-dark); border: 1px solid rgba(255, 102, 0, 0.3); }
+        .hero-social-btn:hover { background-color: var(--gold); color: #ffffff; border-color: var(--gold); transform: translateY(-4px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
+
         /* About & Leadership */
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .about-text h3 { font-size: 1.1rem; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
@@ -101,14 +107,21 @@
         .team-card h4 { font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 5px; text-transform: uppercase; }
         .team-card span { font-size: 0.8rem; color: var(--gold); font-weight: 600; text-transform: uppercase; display: block; margin-bottom: 12px; }
 
-        /* Services */
+        /* Services Section with Smooth Hover Swap (Non-Clickable) */
         .services { background-color: var(--bg-light); }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-        .service-card { background: var(--white); padding: 40px 30px; text-align: center; transition: var(--transition); border: 1px solid #eee; display: block; cursor: pointer; }
-        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05); border-color: var(--gold); }
-        .service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        .service-card { background: var(--white); padding: 40px 30px; text-align: center; transition: var(--transition); border: 1px solid #eee; cursor: default; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .service-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08); border-color: var(--gold); }
+        .service-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; transition: var(--transition); }
         .service-card h3 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 15px; color: var(--primary-dark); }
-        .service-card p { font-size: 0.9rem; color: #666; }
+        
+        .service-text-wrap { position: relative; width: 100%; min-height: 48px; display: flex; align-items: center; justify-content: center; }
+        .service-text-wrap p { font-size: 0.9rem; color: #666; position: absolute; width: 100%; transition: all 0.4s ease; }
+        .service-text-wrap .default-text { opacity: 1; visibility: visible; transform: translateY(0); }
+        .service-text-wrap .hover-desc-text { opacity: 0; visibility: hidden; transform: translateY(12px); color: var(--primary-dark); font-weight: 500; font-size: 0.85rem; line-height: 1.4; }
+        
+        .service-card:hover .default-text { opacity: 0; visibility: hidden; transform: translateY(-12px); }
+        .service-card:hover .hover-desc-text { opacity: 1; visibility: visible; transform: translateY(0); }
 
         /* Why Choose Us */
         .why-choose-us { background-color: var(--primary-dark); color: var(--text-light); }
@@ -212,13 +225,21 @@
             <div class="hero-slide" style="background-image: url('slideshow/slide3.jpg');"></div>
             <div class="hero-slide" style="background-image: url('slideshow/slide4.jpg');"></div>
             <div class="hero-slide" style="background-image: url('slideshow/slide5.jpg');"></div>
-
         </div>
         <div class="container hero-content scroll-slide-left">
             <h2>Creative Indian Architect</h2>
             <h1>Designing Spaces That Inspire</h1>
             <p>ARCHITECTURE | INTERIOR | LANDSCAPE | TURNKEY PROJECTS</p>
             <a href="#contact" class="btn">Get In Touch</a>
+            
+            <!-- Uniform Hero Social Icons -->
+            <div class="hero-social-icons">
+                <a href="https://www.facebook.com" target="_blank" class="hero-social-btn" title="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="hero-social-btn" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.youtube.com" target="_blank" class="hero-social-btn" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.linkedin.com" target="_blank" class="hero-social-btn" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="hero-social-btn" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            </div>
         </div>
     </section>
 
@@ -274,22 +295,111 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (11 Sections - Non-Clickable with Smooth Hover Swap) -->
     <section id="services" class="section-padding services">
         <div class="container">
             <div class="section-header scroll-slide-left"><h2>Our Services</h2></div>
             <div class="services-grid">
-                <a href="service-detail.html?service=architecture" class="service-card scroll-slide-left"><i class="fa-solid fa-compass-drafting"></i><h3>Architecture Design</h3><p>Innovative & functional solutions.</p></a>
-                <a href="service-detail.html?service=interior" class="service-card scroll-slide-right"><i class="fa-solid fa-couch"></i><h3>Interior Design</h3><p>Elegant & personalized spaces.</p></a>
-                <a href="service-detail.html?service=residential" class="service-card scroll-slide-left"><i class="fa-solid fa-home"></i><h3>Residential Design</h3><p>Beautiful homes designed for you.</p></a>
-                <a href="service-detail.html?service=commercial" class="service-card scroll-slide-right"><i class="fa-solid fa-building"></i><h3>Commercial Design</h3><p>Optimized for business & growth.</p></a>
-                <a href="service-detail.html?service=landscape" class="service-card scroll-slide-left"><i class="fa-solid fa-tree"></i><h3>Landscape Design</h3><p>Green sustainable outdoor spaces.</p></a>
-                <a href="service-detail.html?service=turnkey" class="service-card scroll-slide-right"><i class="fa-solid fa-key"></i><h3>Turnkey Execution</h3><p>End-to-end comprehensive management.</p></a>
-                <a href="service-detail.html?service=renovation" class="service-card scroll-slide-left"><i class="fa-solid fa-screwdriver-wrench"></i><h3>Renovation</h3><p>Transforming existing spaces beautifully.</p></a>
-                <a href="service-detail.html?service=space" class="service-card scroll-slide-right"><i class="fa-solid fa-expand"></i><h3>Space Creation</h3><p>Optimizing layouts for enhanced utilization.</p></a>
-                <a href="service-detail.html?service=sustainable" class="service-card scroll-slide-left"><i class="fa-solid fa-leaf"></i><h3>Sustainable Solution & Innovation</h3><p>Eco-friendly designs and smart engineering.</p></a>
-                <a href="service-detail.html?service=government" class="service-card scroll-slide-right"><i class="fa-solid fa-landmark"></i><h3>Government Consultancy</h3><p>Civic and public infrastructure consulting.</p></a>
-                <a href="service-detail.html?service=pmc" class="service-card scroll-slide-left"><i class="fa-solid fa-tasks"></i><h3>Project Management Consultancy</h3><p>Expert supervision and quality oversight.</p></a>
+                
+                <div class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                    <h3>Architecture Design</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Innovative & functional solutions.</p>
+                        <p class="hover-desc-text">Crafting precise floor plans and striking 3D architectural renders.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-couch"></i>
+                    <h3>Interior Design</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Elegant & personalized spaces.</p>
+                        <p class="hover-desc-text">Creating luxurious, functional, and customized room interiors.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-home"></i>
+                    <h3>Residential Design</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Beautiful homes designed for you.</p>
+                        <p class="hover-desc-text">Designing comfortable, modern, and Vastu-compliant dream homes.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-building"></i>
+                    <h3>Commercial Design</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Optimized for business & growth.</p>
+                        <p class="hover-desc-text">Planning efficient corporate offices and vibrant retail showrooms.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-tree"></i>
+                    <h3>Landscape Design</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Green sustainable outdoor spaces.</p>
+                        <p class="hover-desc-text">Developing serene gardens, lawns, and eco-friendly courtyards.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-key"></i>
+                    <h3>Turnkey Execution</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">End-to-end comprehensive management.</p>
+                        <p class="hover-desc-text">Complete management from structural blueprints to final handover.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                    <h3>Renovation</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Transforming existing spaces beautifully.</p>
+                        <p class="hover-desc-text">Upgrading and remodeling old structures into modern masterpieces.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-expand"></i>
+                    <h3>Space Creation</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Optimizing layouts for enhanced utilization.</p>
+                        <p class="hover-desc-text">Smart architectural partitioning to maximize usable square footage.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-leaf"></i>
+                    <h3>Sustainable Solution & Innovation</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Eco-friendly designs and smart engineering.</p>
+                        <p class="hover-desc-text">Integrating solar power, rainwater systems, and green building tech.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-right">
+                    <i class="fa-solid fa-landmark"></i>
+                    <h3>Government Consultancy</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Civic and public infrastructure consulting.</p>
+                        <p class="hover-desc-text">Expert planning and compliance consulting for public projects.</p>
+                    </div>
+                </div>
+
+                <div class="service-card scroll-slide-left">
+                    <i class="fa-solid fa-tasks"></i>
+                    <h3>Project Management Consultancy</h3>
+                    <div class="service-text-wrap">
+                        <p class="default-text">Expert supervision and quality oversight.</p>
+                        <p class="hover-desc-text">Rigorous on-site technical audits, quality checks, and scheduling.</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -299,7 +409,6 @@
         <div class="container">
             <div class="section-header scroll-slide-left"><h2>Featured Projects</h2></div>
 
-            <!-- Categories Buttons as requested -->
             <div class="project-filter-buttons scroll-slide-right">
                 <a href="index.html#projects" class="filter-btn active">All Projects</a>
                 <a href="service-detail.html?service=architecture" class="filter-btn">Architecture</a>

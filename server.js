@@ -1,107 +1,47 @@
 const express = require('express');
 const { Resend } = require('resend');
 const multer = require('multer');
-const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const upload = multer({ storage: multer.memoryStorage() });
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Initialize Resend with the API key from environment variables
-const resend = new Resend(process.env.EMAIL_API_KEY);
-
-// Middleware
-app.use(cors());
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Serve static files from the root directory
+app.use(express.json());
 app.use(express.static(__dirname));
 
-// Multer setup for handling resume/file uploads in memory
-const upload = multer({ 
-    storage: multer.memoryStorage(),
-    limits: { fileSize: 5 * 1024 * 1024 } // Limit: 5MB max file size
-});
-
-// 1. Contact Form Route -> Sends to shreebhargavainfra@gmail.com
+// Contact Form
 app.post('/contact', async (req, res) => {
     try {
         const { name, email, phone, subject_text, message } = req.body;
-
-        const emailText = `
-            New Contact Form Submission:
-            
-            Name: ${name}
-            Email: ${email}
-            Phone: ${phone}
-            Subject: ${subject_text || 'Website Contact Message'}
-            Message: ${message}
-        `;
-
-        const response = await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: ['shreebhargavainfra@gmail.com'],
-            subject: `New Inquiry from ${name}`,
-            text: emailText
+        await resend.emails.send({
+            from: 'Shree Bhargava <onboarding@resend.dev>',
+            to: process.env.CONTACT_EMAIL,
+            subject: `Contact: ${subject_text}`,
+            html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Phone:</b> ${phone}</p><p><b>Message:</b> ${message}</p>`
         });
-
-        console.log('Contact Email Sent:', response);
-        res.status(200).json({ success: true, message: 'Email sent successfully!' });
-    } catch (error) {
-        console.error('Contact Form Error:', error);
-        res.status(500).json({ success: false, message: 'Failed to send email. Server Error.' });
-    }
+        res.send("<script>alert('Message Sent!'); window.location.href='/index.html';</script>");
+    } catch (e) { res.status(500).send("Error: " + e.message); }
 });
 
-// 2. Careers Form Route (with Resume/File Attachment) -> Sends to hr.sbacia@gmail.com
-app.post('/careers', upload.single('file_upload'), async (req, res) => {
+// Careers Form
+app.post('/careers', upload.any(), async (req, res) => {
     try {
         const { name, email, phone, position, experience, cover } = req.body;
-        const resumeFile = req.file;
-
-        let attachments = [];
-        if (resumeFile) {
-            attachments.push({
-                filename: resumeFile.originalname,
-                content: resumeFile.buffer
-            });
-        }
-
-        const emailText = `
-            New Career / Vendor / Contractor Submission:
-            
-            Name: ${name}
-            Email: ${email}
-            Phone: ${phone}
-            Position / Category: ${position || 'N/A'}
-            Experience / Details: ${experience || 'N/A'}
-            Message: ${cover || 'N/A'}
-        `;
-
-        const emailPayload = {
-            from: 'onboarding@resend.dev',
-            to: ['hr.sbacia@gmail.com'],
-            subject: `New Application/Partnership from ${name}`,
-            text: emailText
-        };
-
-        // Attach file if uploaded
-        if (attachments.length > 0) {
-            emailPayload.attachments = attachments;
-        }
-
-        const response = await resend.emails.send(emailPayload);
-
-        console.log('Careers Email Sent:', response);
-        res.status(200).json({ success: true, message: 'Application submitted successfully!' });
-    } catch (error) {
-        console.error('Careers Form Error:', error);
-        res.status(500).json({ success: false, message: 'Failed to submit application. Server Error.' });
-    }
+        const file = req.files && req.files[0];
+        
+        await resend.emails.send({
+            from: 'Shree Bhargava HR <onboarding@resend.dev>',
+            to: process.env.CAREERS_EMAIL,
+            subject: `New Application: ${position}`,
+            html: `<p><b>Name:</b> ${name}</p><p><b>Email:</b> ${email}</p><p><b>Phone:</b> ${phone}</p><p><b>Position:</b> ${position}</p><p><b>Msg:</b> ${cover}</p>`,
+            attachments: file ? [{ filename: file.originalname, content: file.buffer }] : []
+        });
+        res.send("<script>alert('Application Submitted!'); window.location.href='/careers.html';</script>");
+    } catch (e) { res.status(500).send("Error: " + e.message); }
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log('Server running on port ' + PORT));
