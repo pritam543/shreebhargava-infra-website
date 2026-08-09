@@ -312,7 +312,55 @@
             }
         }
 
+        // AJAX Form Submission Handler
+        async function handleFormSubmit(event, formId) {
+            event.preventDefault();
+            const form = document.getElementById(formId);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+
+            submitBtn.innerText = "Submitting...";
+            submitBtn.disabled = true;
+
+            try {
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                let result;
+                const contentType = response.headers.get("content-type");
+                if (contentType && contentType.includes("application/json")) {
+                    result = await response.json();
+                } else {
+                    result = { success: response.ok };
+                }
+
+                if (response.ok) {
+                    alert('Submitted Successfully! Your request has been sent.');
+                    form.reset();
+                } else {
+                    alert(result.message || 'Submission failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Submission Error:', error);
+                alert('An error occurred. Please check your network connection and try again.');
+            } finally {
+                submitBtn.innerText = originalText;
+                submitBtn.disabled = false;
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            // Attach submission listeners to all forms
+            ['hiringForm', 'vendorsForm', 'contractorsForm', 'contactForm'].forEach(formId => {
+                const formEl = document.getElementById(formId);
+                if (formEl) {
+                    formEl.addEventListener('submit', (e) => handleFormSubmit(e, formId));
+                }
+            });
+
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
