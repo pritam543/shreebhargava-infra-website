@@ -178,10 +178,10 @@
                 </div>
             </div>
 
-            <!-- Web3Forms Enabled Forms -->
+            <!-- Web3Forms Enabled Forms with File Upload Support -->
             <div class="careers-form-card scroll-slide-right">
                 <!-- Hiring Form -->
-                <form id="hiringForm" class="portal-form active" action="https://api.web3forms.com/submit" method="POST">
+                <form id="hiringForm" class="portal-form active" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
                     <input type="hidden" name="subject" value="New Job Application from Careers Portal">
                     
@@ -208,7 +208,7 @@
                 </form>
 
                 <!-- Vendors Form -->
-                <form id="vendorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST">
+                <form id="vendorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
                     <input type="hidden" name="subject" value="New Vendor Registration Inquiry">
 
@@ -230,7 +230,7 @@
                 </form>
 
                 <!-- Contractors Form -->
-                <form id="contractorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST">
+                <form id="contractorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
                     <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
                     <input type="hidden" name="subject" value="New Contractor Registration Connection">
 
@@ -293,7 +293,6 @@
                 </div>
             </div>
 
-            <!-- Contact Section Form -->
             <div class="contact-form scroll-slide-right">
                 <h3>Send a Message</h3>
                 <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
