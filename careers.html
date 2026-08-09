@@ -80,7 +80,6 @@
         .portal-form select option { background: var(--secondary-dark); color: var(--text-light); }
         .file-upload-group { display: flex; flex-direction: column; gap: 4px; }
         .file-upload-group label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; }
-        .portal-form input[type="file"] { padding: 8px; cursor: pointer; }
         .portal-form textarea { min-height: 70px; resize: vertical; }
         .portal-form button { width: 100%; padding: 13px; background: var(--gold); color: #ffffff; border: 2px solid var(--gold); border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; transition: var(--transition); }
         .portal-form button:hover { background: transparent; color: var(--gold); }
@@ -178,10 +177,10 @@
                 </div>
             </div>
 
-            <!-- Web3Forms Enabled Forms with File Upload Support -->
+            <!-- Web3Forms Enabled Forms with Resume Link Support -->
             <div class="careers-form-card scroll-slide-right">
                 <!-- Hiring Form -->
-                <form id="hiringForm" class="portal-form active" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                <form id="hiringForm" class="portal-form active" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
                     <input type="hidden" name="subject" value="New Job Application from Careers Portal">
                     
@@ -202,13 +201,16 @@
                         <option value="1 - 3 Years">1 - 3 Years</option>
                         <option value="3+ Years">3+ Years</option>
                     </select>
-                    <div class="file-upload-group"><label>Upload Resume / Portfolio:</label><input type="file" name="resume" accept=".pdf,.doc,.docx"></div>
+                    <div class="file-upload-group">
+                        <label>Resume / Portfolio Link (Google Drive / LinkedIn):</label>
+                        <input type="url" name="resume_link" placeholder="Paste Resume Public Link here" required>
+                    </div>
                     <textarea name="cover" placeholder="Short intro about yourself..."></textarea>
                     <button type="submit">Submit Job Application</button>
                 </form>
 
                 <!-- Vendors Form -->
-                <form id="vendorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                <form id="vendorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
                     <input type="hidden" name="subject" value="New Vendor Registration Inquiry">
 
@@ -224,13 +226,16 @@
                         <option value="Electrical">Electrical Wires & Switches</option>
                     </select>
                     <input type="text" name="experience" placeholder="GST Number (Optional)">
-                    <div class="file-upload-group"><label>Company Profile / Catalog:</label><input type="file" name="resume" accept=".pdf,.doc,.docx"></div>
+                    <div class="file-upload-group">
+                        <label>Company Profile / Catalog Link (Optional):</label>
+                        <input type="url" name="resume_link" placeholder="Paste Catalog Public Link here">
+                    </div>
                     <textarea name="cover" placeholder="Business message..."></textarea>
                     <button type="submit">Submit Vendor Inquiry</button>
                 </form>
 
                 <!-- Contractors Form -->
-                <form id="contractorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+                <form id="contractorsForm" class="portal-form" action="https://api.web3forms.com/submit" method="POST">
                     <input type="hidden" name="access_key" value="21ec4770-9931-43e9-b035-8cabcea83d10">
                     <input type="hidden" name="subject" value="New Contractor Registration Connection">
 
@@ -249,7 +254,10 @@
                         <option value="1 - 3 Years">1 - 3 Years</option>
                         <option value="3+ Years">3+ Years</option>
                     </select>
-                    <div class="file-upload-group"><label>Past Work Proof:</label><input type="file" name="resume" accept=".pdf,.doc,.docx"></div>
+                    <div class="file-upload-group">
+                        <label>Past Work Proof Link (Optional):</label>
+                        <input type="url" name="resume_link" placeholder="Paste Work Proof Public Link here">
+                    </div>
                     <textarea name="cover" placeholder="Workforce strength, past projects..."></textarea>
                     <button type="submit">Submit Contractor Registration</button>
                 </form>
