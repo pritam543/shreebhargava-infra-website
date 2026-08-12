@@ -474,7 +474,7 @@
         }
 
         .qr-item.web-brand:hover {
-            border-color: #gold;
+            border-color: var(--gold);
             transform: translateY(-4px);
         }
 
@@ -547,21 +547,21 @@
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
-                gap: 15px;
+                gap: 12px;
                 padding: 15px;
                 text-align: center;
             }
 
             .nav-links {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 10px;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 16px;
                 width: 100%;
             }
 
             .nav-links a {
-                font-size: 0.75rem;
-                text-align: center;
+                font-size: 0.8rem;
             }
 
             .page-header {
