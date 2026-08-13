@@ -40,6 +40,7 @@
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         section,
@@ -47,7 +48,6 @@
             scroll-margin-top: 90px;
         }
 
-        /* Navbar & Header Fixes */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -557,10 +557,8 @@
             .social-qr-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-        }
 
-        /* Perfect Mobile Dropdown Navbar Styling */
-        @media (max-width: 768px) {
+            /* Mobile & Tablet Dropdown Navbar Fix */
             .navbar {
                 padding: 12px 15px;
             }
