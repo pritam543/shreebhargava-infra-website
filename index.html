@@ -649,7 +649,7 @@
             color: var(--text-muted);
         }
 
-        /* Featured Projects Section */
+        /* Featured Projects Section & Category Filter Buttons */
         .project-filter-buttons {
             display: flex;
             justify-content: center;
@@ -997,6 +997,26 @@
 
             .dropdown.active-dropdown .dropdown-menu {
                 display: block;
+            }
+
+            /* Mobile Horizontal Scroll for Category Filter Buttons */
+            .project-filter-buttons {
+                display: flex;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .project-filter-buttons::-webkit-scrollbar {
+                display: none;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
             }
         }
 
@@ -1412,20 +1432,9 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => observer.observe(el));
-        });
-
-        // Hamburger Menu Toggle Logic
         function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
         }
 
         // Mobile Dropdown Toggle for "About Us"
@@ -1442,7 +1451,6 @@
             links.forEach(link => {
                 link.addEventListener('click', (e) => {
                     if (window.innerWidth <= 992) {
-                        // If clicking About Us parent link, keep menu open to let dropdown show
                         if (link.parentElement.classList.contains('dropdown') && link === link.parentElement.querySelector('a')) {
                             return;
                         }
@@ -1451,6 +1459,15 @@
                     document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active-dropdown'));
                 });
             });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => observer.observe(el));
         });
     </script>
 </body>
