@@ -47,6 +47,15 @@
             scroll-margin-top: 90px;
         }
 
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -83,7 +92,10 @@
             display: flex;
             align-items: center;
             gap: 25px;
-            list-style: none;
+        }
+
+        .nav-links>li {
+            position: relative;
         }
 
         .nav-links a {
@@ -91,13 +103,59 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             font-weight: 600;
-            text-decoration: none;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-links a:hover {
             color: var(--gold);
         }
 
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary-dark);
+            min-width: 240px;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s ease-in-out;
+            z-index: 1100;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: block;
+            text-transform: capitalize;
+            font-weight: 400;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(255, 102, 0, 0.15);
+            color: var(--gold);
+            padding-left: 25px;
+        }
+
+        @media (min-width: 993px) {
+            .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Menu Toggle Button */
         .menu-toggle {
             display: none;
             font-size: 1.4rem;
@@ -186,6 +244,7 @@
             background-color: var(--gold);
         }
 
+        /* 3 Columns Grid Layout with Uniform Dimensions */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -210,6 +269,7 @@
             border-color: var(--gold);
         }
 
+        /* Uniform Image Box & Cover Style (Zero Black Borders) */
         .gallery-img-box {
             width: 100%;
             height: 260px;
@@ -288,6 +348,7 @@
             word-break: break-word;
         }
 
+        /* Social Brand Boxes Styling */
         .social-qr-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -483,6 +544,23 @@
                 background: rgba(255, 255, 255, 0.04);
                 border-radius: 6px;
             }
+
+            /* Mobile Dropdown Click Control */
+            .dropdown-menu {
+                position: relative;
+                width: 100%;
+                background: #1a212d;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+            }
+
+            .dropdown.active-dropdown .dropdown-menu {
+                display: block;
+            }
         }
 
         @media (max-width: 576px) {
@@ -507,8 +585,18 @@
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="index.html#about" onclick="toggleDropdown(event)">About Us <i
+                            class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#team">Leadership</a></li>
+                        <li><a href="index.html#why-us">Why Choose Us</a></li>
+                        <li><a href="professional-team.html">Our Professional Team</a></li>
+                    </ul>
+                </li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="process.html">Our Process</a></li>
                 <li><a href="careers.html">Careers</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -597,12 +685,26 @@
             navLinks.classList.toggle('active');
         }
 
+        // Mobile Dropdown Toggle for "About Us"
+        function toggleDropdown(event) {
+            if (window.innerWidth <= 992) {
+                event.preventDefault();
+                event.currentTarget.parentElement.classList.toggle('active-dropdown');
+            }
+        }
+
         // Auto close mobile menu when clicking any link
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => {
-                link.addEventListener('click', () => {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 992) {
+                        if (link.parentElement.classList.contains('dropdown') && link === link.parentElement.querySelector('a')) {
+                            return;
+                        }
+                    }
                     document.getElementById('navLinks').classList.remove('active');
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active-dropdown'));
                 });
             });
         });
@@ -628,23 +730,23 @@
                 title: "Interior Design",
                 desc: "Explore all our exclusive unique interior design executions, 3D walkthroughs, and custom folders.",
                 projects: [
-                    { name: "Interior View 1", img: "interior images/interior1.jpg" },
-                    { name: "Interior View 2", img: "interior images/interior2.jpg" },
-                    { name: "Interior View 3", img: "interior images/interior3.jpg" },
-                    { name: "Interior View 4", img: "interior images/interior4.jpg" },
-                    { name: "Interior View 5", img: "interior images/interior5.jpg" },
-                    { name: "Interior View 6", img: "interior images/interior6.jpg" },
-                    { name: "Interior View 7", img: "interior images/interior7.jpg" },
-                    { name: "Interior View 8", img: "interior images/interior8.jpg" },
-                    { name: "Interior View 9", img: "interior images/interior9.jpg" },
-                    { name: "Interior View 10", img: "interior images/interior10.jpg" },
-                    { name: "Interior View 11", img: "interior images/interior11.jpg" },
-                    { name: "Interior View 12", img: "interior images/interior12.jpg" },
-                    { name: "Interior View 13", img: "interior images/interior13.jpg" },
-                    { name: "Interior View 14", img: "interior images/interior14.jpg" },
-                    { name: "Interior View 15", img: "interior images/interior15.jpg" },
-                    { name: "Interior View 16", img: "interior images/interior16.jpg" },
-                    { name: "Interior View 17", img: "interior images/interior17.jpg" },
+                    { name: "   ", img: "interior images/interior1.jpg" },
+                    { name: "   ", img: "interior images/interior2.jpg" },
+                    { name: "   ", img: "interior images/interior3.jpg" },
+                    { name: "   ", img: "interior images/interior4.jpg" },
+                    { name: "   ", img: "interior images/interior5.jpg" },
+                    { name: "   ", img: "interior images/interior6.jpg" },
+                    { name: "   ", img: "interior images/interior7.jpg" },
+                    { name: "   ", img: "interior images/interior8.jpg" },
+                    { name: "   ", img: "interior images/interior9.jpg" },
+                    { name: "   ", img: "interior images/interior10.jpg" },
+                    { name: "   ", img: "interior images/interior11.jpg" },
+                    { name: "   ", img: "interior images/interior12.jpg" },
+                    { name: "   ", img: "interior images/interior13.jpg" },
+                    { name: "   ", img: "interior images/interior14.jpg" },
+                    { name: "   ", img: "interior images/interior15.jpg" },
+                    { name: "   ", img: "interior images/interior16.jpg" },
+                    { name: "", img: "interior images/interior17.jpg" },
                     { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.45.58 PM.jpg" },
                     { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.45.59 PM.jpg" },
                     { name: "", img: "interior images/WhatsApp Image 2026-08-05 at 12.46.00 PM.jpg" },
