@@ -48,6 +48,7 @@
             scroll-margin-top: 90px;
         }
 
+        /* Header & Navbar */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -134,6 +135,152 @@
             width: 100%;
         }
 
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 100px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero-subtitle-top {
+            color: var(--gold);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            color: var(--white);
+            font-size: 2.8rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .btn-gold {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--primary-dark);
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition);
+            margin-bottom: 30px;
+        }
+
+        .btn-gold:hover {
+            background: var(--gold-hover);
+            color: var(--white);
+        }
+
+        .hero-socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .hero-socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .hero-socials a:hover {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        /* Who We Are Section */
+        .about-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .about-title {
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .about-desc {
+            font-size: 1rem;
+            color: #555;
+            max-width: 800px;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 30px 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            border-bottom: 4px solid var(--gold);
+        }
+
+        .stat-card i {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .stat-card h2 {
+            font-size: 2rem;
+            color: var(--primary-dark);
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 0.8rem;
+            color: #666;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255, 102, 0, 0.2);
+        }
+
         /* Bulletproof Mobile & Tablet Dropdown Navbar Fix */
         @media (max-width: 1200px) {
             .menu-toggle {
@@ -175,6 +322,16 @@
                 width: 100%;
             }
         }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 
@@ -200,6 +357,55 @@
             </ul>
         </div>
     </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-subtitle-top">Creative Indian Architect</div>
+            <h1>Designing Spaces That Inspire</h1>
+            <p>Architecture | Interior | Landscape | Turnkey Projects</p>
+            <a href="#contact" class="btn-gold">Get In Touch</a>
+            <div class="hero-socials">
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/architectbhargava/" target="_blank"><i
+                        class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-title">Who We Are</div>
+            <p class="about-desc">Shree Bhargava Infrastructure & Development is a multidisciplinary architecture and
+                interior design firm dedicated to creating timeless, functional, and inspiring spaces.</p>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fa-solid fa-award"></i>
+                    <h2>10+</h2>
+                    <p>Years Experience</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-building"></i>
+                    <h2>250+</h2>
+                    <p>Projects Done</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fa-solid fa-face-smile"></i>
+                    <h2>100%</h2>
+                    <p>Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p>
+        </div>
+    </footer>
 
     <script>
         function toggleMenu() {
