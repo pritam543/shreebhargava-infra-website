@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary-dark: #11161e;
@@ -20,57 +22,384 @@
             --white: #ffffff;
             --transition: all 0.4s ease;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--text-dark); background-color: var(--white); overflow-x: hidden; }
-        header { background-color: var(--primary-dark); position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(255, 102, 0, 0.2); }
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 18px 20px; max-width: 1200px; margin: 0 auto; }
-        .logo h1 { color: var(--gold); font-size: 1.4rem; font-weight: 700; }
-        .logo span { display: block; font-size: 0.65rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 2px; }
-        .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
-        .nav-links a { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; font-weight: 600; text-decoration: none; }
-        .nav-links a:hover { color: var(--gold); }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; width: 100%; }
-        .page-header { background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover; padding: 80px 20px; text-align: center; color: var(--white); }
-        .page-header h1 { color: var(--gold); font-size: 2.2rem; text-transform: uppercase; margin-bottom: 15px; letter-spacing: 2px; }
 
-        .section-padding { padding: 80px 0; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-header h2 { font-size: 2rem; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-dark); position: relative; display: inline-block; padding-bottom: 15px; }
-        .section-header h2::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 2px; background-color: var(--gold); }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        .process-timeline { display: grid; grid-template-columns: repeat(7, 1fr); gap: 15px; margin-top: 40px; }
-        .process-step { text-align: center; cursor: pointer; padding: 15px 10px; border-radius: 8px; transition: var(--transition); background: transparent; }
-        .process-step:hover, .process-step.active { background: var(--white); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); transform: translateY(-5px); }
-        .step-icon { width: 70px; height: 70px; background: var(--white); border: 2px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 1.5rem; color: var(--primary-dark); }
-        .process-step:hover .step-icon, .process-step.active .step-icon { background: var(--gold); color: var(--white); }
-        .process-step h4 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; color: var(--primary-dark); }
-        .process-step p { font-size: 0.75rem; color: #666; }
-        .click-hint { display: block; margin-top: 8px; font-size: 0.7rem; font-weight: 600; color: var(--gold); text-transform: uppercase; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
 
-        .process-details-drawer { display: none; background: var(--white); border-radius: 8px; border-left: 5px solid var(--gold); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); padding: 25px 30px; margin-top: 35px; text-align: left; }
-        .process-details-drawer.active { display: block; }
-        .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .drawer-title { font-size: 1.2rem; font-weight: 700; color: var(--primary-dark); text-transform: uppercase; }
-        .drawer-close { font-size: 1.5rem; cursor: pointer; color: var(--text-muted); }
-        .drawer-content { font-size: 0.95rem; color: #555; line-height: 1.7; }
+        header {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
+        }
 
-        .contact { background-color: var(--primary-dark); color: var(--text-light); padding: 80px 0; }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 50px; width: 100%; }
-        .contact-details h3, .contact-form h3 { color: var(--gold); text-transform: uppercase; font-size: 1.3rem; margin-bottom: 25px; }
-        .contact-info-list { list-style: none; margin-bottom: 30px; }
-        .contact-info-list li { display: flex; gap: 15px; margin-bottom: 20px; color: var(--text-muted); }
-        .contact-form { background: var(--secondary-dark); padding: 30px; border-radius: 10px; border: 1px solid rgba(255, 102, 0, 0.2); width: 100%; }
-        #contactForm { display: flex; flex-direction: column; gap: 18px; width: 100%; }
-        #contactForm input, #contactForm textarea { width: 100%; padding: 15px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: var(--white); font-family: inherit; }
-        #contactForm button { width: 100%; padding: 15px; background: var(--gold); color: #fff; border: none; border-radius: 6px; font-weight: 600; text-transform: uppercase; cursor: pointer; }
-        footer { background-color: #0b0f14; color: var(--text-muted); text-align: center; padding: 25px 0; font-size: 0.8rem; }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo h1 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.4rem;
+            color: var(--gold);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 80px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--primary-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            margin-top: 40px;
+        }
+
+        .process-step {
+            text-align: center;
+            cursor: pointer;
+            padding: 15px 10px;
+            border-radius: 8px;
+            transition: var(--transition);
+            background: transparent;
+        }
+
+        .process-step:hover,
+        .process-step.active {
+            background: var(--white);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            transform: translateY(-5px);
+        }
+
+        .step-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--white);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+        }
+
+        .process-step:hover .step-icon,
+        .process-step.active .step-icon {
+            background: var(--gold);
+            color: var(--white);
+        }
+
+        .process-step h4 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+        }
+
+        .process-step p {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .click-hint {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .process-details-drawer {
+            display: none;
+            background: var(--white);
+            border-radius: 8px;
+            border-left: 5px solid var(--gold);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 25px 30px;
+            margin-top: 35px;
+            text-align: left;
+        }
+
+        .process-details-drawer.active {
+            display: block;
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .drawer-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+        }
+
+        .drawer-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .drawer-content {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .contact {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .contact-details h3,
+        .contact-form h3 {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .contact-info-list li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .contact-form {
+            background: var(--secondary-dark);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            width: 100%;
+        }
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: 100%;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: var(--white);
+            font-family: inherit;
+        }
+
+        #contactForm button {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        footer {
+            background-color: #0b0f14;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.8rem;
+        }
 
         @media (max-width: 992px) {
-            .process-timeline { grid-template-columns: repeat(3, 1fr); }
-            .contact-grid { grid-template-columns: 1fr; }
+            .process-timeline {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Mobile & Tablet Dropdown Navbar Fix */
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            .logo h1 {
+                font-size: 1.15rem;
+            }
+
+            .logo span {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                padding: 15px 20px;
+                border-bottom: 2px solid rgba(255, 165, 0, 0.3);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+                gap: 10px;
+                text-align: center;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+                display: block;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.04);
+                border-radius: 6px;
+            }
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -79,7 +408,11 @@
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development</span>
             </div>
-            <ul class="nav-links">
+            <!-- Hamburger Menu Toggle Button (Right Corner) -->
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
@@ -97,19 +430,52 @@
     </div>
 
     <section class="section-padding container">
-        <div class="section-header"><h2>How We Work</h2></div>
+        <div class="section-header">
+            <h2>How We Work</h2>
+        </div>
         <div class="process-timeline">
-            <div class="process-step" onclick="showProcessDetails(1, this)"><div class="step-icon"><i class="fa-solid fa-comments"></i></div><h4>1. Consultation</h4><p>Needs & vision</p><span class="click-hint">Click ▾</span></div>
-            <div class="process-step" onclick="showProcessDetails(2, this)"><div class="step-icon"><i class="fa-solid fa-map-location-dot"></i></div><h4>2. Site Visit</h4><p>Site evaluation</p><span class="click-hint">Click ▾</span></div>
-            <div class="process-step" onclick="showProcessDetails(3, this)"><div class="step-icon"><i class="fa-solid fa-pencil"></i></div><h4>3. Concept</h4><p>Initial sketches</p><span class="click-hint">Click ▾</span></div>
-            <div class="process-step" onclick="showProcessDetails(4, this)"><div class="step-icon"><i class="fa-solid fa-vr-cardboard"></i></div><h4>4. 3D View</h4><p>Realistic renders</p><span class="click-hint">Click ▾</span></div>
-            <div class="process-step" onclick="showProcessDetails(5, this)"><div class="step-icon"><i class="fa-solid fa-file-lines"></i></div><h4>5. Drawings</h4><p>Technical blueprints</p><span class="click-hint">Click ▾</span></div>
-            <div class="process-step" onclick="showProcessDetails(6, this)"><div class="step-icon"><i class="fa-solid fa-helmet-safety"></i></div><h4>6. Execution</h4><p>Quality construction</p><span class="click-hint">Click ▾</span></div>
-            <div class="process-step" onclick="showProcessDetails(7, this)"><div class="step-icon"><i class="fa-solid fa-handshake"></i></div><h4>7. Handover</h4><p>Final delivery</p><span class="click-hint">Click ▾</span></div>
+            <div class="process-step" onclick="showProcessDetails(1, this)">
+                <div class="step-icon"><i class="fa-solid fa-comments"></i></div>
+                <h4>1. Consultation</h4>
+                <p>Needs & vision</p><span class="click-hint">Click ▾</span>
+            </div>
+            <div class="process-step" onclick="showProcessDetails(2, this)">
+                <div class="step-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h4>2. Site Visit</h4>
+                <p>Site evaluation</p><span class="click-hint">Click ▾</span>
+            </div>
+            <div class="process-step" onclick="showProcessDetails(3, this)">
+                <div class="step-icon"><i class="fa-solid fa-pencil"></i></div>
+                <h4>3. Concept</h4>
+                <p>Initial sketches</p><span class="click-hint">Click ▾</span>
+            </div>
+            <div class="process-step" onclick="showProcessDetails(4, this)">
+                <div class="step-icon"><i class="fa-solid fa-vr-cardboard"></i></div>
+                <h4>4. 3D View</h4>
+                <p>Realistic renders</p><span class="click-hint">Click ▾</span>
+            </div>
+            <div class="process-step" onclick="showProcessDetails(5, this)">
+                <div class="step-icon"><i class="fa-solid fa-file-lines"></i></div>
+                <h4>5. Drawings</h4>
+                <p>Technical blueprints</p><span class="click-hint">Click ▾</span>
+            </div>
+            <div class="process-step" onclick="showProcessDetails(6, this)">
+                <div class="step-icon"><i class="fa-solid fa-helmet-safety"></i></div>
+                <h4>6. Execution</h4>
+                <p>Quality construction</p><span class="click-hint">Click ▾</span>
+            </div>
+            <div class="process-step" onclick="showProcessDetails(7, this)">
+                <div class="step-icon"><i class="fa-solid fa-handshake"></i></div>
+                <h4>7. Handover</h4>
+                <p>Final delivery</p><span class="click-hint">Click ▾</span>
+            </div>
         </div>
 
         <div id="processDrawer" class="process-details-drawer">
-            <div class="drawer-header"><div id="drawerTitle" class="drawer-title">Step Details</div><div class="drawer-close" onclick="closeProcessDetails()">&times;</div></div>
+            <div class="drawer-header">
+                <div id="drawerTitle" class="drawer-title">Step Details</div>
+                <div class="drawer-close" onclick="closeProcessDetails()">&times;</div>
+            </div>
             <div id="drawerContent" class="drawer-content">Click any step above to explore details.</div>
         </div>
     </section>
@@ -119,13 +485,19 @@
             <div class="contact-details">
                 <h3>Contact Us</h3>
                 <ul class="contact-info-list">
-                    <li><i class="fa-solid fa-phone"></i> <div>8818887770 | 9669561234</div></li>
-                    <li><i class="fa-solid fa-location-dot"></i> <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div></li>
+                    <li><i class="fa-solid fa-phone"></i>
+                        <div>8818887770 | 9669561234</div>
+                    </li>
+                    <li><i class="fa-solid fa-location-dot"></i>
+                        <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div>
+                    </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
                         <div>
-                            <a href="mailto:shreebhargavainfra@gmail.com" style="color:var(--text-muted); text-decoration:underline;">shreebhargavainfra@gmail.com</a><br>
-                            <a href="mailto:hr.sbacia@gmail.com" style="color:var(--text-muted); text-decoration:underline;">hr.sbacia@gmail.com</a>
+                            <a href="mailto:shreebhargavainfra@gmail.com"
+                                style="color:var(--text-muted); text-decoration:underline;">shreebhargavainfra@gmail.com</a><br>
+                            <a href="mailto:hr.sbacia@gmail.com"
+                                style="color:var(--text-muted); text-decoration:underline;">hr.sbacia@gmail.com</a>
                         </div>
                     </li>
                 </ul>
@@ -145,10 +517,17 @@
     </section>
 
     <footer>
-        <div class="container"><p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p></div>
+        <div class="container">
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
         const processDescriptions = {
             1: { title: "1. Consultation & Requirement Analysis", text: "We begin with a detailed discussion to understand your vision, space requirements, and financial expectations." },
             2: { title: "2. Site Visit & Feasibility Study", text: "Our architectural experts conduct an in-depth on-site evaluation, taking measurements and analyzing local environmental conditions." },
@@ -175,4 +554,5 @@
         }
     </script>
 </body>
+
 </html>
