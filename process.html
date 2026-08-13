@@ -528,6 +528,16 @@
             navLinks.classList.toggle('active');
         }
 
+        // Auto close mobile menu when clicking any link
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navLinks').classList.remove('active');
+                });
+            });
+        });
+
         const processDescriptions = {
             1: { title: "1. Consultation & Requirement Analysis", text: "We begin with a detailed discussion to understand your vision, space requirements, and financial expectations." },
             2: { title: "2. Site Visit & Feasibility Study", text: "Our architectural experts conduct an in-depth on-site evaluation, taking measurements and analyzing local environmental conditions." },

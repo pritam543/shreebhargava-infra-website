@@ -211,12 +211,6 @@
             padding: 10px 0;
         }
 
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
         .dropdown-menu li a {
             padding: 10px 20px;
             font-size: 0.8rem;
@@ -230,6 +224,14 @@
             background-color: rgba(255, 102, 0, 0.15);
             color: var(--gold);
             padding-left: 25px;
+        }
+
+        @media (min-width: 993px) {
+            .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
         }
 
         /* Mobile Menu Toggle Button */
@@ -980,10 +982,21 @@
                 justify-content: center;
             }
 
+            /* Mobile Dropdown Click Control */
             .dropdown-menu {
                 position: relative;
                 width: 100%;
                 background: #1a212d;
+                display: none;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                border: none;
+            }
+
+            .dropdown.active-dropdown .dropdown-menu {
+                display: block;
             }
         }
 
@@ -1013,7 +1026,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html" class="active">Home</a></li>
                 <li class="dropdown">
-                    <a href="#about">About Us <i class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <a href="#about" onclick="toggleDropdown(event)">About Us <i class="fa-solid fa-chevron-down"
+                            style="font-size:0.7rem;"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="index.html#team">Leadership</a></li>
                         <li><a href="#why-us">Why Choose Us</a></li>
@@ -1413,6 +1427,31 @@
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
+
+        // Mobile Dropdown Toggle for "About Us"
+        function toggleDropdown(event) {
+            if (window.innerWidth <= 992) {
+                event.preventDefault();
+                event.currentTarget.parentElement.classList.toggle('active-dropdown');
+            }
+        }
+
+        // Auto close mobile menu when clicking any link
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (window.innerWidth <= 992) {
+                        // If clicking About Us parent link, keep menu open to let dropdown show
+                        if (link.parentElement.classList.contains('dropdown') && link === link.parentElement.querySelector('a')) {
+                            return;
+                        }
+                    }
+                    document.getElementById('navLinks').classList.remove('active');
+                    document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active-dropdown'));
+                });
+            });
+        });
     </script>
 </body>
 

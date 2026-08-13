@@ -597,6 +597,16 @@
             navLinks.classList.toggle('active');
         }
 
+        // Auto close mobile menu when clicking any link
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.nav-links a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navLinks').classList.remove('active');
+                });
+            });
+        });
+
         const serviceData = {
             architecture: {
                 title: "Architecture Design",
