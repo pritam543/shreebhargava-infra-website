@@ -36,10 +36,12 @@
             color: var(--text-dark);
             background-color: var(--white);
             overflow-x: hidden;
+            width: 100%;
         }
 
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
         section,
@@ -53,6 +55,7 @@
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid rgba(255, 102, 0, 0.2);
+            width: 100%;
         }
 
         .navbar {
@@ -62,12 +65,15 @@
             padding: 18px 20px;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            width: 100%;
         }
 
         .logo h1 {
             color: var(--gold);
             font-size: 1.4rem;
             font-weight: 700;
+            white-space: nowrap;
         }
 
         .logo span {
@@ -76,6 +82,7 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 2px;
+            white-space: nowrap;
         }
 
         .nav-links {
@@ -97,6 +104,18 @@
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--gold);
+        }
+
+        /* Mobile Hamburger Menu Toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--gold);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 165, 0, 0.3);
         }
 
         .container {
@@ -544,21 +563,39 @@
             }
         }
 
+        /* Mobile Dropdown Menu Styling */
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-                text-align: center;
+            .logo h1 {
+                font-size: 1.15rem;
+            }
+
+            .logo span {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+
+            .menu-toggle {
+                display: block;
             }
 
             .nav-links {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 8px;
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                padding: 0;
-                list-style: none;
+                background-color: var(--primary-dark);
+                padding: 20px;
+                border-bottom: 2px solid rgba(255, 165, 0, 0.3);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+                gap: 15px;
+                text-align: center;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
             }
 
             .nav-links li {
@@ -566,12 +603,11 @@
             }
 
             .nav-links a {
+                font-size: 0.9rem;
                 display: block;
-                text-align: center;
-                padding: 8px 4px;
-                background: rgba(255, 255, 255, 0.05);
-                border-radius: 4px;
-                font-size: 0.72rem;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.04);
+                border-radius: 6px;
             }
 
             .page-header {
@@ -597,7 +633,11 @@
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development</span>
             </div>
-            <ul class="nav-links">
+            <!-- Hamburger Menu Toggle Button (Right Corner) -->
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
@@ -818,6 +858,11 @@
     </footer>
 
     <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
         function switchPortalForm(type, element) {
             if (element.classList.contains('active')) return;
             document.querySelectorAll('.action-tab-btn').forEach(btn => btn.classList.remove('active'));
