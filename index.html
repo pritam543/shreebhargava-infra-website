@@ -696,6 +696,7 @@
             transition: var(--transition);
             text-decoration: none;
             color: inherit;
+            cursor: pointer;
         }
 
         .project-card:hover {
@@ -1320,7 +1321,7 @@
                 <h2>Featured Projects</h2>
             </div>
 
-            <!-- Updated Filter Buttons -->
+            <!-- Updated 5 Filter Buttons + All Projects -->
             <div class="project-filter-buttons scroll-slide-right">
                 <a href="index.html#projects" class="filter-btn active">All Projects</a>
                 <a href="service-detail.html?service=architecture" class="filter-btn">Architecture</a>
@@ -1330,14 +1331,15 @@
                 <a href="service-detail.html?service=pmc" class="filter-btn">PMC Projects</a>
             </div>
 
+            <!-- Clickable Project Cards redirecting to detailed view -->
             <div class="projects-grid" id="projectsContainer">
-                <a href="service-detail.html?service=architecture" class="project-card scroll-slide-left">
+                <a href="project-detail.html?id=modern-luxury-residence" class="project-card scroll-slide-left">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
                             alt="Architecture">
                         <span class="project-badge">Architecture</span>
                         <div class="project-overlay">
-                            <p>Modern luxury architectural design featuring large glass facades and open terraces.</p>
+                            <p>Click to view complete project details, dimensions, and specifications.</p>
                         </div>
                     </div>
                     <div class="project-info">
@@ -1347,14 +1349,13 @@
                     </div>
                 </a>
 
-                <a href="service-detail.html?service=interior" class="project-card scroll-slide-right">
+                <a href="project-detail.html?id=premium-corporate-office" class="project-card scroll-slide-right">
                     <div class="project-img">
                         <img src="images/interior/interior1.jpg" alt="Interior"
                             onError="this.src='https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80';">
                         <span class="project-badge">Interior</span>
                         <div class="project-overlay">
-                            <p>Premium corporate office interior designed with ergonomic seating and acoustic lighting.
-                            </p>
+                            <p>Click to view complete project details, dimensions, and specifications.</p>
                         </div>
                     </div>
                     <div class="project-info">
@@ -1364,13 +1365,13 @@
                     </div>
                 </a>
 
-                <a href="service-detail.html?service=government" class="project-card scroll-slide-left">
+                <a href="project-detail.html?id=urban-eco-courtyard" class="project-card scroll-slide-left">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
                             alt="Government Project">
                         <span class="project-badge">Government</span>
                         <div class="project-overlay">
-                            <p>Sustainable landscape and civic infrastructure development project.</p>
+                            <p>Click to view complete project details, dimensions, and specifications.</p>
                         </div>
                     </div>
                     <div class="project-info">
