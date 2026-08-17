@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service & Category Details - Shree Bhargava Infrastructure & Development</title>
+    <title>Project Details - Shree Bhargava Infrastructure & Development</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,7 +155,6 @@
             }
         }
 
-        /* Mobile Menu Toggle Button */
         .menu-toggle {
             display: none;
             font-size: 1.4rem;
@@ -176,24 +175,17 @@
 
         .page-header {
             background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
-            padding: 80px 20px;
+            padding: 60px 20px;
             text-align: center;
             color: var(--white);
         }
 
         .page-header h1 {
             color: var(--gold);
-            font-size: 2.2rem;
+            font-size: 2rem;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             letter-spacing: 2px;
-        }
-
-        .page-header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            max-width: 700px;
-            margin: 0 auto;
         }
 
         .scroll-slide-left {
@@ -214,114 +206,52 @@
             transform: translateX(0);
         }
 
-        .gallery-section {
-            padding: 60px 0;
+        .project-detail-section {
+            padding: 80px 0;
         }
 
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-header h2 {
-            font-size: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--primary-dark);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-
-        .section-header h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 2px;
-            background-color: var(--gold);
-        }
-
-        /* 3 Columns Grid Layout */
-        .gallery-grid {
+        .project-detail-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
         }
 
-        .gallery-card {
-            background: var(--white);
+        .project-detail-img img {
+            width: 100%;
+            height: auto;
             border-radius: 8px;
-            overflow: hidden;
-            border: 1px solid #eee;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: inherit;
-            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .gallery-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 165, 0, 0.25);
-            border-color: var(--gold);
-        }
-
-        .gallery-img-box {
-            width: 100%;
-            height: 260px;
-            overflow: hidden;
-            position: relative;
-            background: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-img-box img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-card:hover .gallery-img-box img {
-            transform: scale(1.08);
-        }
-
-        .gallery-info {
-            padding: 15px;
-            text-align: center;
-            background: var(--bg-light);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-info h4 {
-            font-size: 0.95rem;
+        .project-detail-info h2 {
+            font-size: 2rem;
             color: var(--primary-dark);
             text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
+            margin-bottom: 20px;
+            font-weight: 800;
         }
 
-        .gallery-details-text {
-            font-size: 0.75rem;
-            color: #666;
-            font-weight: 500;
-            border-top: 1px solid #ddd;
-            padding-top: 5px;
-            width: 100%;
-            display: block;
+        .spec-box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .spec-box p {
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+            color: #444;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            font-size: 1rem;
+            color: #565656;
+            line-height: 1.8;
+            margin-bottom: 25px;
         }
 
         .contact {
@@ -358,7 +288,6 @@
             word-break: break-word;
         }
 
-        /* Social Brand Boxes Styling */
         .social-qr-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -489,9 +418,9 @@
         }
 
         @media (max-width: 992px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 25px;
+            .project-detail-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
 
             .contact-grid {
@@ -503,18 +432,12 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            /* Mobile & Tablet Dropdown Navbar Fix */
             .navbar {
                 padding: 12px 15px;
             }
 
             .logo h1 {
                 font-size: 1.15rem;
-            }
-
-            .logo span {
-                font-size: 0.55rem;
-                letter-spacing: 1px;
             }
 
             .menu-toggle {
@@ -555,7 +478,6 @@
                 border-radius: 6px;
             }
 
-            /* Mobile Dropdown Click Control */
             .dropdown-menu {
                 position: relative;
                 width: 100%;
@@ -572,12 +494,6 @@
                 display: block;
             }
         }
-
-        @media (max-width: 576px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-        }
     </style>
 </head>
 
@@ -589,7 +505,6 @@
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development</span>
             </div>
-            <!-- Hamburger Menu Toggle Button (Right Corner) -->
             <div class="menu-toggle" onclick="toggleMenu()">
                 <i class="fa-solid fa-bars"></i>
             </div>
@@ -615,16 +530,29 @@
 
     <div class="page-header">
         <div class="container scroll-slide-left">
-            <h1 id="serviceTitle">Service Details</h1>
-            <p id="serviceDesc">Explore our specialized works, 3D renders, and technical drawings.</p>
+            <h1 id="projTitle">Project Detail View</h1>
         </div>
     </div>
 
-    <section class="gallery-section container">
-        <div class="section-header scroll-slide-left">
-            <h2>3D Renders & Technical Drawings Gallery</h2>
+    <section class="project-detail-section container">
+        <div class="project-detail-grid">
+            <div class="project-detail-img scroll-slide-left">
+                <img id="projImg"
+                    src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80"
+                    alt="Project Image">
+            </div>
+            <div class="project-detail-info scroll-slide-right">
+                <h2 id="projHeading">Project Name</h2>
+                <p id="projDesc" class="project-desc">Complete professional architecture and structural execution
+                    details.</p>
+                <div class="spec-box">
+                    <p><strong>Owner Name:</strong> <span id="projOwner">-</span></p>
+                    <p><strong>Plot Area:</strong> <span id="projPlot">-</span></p>
+                    <p><strong>Built-in Area:</strong> <span id="projBuilt">-</span></p>
+                    <p><strong>Location / Place:</strong> <span id="projPlace">Indore, MP</span></p>
+                </div>
+            </div>
         </div>
-        <div class="gallery-grid" id="galleryContainer"></div>
     </section>
 
     <section id="contact" class="contact section-padding">
@@ -676,7 +604,7 @@
             </div>
 
             <div class="contact-form scroll-slide-right">
-                <h3>Send a Message Regarding This Service</h3>
+                <h3>Send an Inquiry About This Project</h3>
                 <form id="contactForm" action="/contact" method="POST">
                     <input name="name" type="text" placeholder="Full Name" required>
                     <input name="email" type="email" placeholder="Email Address" required>
@@ -708,6 +636,76 @@
             }
         }
 
+        // Project Database for Detailed View
+        const detailsDB = {
+            "modern-luxury-residence": { name: "Modern Luxury Residence", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", plot: "2400 sq.ft", built: "3200 sq.ft", place: "Indore, MP", desc: "A masterpiece in modern luxury residential architecture featuring expansive open terraces, double-height living areas, seamless glass facades, and sustainable energy integration." },
+            "premium-corporate-office": { name: "Premium Corporate Office", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80", owner: "Apex Corp", plot: "5000 sq.ft", built: "4800 sq.ft", place: "Bhopal, MP", desc: "State-of-the-art corporate workspace designed with ergonomic workstations, advanced acoustic lighting, meeting hubs, and executive boardrooms." },
+            "urban-eco-courtyard": { name: "Urban Eco Courtyard", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80", owner: "Municipal Corp", plot: "12000 sq.ft", built: "8500 sq.ft", place: "Indore, MP", desc: "A sustainable public landscape and civic development project integrating indigenous green cover, rainwater harvesting, and eco-stone walkways." }
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const projId = urlParams.get('id');
+        const serviceKey = urlParams.get('service');
+        const index = urlParams.get('index');
+
+        let targetProj = null;
+
+        if (projId && detailsDB[projId]) {
+            targetProj = detailsDB[projId];
+        } else if (serviceKey && index !== null) {
+            // Data pulled from service-detail categories if clicked there
+            // We can fetch from a shared reference or simulate data
+            const serviceDatabase = {
+                architecture: [
+                    { name: "3D Front Elevation Render 1", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Verma", plot: "2000 sq.ft", built: "2600 sq.ft" },
+                    { name: "Technical Floor Plan 2D", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "Dr. Agrawal", plot: "1800 sq.ft", built: "2100 sq.ft" },
+                    { name: "Modern Exterior 3D View", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", owner: "Mr. Kapoor", plot: "3000 sq.ft", built: "4000 sq.ft" },
+                    { name: "Structural Layout Blueprint", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80", owner: "BuildWell Group", plot: "4500 sq.ft", built: "6000 sq.ft" },
+                    { name: "Luxury Villa 3D Concept", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", plot: "5000 sq.ft", built: "6500 sq.ft" },
+                    { name: "CAD Architectural Detailing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80", owner: "Apex Infratech", plot: "3500 sq.ft", built: "4500 sq.ft" },
+                    { name: "Facade Design Blueprint", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Joshi", plot: "2200 sq.ft", built: "3000 sq.ft" },
+                    { name: "Duplex Elevation Sketch", img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80", owner: "Mrs. Gupta", plot: "1500 sq.ft", built: "2200 sq.ft" },
+                    { name: "Urban Master Plan 3D", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80", owner: "Indore Development", plot: "10000 sq.ft", built: "8000 sq.ft" },
+                    { name: "Commercial Frontage Drawing", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", owner: "Rathi Enterprises", plot: "6000 sq.ft", built: "9000 sq.ft" }
+                ],
+                interior: [
+                    { name: "Executive Suite Interior", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80", owner: "Apex Corp", plot: "2500 sq.ft", built: "2500 sq.ft" },
+                    { name: "Modern Living Room", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", owner: "Mr. R. K. Sen", plot: "1200 sq.ft", built: "1200 sq.ft" },
+                    { name: "Luxury Bedroom Design", img: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80", owner: "Mr. Mehta", plot: "800 sq.ft", built: "800 sq.ft" },
+                    { name: "Modular Kitchen Setup", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80", owner: "Mrs. Nair", plot: "400 sq.ft", built: "400 sq.ft" }
+                ],
+                townplanning: [
+                    { name: "Greenfield Township Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "Govt Housing Board", plot: "50000 sq.ft", built: "35000 sq.ft" },
+                    { name: "Smart City Zoning Map", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft" }
+                ],
+                government: [
+                    { name: "Civic Complex 3D Render", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80", owner: "Municipal Corp", plot: "12000 sq.ft", built: "8500 sq.ft" },
+                    { name: "Public Infrastructure Drawing", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80", owner: "Public Works Dept", plot: "15000 sq.ft", built: "10000 sq.ft" }
+                ],
+                pmc: [
+                    { name: "Site Supervision 3D View", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80", owner: "Buildcorp Ltd", plot: "20000 sq.ft", built: "18000 sq.ft" },
+                    { name: "Project Scheduling Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "InfraSync", plot: "10000 sq.ft", built: "9500 sq.ft" }
+                ]
+            };
+
+            if (serviceDatabase[serviceKey] && serviceDatabase[serviceKey][index]) {
+                targetProj = serviceDatabase[serviceKey][index];
+                targetProj.desc = "Detailed execution plan and 3D specifications for this specialized project category.";
+                targetProj.place = "Madhya Pradesh, India";
+            }
+        }
+
+        if (targetProj) {
+            document.getElementById('projTitle').innerText = targetProj.name;
+            document.getElementById('projHeading').innerText = targetProj.name;
+            document.getElementById('projImg').src = targetProj.img;
+            document.getElementById('projOwner').innerText = targetProj.owner || 'Client';
+            document.getElementById('projPlot').innerText = targetProj.plot || 'N/A';
+            document.getElementById('projBuilt').innerText = targetProj.built || 'N/A';
+            document.getElementById('projPlace').innerText = targetProj.place || 'Indore, MP';
+            if (targetProj.desc) document.getElementById('projDesc').innerText = targetProj.desc;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => {
@@ -721,87 +719,7 @@
                     document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('active-dropdown'));
                 });
             });
-        });
 
-        // Expanded serviceData with Owner Name, Plot Area, and Built-in Area for category cards
-        const serviceData = {
-            architecture: {
-                title: "Architecture Design",
-                desc: "Explore precise 2D floor plans, elevation drawings, and photorealistic 3D architectural renders.",
-                projects: [
-                    { name: "3D Front Elevation Render 1", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Verma", plot: "2000 sq.ft", built: "2600 sq.ft" },
-                    { name: "Technical Floor Plan 2D", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "Dr. Agrawal", plot: "1800 sq.ft", built: "2100 sq.ft" },
-                    { name: "Modern Exterior 3D View", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", owner: "Mr. Kapoor", plot: "3000 sq.ft", built: "4000 sq.ft" },
-                    { name: "Structural Layout Blueprint", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80", owner: "BuildWell Group", plot: "4500 sq.ft", built: "6000 sq.ft" },
-                    { name: "Luxury Villa 3D Concept", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", plot: "5000 sq.ft", built: "6500 sq.ft" },
-                    { name: "CAD Architectural Detailing", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80", owner: "Apex Infratech", plot: "3500 sq.ft", built: "4500 sq.ft" },
-                    { name: "Facade Design Blueprint", img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Joshi", plot: "2200 sq.ft", built: "3000 sq.ft" },
-                    { name: "Duplex Elevation Sketch", img: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=800&q=80", owner: "Mrs. Gupta", plot: "1500 sq.ft", built: "2200 sq.ft" },
-                    { name: "Urban Master Plan 3D", img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80", owner: "Indore Development", plot: "10000 sq.ft", built: "8000 sq.ft" },
-                    { name: "Commercial Frontage Drawing", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", owner: "Rathi Enterprises", plot: "6000 sq.ft", built: "9000 sq.ft" }
-                ]
-            },
-            interior: {
-                title: "Interior Design",
-                desc: "Explore all our exclusive unique interior design executions, 3D walkthroughs, and custom folders.",
-                projects: [
-                    { name: "Executive Suite Interior", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=800&q=80", owner: "Apex Corp", plot: "2500 sq.ft", built: "2500 sq.ft" },
-                    { name: "Modern Living Room", img: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=800&q=80", owner: "Mr. R. K. Sen", plot: "1200 sq.ft", built: "1200 sq.ft" },
-                    { name: "Luxury Bedroom Design", img: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=800&q=80", owner: "Mr. Mehta", plot: "800 sq.ft", built: "800 sq.ft" },
-                    { name: "Modular Kitchen Setup", img: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80", owner: "Mrs. Nair", plot: "400 sq.ft", built: "400 sq.ft" }
-                ]
-            },
-            townplanning: {
-                title: "Town Planning",
-                desc: "Comprehensive master layout planning, zoning design, and large-scale urban development.",
-                projects: [
-                    { name: "Greenfield Township Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "Govt Housing Board", plot: "50000 sq.ft", built: "35000 sq.ft" },
-                    { name: "Smart City Zoning Map", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft" }
-                ]
-            },
-            government: {
-                title: "Government Consultancy",
-                desc: "Civic complex 3D renders, public infrastructure master plans, and compliance drawings.",
-                projects: [
-                    { name: "Civic Complex 3D Render", img: "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80", owner: "Municipal Corp", plot: "12000 sq.ft", built: "8500 sq.ft" },
-                    { name: "Public Infrastructure Drawing", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80", owner: "Public Works Dept", plot: "15000 sq.ft", built: "10000 sq.ft" }
-                ]
-            },
-            pmc: {
-                title: "Project Management Consultancy",
-                desc: "Structural audit reports, construction scheduling charts, and quality control drawings.",
-                projects: [
-                    { name: "Site Supervision 3D View", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80", owner: "Buildcorp Ltd", plot: "20000 sq.ft", built: "18000 sq.ft" },
-                    { name: "Project Scheduling Drawing", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "InfraSync", plot: "10000 sq.ft", built: "9500 sq.ft" }
-                ]
-            }
-        };
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const serviceKey = urlParams.get('service') || 'architecture';
-        const currentService = serviceData[serviceKey] || serviceData['architecture'];
-
-        document.getElementById('serviceTitle').innerText = currentService.title;
-        document.getElementById('serviceDesc').innerText = currentService.desc;
-
-        const galleryContainer = document.getElementById('galleryContainer');
-        currentService.projects.forEach((proj, index) => {
-            const card = document.createElement('a');
-            card.className = 'gallery-card scroll-slide-left';
-            card.href = `project-detail.html?service=${serviceKey}&index=${index}`;
-            card.innerHTML = `
-                <div class="gallery-img-box">
-                    <img src="${proj.img}" alt="${proj.name || 'Project Image'}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                </div>
-                <div class="gallery-info">
-                    <h4>${proj.name || currentService.title + ' Project'}</h4>
-                    <span class="gallery-details-text">Owner: ${proj.owner || 'Client'} | Plot: ${proj.plot || 'N/A'} | Built-in: ${proj.built || 'N/A'}</span>
-                </div>
-            `;
-            galleryContainer.appendChild(card);
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
