@@ -774,6 +774,16 @@
             font-weight: 700;
         }
 
+        .project-details-text {
+            font-size: 0.78rem;
+            color: #666;
+            margin-top: 8px;
+            font-weight: 500;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
+            display: block;
+        }
+
         /* Contact Section with Social Brand Boxes */
         .contact {
             background-color: var(--primary-dark);
@@ -1310,14 +1320,14 @@
                 <h2>Featured Projects</h2>
             </div>
 
+            <!-- Updated Filter Buttons -->
             <div class="project-filter-buttons scroll-slide-right">
                 <a href="index.html#projects" class="filter-btn active">All Projects</a>
                 <a href="service-detail.html?service=architecture" class="filter-btn">Architecture</a>
                 <a href="service-detail.html?service=interior" class="filter-btn">Interior</a>
-                <a href="service-detail.html?service=landscape" class="filter-btn">Landscape</a>
-                <a href="service-detail.html?service=turnkey" class="filter-btn">Turnkey Projects</a>
+                <a href="service-detail.html?service=townplanning" class="filter-btn">Town Planning</a>
                 <a href="service-detail.html?service=government" class="filter-btn">Government Project</a>
-                <a href="service-detail.html?service=residential" class="filter-btn">Residential Design</a>
+                <a href="service-detail.html?service=pmc" class="filter-btn">PMC Projects</a>
             </div>
 
             <div class="projects-grid" id="projectsContainer">
@@ -1332,6 +1342,8 @@
                     </div>
                     <div class="project-info">
                         <h3>Modern Luxury Residence</h3>
+                        <span class="project-details-text">Owner: Mr. Sharma | Plot Area: 2400 sq.ft | Built-in Area:
+                            3200 sq.ft</span>
                     </div>
                 </a>
 
@@ -1347,21 +1359,24 @@
                     </div>
                     <div class="project-info">
                         <h3>Premium Corporate Office</h3>
+                        <span class="project-details-text">Owner: Apex Corp | Plot Area: 5000 sq.ft | Built-in Area:
+                            4800 sq.ft</span>
                     </div>
                 </a>
 
-                <a href="service-detail.html?service=landscape" class="project-card scroll-slide-left">
+                <a href="service-detail.html?service=government" class="project-card scroll-slide-left">
                     <div class="project-img">
                         <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80"
-                            alt="Landscape">
-                        <span class="project-badge">Landscape</span>
+                            alt="Government Project">
+                        <span class="project-badge">Government</span>
                         <div class="project-overlay">
-                            <p>Sustainable landscape architecture featuring natural stone pathways and lawn lighting.
-                            </p>
+                            <p>Sustainable landscape and civic infrastructure development project.</p>
                         </div>
                     </div>
                     <div class="project-info">
                         <h3>Urban Eco Courtyard</h3>
+                        <span class="project-details-text">Owner: Municipal Corp | Plot Area: 12000 sq.ft | Built-in
+                            Area: 8500 sq.ft</span>
                     </div>
                 </a>
             </div>
@@ -1377,8 +1392,14 @@
                     <li><i class="fa-solid fa-phone"></i>
                         <div>8818887770 | 9669561234</div>
                     </li>
-                    <li><i class="fa-solid fa-location-dot"></i>
-                        <div>B-57, MIG Colony, RSS Nagar, Indore - 452011</div>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            B-57, MIG Colony, RSS Nagar, Indore - 452011
+                            <br><span
+                                style="color:var(--gold); font-weight:600; font-size:0.85rem; display:block; margin-top:5px;">Our
+                                Branches: Indore, Bhopal, Harda, Khargone, Pune, Raipur</span>
+                        </div>
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
@@ -1437,7 +1458,6 @@
             navLinks.classList.toggle('active');
         }
 
-        // Mobile Dropdown Toggle for "About Us"
         function toggleDropdown(event) {
             if (window.innerWidth <= 992) {
                 event.preventDefault();
@@ -1445,7 +1465,6 @@
             }
         }
 
-        // Auto close mobile menu when clicking any link
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => {
