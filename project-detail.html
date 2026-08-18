@@ -207,85 +207,62 @@
         }
 
         .project-detail-section {
-            padding: 80px 0;
+            padding: 60px 0;
         }
 
-        .project-detail-grid {
+        /* Each project section block styled exactly like the screenshot reference */
+        .project-row-card {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.2fr;
             gap: 40px;
-            align-items: start;
+            align-items: center;
+            background: var(--white);
+            border-radius: 10px;
+            border: 1px solid #eee;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+            padding: 30px;
+            margin-bottom: 40px;
         }
 
-        /* Multiple Images Gallery Grid */
-        .project-images-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .main-proj-img {
+        .project-row-img img {
             width: 100%;
             height: 320px;
             object-fit: cover;
             border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            cursor: pointer;
-            transition: transform 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .main-proj-img:hover {
-            transform: scale(1.02);
-        }
-
-        .sub-images-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .sub-proj-img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-            border-radius: 6px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .sub-proj-img:hover {
-            transform: scale(1.03);
-        }
-
-        .project-detail-info h2 {
-            font-size: 2rem;
+        .project-row-info h2 {
+            font-size: 1.8rem;
             color: var(--primary-dark);
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-weight: 800;
+        }
+
+        .project-row-desc {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
 
         .spec-box {
             background: var(--bg-light);
             border-left: 4px solid var(--gold);
-            padding: 20px;
+            padding: 18px;
             border-radius: 6px;
-            margin: 20px 0;
         }
 
         .spec-box p {
-            font-size: 0.95rem;
-            margin-bottom: 8px;
-            color: #444;
+            font-size: 0.92rem;
+            margin-bottom: 6px;
+            color: #333;
             font-weight: 600;
         }
 
-        .project-desc {
-            font-size: 1rem;
-            color: #565656;
-            line-height: 1.8;
-            margin-bottom: 25px;
+        .spec-box p:last-child {
+            margin-bottom: 0;
         }
 
         .contact {
@@ -452,9 +429,10 @@
         }
 
         @media (max-width: 992px) {
-            .project-detail-grid {
+            .project-row-card {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 20px;
+                padding: 20px;
             }
 
             .contact-grid {
@@ -568,25 +546,9 @@
         </div>
     </div>
 
-    <section class="project-detail-section container">
-        <div class="project-detail-grid">
-            <!-- 3 Images Container for Gallery View -->
-            <div class="project-detail-img scroll-slide-left">
-                <div class="project-images-container" id="projImagesContainer">
-                    <!-- Dynamically populated via JS -->
-                </div>
-            </div>
-            <div class="project-detail-info scroll-slide-right">
-                <h2 id="projHeading">Project Name</h2>
-                <p id="projDesc" class="project-desc">Complete professional architecture and structural execution
-                    details.</p>
-                <div class="spec-box">
-                    <p><strong>Owner Name:</strong> <span id="projOwner">-</span></p>
-                    <p><strong>Built-in Area:</strong> <span id="projBuilt">-</span></p>
-                    <p><strong>Location / Place:</strong> <span id="projPlace">Indore, MP</span></p>
-                </div>
-            </div>
-        </div>
+    <!-- Container where full sections will be dynamically injected -->
+    <section class="project-detail-section container" id="projectsSectionsContainer">
+        <!-- Rendered via JavaScript -->
     </section>
 
     <section id="contact" class="contact section-padding">
@@ -746,54 +708,49 @@
         const serviceKey = urlParams.get('service');
         const index = urlParams.get('index');
 
-        let targetProj = null;
+        let projectListToDisplay = [];
 
         if (projId && detailsDB[projId]) {
-            targetProj = detailsDB[projId];
-            // Normalize to gallery format if single image exists
-            if (!targetProj.images && targetProj.img) {
-                targetProj.images = [targetProj.img, targetProj.img, targetProj.img];
-            }
-        } else if (serviceKey && index !== null && serviceDatabase[serviceKey] && serviceDatabase[serviceKey][index]) {
-            const base = serviceDatabase[serviceKey][index];
-            // Provide 3 clickable gallery images for category projects as well
-            targetProj = {
-                name: base.name,
-                images: [base.img, serviceDatabase[serviceKey][(parseInt(index) + 1) % serviceDatabase[serviceKey].length].img, base.img],
+            const base = detailsDB[projId];
+            document.getElementById('projTitle').innerText = base.name;
+            // Generate multiple full-width card sections for the 3 images of this project
+            const imgs = base.images || [base.img];
+            projectListToDisplay = imgs.map((imgSrc, i) => ({
+                name: `${base.name} - View ${i + 1}`,
+                img: imgSrc,
                 owner: base.owner,
                 built: base.built,
                 place: base.place,
                 desc: base.desc
-            };
+            }));
+        } else if (serviceKey && index !== null && serviceDatabase[serviceKey] && serviceDatabase[serviceKey][index]) {
+            const base = serviceDatabase[serviceKey][index];
+            document.getElementById('projTitle').innerText = base.name;
+            // Show the selected project as well as other related category projects in full rows
+            projectListToDisplay = serviceDatabase[serviceKey];
         }
 
-        if (targetProj) {
-            document.getElementById('projTitle').innerText = targetProj.name;
-            document.getElementById('projHeading').innerText = targetProj.name;
-            document.getElementById('projOwner').innerText = targetProj.owner || 'Client';
-            document.getElementById('projBuilt').innerText = targetProj.built || 'N/A';
-            document.getElementById('projPlace').innerText = targetProj.place || 'Indore, MP';
-            if (targetProj.desc) document.getElementById('projDesc').innerText = targetProj.desc;
-
-            // Render 3 Images Gallery Layout
-            const imgContainer = document.getElementById('projImagesContainer');
-            const imgs = targetProj.images || [targetProj.img, targetProj.img, targetProj.img];
-
-            imgContainer.innerHTML = `
-                <img class="main-proj-img" src="${imgs[0]}" alt="${targetProj.name}" onclick="changeMainImage('${imgs[0]}')" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                <div class="sub-images-grid">
-                    <img class="sub-proj-img" src="${imgs[1]}" alt="Project View 2" onclick="changeMainImage('${imgs[1]}')" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                    <img class="sub-proj-img" src="${imgs[2]}" alt="Project View 3" onclick="changeMainImage('${imgs[2]}')" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                </div>
-            `;
-        }
-
-        // Clickable image switcher to view clicked thumbnail as main view
-        function changeMainImage(imgSrc) {
-            const mainImg = document.querySelector('.main-proj-img');
-            if (mainImg) {
-                mainImg.src = imgSrc;
-            }
+        const container = document.getElementById('projectsSectionsContainer');
+        if (projectListToDisplay.length > 0) {
+            projectListToDisplay.forEach((p) => {
+                const rowCard = document.createElement('div');
+                rowCard.className = 'project-row-card scroll-slide-left';
+                rowCard.innerHTML = `
+                    <div class="project-row-img">
+                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
+                    </div>
+                    <div class="project-row-info">
+                        <h2>${p.name}</h2>
+                        <p class="project-row-desc">${p.desc || 'Professional project execution and design detail.'}</p>
+                        <div class="spec-box">
+                            <p>Owner Name: ${p.owner || 'Client'}</p>
+                            <p>Built-in Area: ${p.built || 'N/A'}</p>
+                            <p>Location / Place: ${p.place || 'Indore, MP'}</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(rowCard);
+            });
         }
 
         document.addEventListener('DOMContentLoaded', () => {
