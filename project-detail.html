@@ -236,17 +236,21 @@
             margin-bottom: 40px;
         }
 
+        /* Fixed image container to prevent black borders and clipping */
         .project-row-img {
             display: block;
             overflow: hidden;
             border-radius: 8px;
-            background: #0b0f14;
+            background: #f4f4f4;
+            width: 100%;
+            height: 320px;
+            position: relative;
         }
 
         .project-row-img img {
             width: 100%;
-            height: 320px;
-            object-fit: contain;
+            height: 100%;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
@@ -698,9 +702,30 @@
             "premium-corporate-office": {
                 name: "Premium Corporate Office",
                 projectsList: [
-                    { name: "47 BILLION", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM (1).jpeg", Name: "47 Billio", built in area: "12000 sq.ft", place: "Cristal IT Park Indore, MP", desc: "State-of-the-art corporate workspace designed with ergonomic workstations and advanced acoustic lighting." },
-                    { name: "Sourdoot Brand Wall", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg", Name: "Sourdoot pvt. ltd. ", built: "1200 sq.ft", place: "Indore, MP", desc: "Custom acrylic 3D brand logo signage installed at the corporate reception foyer." },
-                    { name: "Conference & Workstations Area", img: "all mix images/pco f.jpeg", Name: "Corporate building Design", built: "------- sq.ft", place: "Super Corridor, MP", desc: "Spacious meeting hubs and multi-tier desk layout for seamless corporate operations." }
+                    {
+                        name: "47 BILLION",
+                        img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM (1).jpeg",
+                        owner: "47 Billion",
+                        built: "12000 sq.ft",
+                        place: "Crystal IT Park, Indore, MP",
+                        desc: "State-of-the-art corporate workspace designed with ergonomic workstations and advanced acoustic lighting."
+                    },
+                    {
+                        name: "Sourdoot Brand Wall",
+                        img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
+                        owner: "Sourdoot Pvt. Ltd.",
+                        built: "1200 sq.ft",
+                        place: "Indore, MP",
+                        desc: "Custom acrylic 3D brand logo signage installed at the corporate reception foyer."
+                    },
+                    {
+                        name: "Conference & Workstations Area",
+                        img: "all mix images/pco f.jpeg",
+                        owner: "Corporate Building Design",
+                        built: "As per layout",
+                        place: "Super Corridor, Indore, MP",
+                        desc: "Spacious meeting hubs and multi-tier desk layout for seamless corporate operations."
+                    }
                 ]
             },
             "urban-eco-courtyard": {
