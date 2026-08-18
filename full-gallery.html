@@ -15,6 +15,7 @@
             --primary-dark: #11161e;
             --secondary-dark: #1a212d;
             --gold: #ffa500;
+            --gold-hover: #e65c00;
             --text-light: #ffffff;
             --text-muted: #a0aab5;
             --text-dark: #333333;
@@ -35,6 +36,24 @@
             color: var(--text-dark);
             background-color: var(--white);
             overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section,
+        div[id] {
+            scroll-margin-top: 90px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
         header {
@@ -59,6 +78,8 @@
             color: var(--gold);
             font-size: 1.4rem;
             font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         .logo span {
@@ -67,13 +88,27 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .logo .architect-subtitle {
+            font-size: 0.65rem;
+            color: var(--gold);
+            display: block;
+            letter-spacing: 2.2px;
+            font-weight: 600;
+            margin-top: 2px;
+            text-transform: uppercase;
         }
 
         .nav-links {
             display: flex;
             align-items: center;
             gap: 25px;
-            list-style: none;
+        }
+
+        .nav-links>li {
+            position: relative;
         }
 
         .nav-links a {
@@ -81,11 +116,56 @@
             font-size: 0.85rem;
             text-transform: uppercase;
             font-weight: 600;
-            text-decoration: none;
+            letter-spacing: 1px;
+            padding: 10px 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
 
         .nav-links a:hover {
             color: var(--gold);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--secondary-dark);
+            min-width: 240px;
+            border-radius: 6px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s ease-in-out;
+            z-index: 1100;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu li a {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            color: var(--text-light);
+            display: block;
+            text-transform: capitalize;
+            font-weight: 400;
+        }
+
+        .dropdown-menu li a:hover {
+            background-color: rgba(255, 102, 0, 0.15);
+            color: var(--gold);
+            padding-left: 25px;
+        }
+
+        @media (min-width: 993px) {
+            .dropdown:hover .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
         }
 
         .menu-toggle {
@@ -234,16 +314,36 @@
             background: #25D366;
         }
 
+        .qr-item.whatsapp-brand:hover {
+            border-color: #25D366;
+            transform: translateY(-4px);
+        }
+
         .qr-item.google-brand .qr-placeholder {
             background: #4285F4;
+        }
+
+        .qr-item.google-brand:hover {
+            border-color: #4285F4;
+            transform: translateY(-4px);
         }
 
         .qr-item.insta-brand .qr-placeholder {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
+        .qr-item.insta-brand:hover {
+            border-color: #dc2743;
+            transform: translateY(-4px);
+        }
+
         .qr-item.web-brand .qr-placeholder {
             background: var(--gold);
+        }
+
+        .qr-item.web-brand:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
         }
 
         .qr-item span {
@@ -294,6 +394,12 @@
             transition: 0.3s;
         }
 
+        #contactForm button:hover {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
         footer {
             background-color: #0b0f14;
             color: var(--text-muted);
@@ -314,6 +420,14 @@
 
             .social-qr-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .navbar {
+                padding: 12px 15px;
+            }
+
+            .logo h1 {
+                font-size: 1.15rem;
             }
 
             .menu-toggle {
@@ -367,8 +481,18 @@
             </div>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="index.html#about" onclick="toggleDropdown(event)">About Us <i
+                            class="fa-solid fa-chevron-down" style="font-size:0.7rem;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html#team">Leadership</a></li>
+                        <li><a href="index.html#why-us">Why Choose Us</a></li>
+                        <li><a href="professional-team.html">Our Professional Team</a></li>
+                    </ul>
+                </li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="process.html">Our Process</a></li>
                 <li><a href="careers.html">Careers</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -454,21 +578,28 @@
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        // Database containing 7 unique sample images for each of the 3 projects
+        function toggleDropdown(event) {
+            if (window.innerWidth <= 992) {
+                event.preventDefault();
+                event.currentTarget.parentElement.classList.toggle('active-dropdown');
+            }
+        }
+
+        // Updated Database containing all 8 unique images for 47 BILLION project
         const galleryDB = {
             "premium-corporate-office": {
-                0: [ // 47 BILLION (7 unique images)
-                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM (1).jpeg",
+                0: [ // 47 BILLION (All 8 unique images)
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.43 PM (1).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.43 PM (2).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.43 PM.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.44 PM.jpeg",
-                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.39 PM (2).jpeg"
-                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM.jpeg"
-                    
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.39 PM (2).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM.jpeg"
                 ],
-                1: [ // Sourdoot Brand Wall (7 unique images)
+                1: [ // Sourdoot Brand Wall
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.07 PM.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.15.59 PM (1).jpeg",
@@ -477,7 +608,7 @@
                     "all mix images/WhatsApp Image 2026-08-05 at 5.15.52 PM (3).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.15.49 PM (1).jpeg"
                 ],
-                2: [ // Conference & Workstations Area (7 unique images)
+                2: [ // Conference & Workstations Area
                     "all mix images/pco f.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM (2).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (2).jpeg",
