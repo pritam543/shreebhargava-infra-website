@@ -454,13 +454,6 @@
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        function toggleDropdown(event) {
-            if (window.innerWidth <= 992) {
-                event.preventDefault();
-                event.currentTarget.parentElement.classList.toggle('active-dropdown');
-            }
-        }
-
         const galleryDB = {
             "premium-corporate-office": {
                 0: [ // 47 BILLION images
@@ -473,13 +466,13 @@
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.39 PM (2).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM.jpeg"
                 ],
-                1: [ // Sourdoot Brand Wall images (corrected 1st image path matching your exact sent photo)
-                    "WhatsApp Image 2026-08-05 at 5.16.18 PM_2.jpeg",
-                    "WhatsApp Image 2026-08-05 at 5.16.33 PM (1).jpeg",
-                    "WhatsApp Image 2026-08-05 at 5.15.58 PM (1).jpeg",
-                    "WhatsApp Image 2026-08-05 at 5.16.04 PM (2).jpeg",
-                    "WhatsApp Image 2026-08-05 at 5.16.14 PM.jpeg",
-                    "WhatsApp Image 2026-08-05 at 5.16.33 PM (2).jpeg"
+                1: [ // Sourdoot Brand Wall images (All correct paths)
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM_2.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.58 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.04 PM (2).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.14 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM (2).jpeg"
                 ],
                 2: [ // Conference & Workstations Area images
                     "all mix images/pco f.jpeg",
