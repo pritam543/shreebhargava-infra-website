@@ -125,15 +125,26 @@
             text-align: center;
         }
 
-        .gallery-display-img {
-            max-width: 100%;
-            max-height: 600px;
-            object-fit: contain;
-            border-radius: 10px;
-            border: 3px solid var(--gold);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            margin-bottom: 30px;
+        .gallery-grid-view {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .gallery-grid-view img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             background: #000;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-grid-view img:hover {
+            transform: scale(1.02);
         }
 
         .back-link {
@@ -146,6 +157,7 @@
             border-radius: 30px;
             margin-top: 20px;
             transition: var(--transition);
+            text-decoration: none;
         }
 
         .back-link:hover {
@@ -291,6 +303,10 @@
         }
 
         @media (max-width: 992px) {
+            .gallery-grid-view {
+                grid-template-columns: 1fr;
+            }
+
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
@@ -361,12 +377,12 @@
 
     <div class="page-header">
         <div class="container">
-            <h1>High-Resolution Project View</h1>
+            <h1 id="galleryTitle">Project Gallery Collection</h1>
         </div>
     </div>
 
     <section class="gallery-section container">
-        <div id="fullImgContainer">
+        <div class="gallery-grid-view" id="fullImgContainer">
             <!-- Loaded via JS -->
         </div>
         <div>
@@ -438,23 +454,54 @@
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        const detailsDB = {
-            "premium-corporate-office": [
-                "pco f.jpeg",
-                "WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
-                "WhatsApp Image 2026-08-05 at 5.16.40 PM.jpeg"
-            ]
+        // Database containing 7 unique sample images for each of the 3 projects
+        const galleryDB = {
+            "premium-corporate-office": {
+                0: [ // 47 BILLION (7 unique images)
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.14 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.11 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.09 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.03 PM (2).jpeg"
+                ],
+                1: [ // Sourdoot Brand Wall (7 unique images)
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.07 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.59 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.57 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.56 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.52 PM (3).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.49 PM (1).jpeg"
+                ],
+                2: [ // Conference & Workstations Area (7 unique images)
+                    "all mix images/pco f.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM (2).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (2).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.34 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.08 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.01 PM (1).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.50 PM (2).jpeg"
+                ]
+            }
         };
 
         const urlParams = new URLSearchParams(window.location.search);
         const projId = urlParams.get('id') || "premium-corporate-office";
         const index = parseInt(urlParams.get('index')) || 0;
 
-        const imagesArray = detailsDB[projId] || detailsDB["premium-corporate-office"];
-        const targetImgSrc = imagesArray[index] || imagesArray[0];
+        const projectGalleries = galleryDB[projId] || galleryDB["premium-corporate-office"];
+        const targetImages = projectGalleries[index] || projectGalleries[0];
 
         const container = document.getElementById('fullImgContainer');
-        container.innerHTML = `<img src="${targetImgSrc}" alt="Full Resolution Project Image" class="gallery-display-img" onerror="this.src='all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM.jpeg">`;
+        targetImages.forEach(imgSrc => {
+            const imgEl = document.createElement('img');
+            imgEl.src = imgSrc;
+            imgEl.alt = "Project Gallery Image";
+            imgEl.onerror = function () { this.src = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'; };
+            container.appendChild(imgEl);
+        });
     </script>
 </body>
 
