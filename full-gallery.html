@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery View - Shree Bhargava Infrastructure & Development</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #11161e;
+            --secondary-dark: #1a212d;
+            --gold: #ffa500;
+            --text-light: #ffffff;
+            --text-muted: #a0aab5;
+            --text-dark: #333333;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --transition: all 0.4s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: var(--primary-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 102, 0, 0.2);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo h1 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            display: block;
+            font-size: 0.65rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.4rem;
+            color: var(--gold);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 165, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .page-header h1 {
+            color: var(--gold);
+            font-size: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .gallery-section {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .gallery-display-img {
+            max-width: 100%;
+            max-height: 600px;
+            object-fit: contain;
+            border-radius: 10px;
+            border: 3px solid var(--gold);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+            background: #000;
+        }
+
+        .back-link {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--gold);
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 30px;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .back-link:hover {
+            background: var(--primary-dark);
+            color: var(--gold);
+        }
+
+        .contact {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            width: 100%;
+        }
+
+        .contact-details h3,
+        .contact-form h3 {
+            color: var(--gold);
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .contact-info-list li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            word-break: break-word;
+        }
+
+        .social-qr-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .qr-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .qr-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .qr-item.whatsapp-brand .qr-placeholder {
+            background: #25D366;
+        }
+
+        .qr-item.google-brand .qr-placeholder {
+            background: #4285F4;
+        }
+
+        .qr-item.insta-brand .qr-placeholder {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+        }
+
+        .qr-item.web-brand .qr-placeholder {
+            background: var(--gold);
+        }
+
+        .qr-item span {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        .contact-form {
+            background: var(--secondary-dark);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 102, 0, 0.2);
+            width: 100%;
+        }
+
+        #contactForm {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            width: 100%;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 6px;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 0.95rem;
+        }
+
+        #contactForm button {
+            width: 100%;
+            padding: 15px;
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        footer {
+            background-color: #0b0f14;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 992px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .social-qr-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-dark);
+                padding: 15px 20px;
+                z-index: 999;
+                text-align: center;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 0.85rem;
+                display: block;
+                padding: 10px;
+                background: rgba(255, 255, 255, 0.04);
+                border-radius: 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <h1>SHREE BHARGAVA</h1>
+                <span>Infrastructure & Development</span>
+            </div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>High-Resolution Project View</h1>
+        </div>
+    </div>
+
+    <section class="gallery-section container">
+        <div id="fullImgContainer">
+            <!-- Loaded via JS -->
+        </div>
+        <div>
+            <a href="javascript:history.back()" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Project
+                Details</a>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container contact-grid">
+            <div class="contact-details">
+                <h3>Contact Us</h3>
+                <ul class="contact-info-list">
+                    <li><i class="fa-solid fa-phone"></i>
+                        <div>8818887770 | 9669561234</div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            B-57, MIG Colony, RSS Nagar, Indore - 452011
+                            <br><span
+                                style="color:var(--gold); font-weight:600; font-size:0.85rem; display:block; margin-top:5px;">Our
+                                Branches: Indore, Bhopal, Harda, Khargone, Pune, Raipur</span>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <a href="mailto:shreebhargavainfra@gmail.com"
+                                style="color:var(--text-muted); text-decoration:underline;">shreebhargavainfra@gmail.com</a>
+                        </div>
+                    </li>
+                </ul>
+                <div class="social-qr-grid">
+                    <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="qr-item whatsapp-brand">
+                        <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div><span>WhatsApp</span>
+                    </a>
+                    <a href="https://www.google.com" target="_blank" class="qr-item google-brand">
+                        <div class="qr-placeholder"><i class="fa-solid fa-star"></i></div><span>Google Review</span>
+                    </a>
+                    <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="qr-item insta-brand">
+                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div><span>Instagram</span>
+                    </a>
+                    <a href="index.html" class="qr-item web-brand">
+                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div><span>Website</span>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3>Send an Inquiry</h3>
+                <form id="contactForm" action="/contact" method="POST">
+                    <input name="name" type="text" placeholder="Full Name" required>
+                    <input name="email" type="email" placeholder="Email Address" required>
+                    <input name="phone" type="tel" placeholder="Phone Number" required>
+                    <input name="subject_text" type="text" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Shree Bhargava Infrastructure & Development. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
+
+        const detailsDB = {
+            "premium-corporate-office": [
+                "pco f.jpeg",
+                "WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
+                "WhatsApp Image 2026-08-05 at 5.16.40 PM.jpeg"
+            ]
+        };
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const projId = urlParams.get('id') || "premium-corporate-office";
+        const index = parseInt(urlParams.get('index')) || 0;
+
+        const imagesArray = detailsDB[projId] || detailsDB["premium-corporate-office"];
+        const targetImgSrc = imagesArray[index] || imagesArray[0];
+
+        const container = document.getElementById('fullImgContainer');
+        container.innerHTML = `<img src="${targetImgSrc}" alt="Full Resolution Project Image" class="gallery-display-img" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">`;
+    </script>
+</body>
+
+</html>

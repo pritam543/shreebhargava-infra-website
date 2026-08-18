@@ -78,6 +78,8 @@
             color: var(--gold);
             font-size: 1.4rem;
             font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         .logo span {
@@ -86,6 +88,17 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .logo .architect-subtitle {
+            font-size: 0.65rem;
+            color: var(--gold);
+            display: block;
+            letter-spacing: 2.2px;
+            font-weight: 600;
+            margin-top: 2px;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -223,13 +236,23 @@
             margin-bottom: 40px;
         }
 
+        .project-row-img {
+            display: block;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
         .project-row-img img {
             width: 100%;
             height: 320px;
-            object-fit: contain;
-            background: #0b0f14;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .project-row-img:hover img {
+            transform: scale(1.03);
         }
 
         .project-row-info h2 {
@@ -667,8 +690,8 @@
             "modern-luxury-residence": {
                 name: "Modern Luxury Residence",
                 projectsList: [
-                    { name: "Modern Luxury Residence - Main View", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "A masterpiece in modern luxury residential architecture featuring expansive open terraces and double-height living areas." },
-                    { name: "Modern Luxury Residence - Terrace View", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "Expansive open terrace designed for evening relaxation and outdoor gatherings." }
+                    { name: "Modern Luxury Residence - Main View", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "A masterpiece in modern luxury residential architecture featuring expansive open terraces, double-height living areas, seamless glass facades, and sustainable energy integration." },
+                    { name: "Terrace & Elevation View", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "Expansive open terrace designed for evening relaxation and outdoor gatherings." }
                 ]
             },
             "premium-corporate-office": {
@@ -702,18 +725,18 @@
         } else if (serviceKey && index !== null && serviceDatabase[serviceKey] && serviceDatabase[serviceKey][index]) {
             const base = serviceDatabase[serviceKey][index];
             document.getElementById('projTitle').innerText = base.name;
-            projectListToDisplay = serviceDatabase[serviceKey];
+            projectListToDisplay = [base];
         }
 
         const container = document.getElementById('projectsSectionsContainer');
         if (projectListToDisplay.length > 0) {
-            projectListToDisplay.forEach((p) => {
+            projectListToDisplay.forEach((p, idx) => {
                 const rowCard = document.createElement('div');
                 rowCard.className = 'project-row-card scroll-slide-left';
                 rowCard.innerHTML = `
-                    <div class="project-row-img">
+                    <a href="full-gallery.html?id=${projId || serviceKey}&index=${idx}" class="project-row-img" title="Click to view full image gallery">
                         <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                    </div>
+                    </a>
                     <div class="project-row-info">
                         <h2>${p.name}</h2>
                         <p class="project-row-desc">${p.desc || 'Professional project execution and design detail.'}</p>
