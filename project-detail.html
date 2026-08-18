@@ -210,7 +210,6 @@
             padding: 60px 0;
         }
 
-        /* Each project section block styled exactly like the screenshot reference */
         .project-row-card {
             display: grid;
             grid-template-columns: 1fr 1.2fr;
@@ -227,7 +226,8 @@
         .project-row-img img {
             width: 100%;
             height: 320px;
-            object-fit: cover;
+            object-fit: contain;
+            background: #0b0f14;
             border-radius: 8px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
@@ -546,9 +546,8 @@
         </div>
     </div>
 
-    <!-- Container where full sections will be dynamically injected -->
     <section class="project-detail-section container" id="projectsSectionsContainer">
-        <!-- Rendered via JavaScript -->
+        <!-- Dynamically populated via JS -->
     </section>
 
     <section id="contact" class="contact section-padding">
@@ -667,39 +666,25 @@
         const detailsDB = {
             "modern-luxury-residence": {
                 name: "Modern Luxury Residence",
-                images: [
-                    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80"
-                ],
-                owner: "Mr. Sharma",
-                built: "3200 sq.ft",
-                place: "Indore, MP",
-                desc: "A masterpiece in modern luxury residential architecture featuring expansive open terraces, double-height living areas, seamless glass facades, and sustainable energy integration."
+                projectsList: [
+                    { name: "Modern Luxury Residence - Main View", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "A masterpiece in modern luxury residential architecture featuring expansive open terraces and double-height living areas." },
+                    { name: "Modern Luxury Residence - Terrace View", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "Expansive open terrace designed for evening relaxation and outdoor gatherings." }
+                ]
             },
             "premium-corporate-office": {
                 name: "Premium Corporate Office",
-                images: [
-                    "images/interior/interior1.jpg",
-                    "interior images/interior9.jpg",
-                    "interior images/interior10.jpg"
-                ],
-                owner: "Apex Corp",
-                built: "4800 sq.ft",
-                place: "Bhopal, MP",
-                desc: "State-of-the-art corporate workspace designed with ergonomic workstations, advanced acoustic lighting, meeting hubs, and executive boardrooms."
+                projectsList: [
+                    { name: "Corporate Workspace & Desks", img: "pco f.jpeg", owner: "Apex Corp", built: "4800 sq.ft", place: "Bhopal, MP", desc: "State-of-the-art corporate workspace designed with ergonomic workstations and advanced acoustic lighting." },
+                    { name: "Sourdoot Brand Wall", img: "WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg", owner: "Apex Corp", built: "4800 sq.ft", place: "Bhopal, MP", desc: "Custom acrylic 3D brand logo signage installed at the corporate reception foyer." },
+                    { name: "Conference & Workstations Area", img: "WhatsApp Image 2026-08-05 at 5.16.40 PM.jpeg", owner: "Apex Corp", built: "4800 sq.ft", place: "Bhopal, MP", desc: "Spacious meeting hubs and multi-tier desk layout for seamless corporate operations." }
+                ]
             },
             "urban-eco-courtyard": {
                 name: "Urban Eco Courtyard",
-                images: [
-                    "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80",
-                    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80"
-                ],
-                owner: "Municipal Corp",
-                built: "8500 sq.ft",
-                place: "Indore, MP",
-                desc: "A sustainable public landscape and civic development project integrating indigenous green cover, rainwater harvesting, and eco-stone walkways."
+                projectsList: [
+                    { name: "Urban Eco Courtyard - Main Landscape", img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=80", owner: "Municipal Corp", built: "8500 sq.ft", place: "Indore, MP", desc: "A sustainable public landscape and civic development project integrating indigenous green cover." },
+                    { name: "Pathway & Lighting Design", img: "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80", owner: "Municipal Corp", built: "8500 sq.ft", place: "Indore, MP", desc: "Eco-stone walking pathways integrated with energy-efficient solar bollard lighting." }
+                ]
             }
         };
 
@@ -713,20 +698,10 @@
         if (projId && detailsDB[projId]) {
             const base = detailsDB[projId];
             document.getElementById('projTitle').innerText = base.name;
-            // Generate multiple full-width card sections for the 3 images of this project
-            const imgs = base.images || [base.img];
-            projectListToDisplay = imgs.map((imgSrc, i) => ({
-                name: `${base.name} - View ${i + 1}`,
-                img: imgSrc,
-                owner: base.owner,
-                built: base.built,
-                place: base.place,
-                desc: base.desc
-            }));
+            projectListToDisplay = base.projectsList;
         } else if (serviceKey && index !== null && serviceDatabase[serviceKey] && serviceDatabase[serviceKey][index]) {
             const base = serviceDatabase[serviceKey][index];
             document.getElementById('projTitle').innerText = base.name;
-            // Show the selected project as well as other related category projects in full rows
             projectListToDisplay = serviceDatabase[serviceKey];
         }
 
