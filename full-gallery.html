@@ -454,14 +454,6 @@
     <script>
         function toggleMenu() { document.getElementById('navLinks').classList.toggle('active'); }
 
-        function toggleDropdown(event) {
-            if (window.innerWidth <= 992) {
-                event.preventDefault();
-                event.currentTarget.parentElement.classList.toggle('active-dropdown');
-            }
-        }
-
-        // Gallery database with unique images for index 0 (47 BILLION) and index 1 (Sourdoot Brand Wall with new images added)
         const galleryDB = {
             "premium-corporate-office": {
                 0: [ // 47 BILLION images
@@ -474,12 +466,13 @@
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.39 PM (2).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM.jpeg"
                 ],
-                1: [ // Sourdoot Brand Wall images (including the new ones provided)
+                1: [ // Sourdoot Brand Wall images (updated with newly provided paths)
                     "WhatsApp Image 2026-08-05 at 5.16.18 PM_2.jpeg",
                     "WhatsApp Image 2026-08-05 at 5.16.33 PM (1).jpeg",
                     "WhatsApp Image 2026-08-05 at 5.15.58 PM (1).jpeg",
                     "WhatsApp Image 2026-08-05 at 5.16.04 PM (2).jpeg",
                     "WhatsApp Image 2026-08-05 at 5.16.14 PM.jpeg",
+                    "WhatsApp Image 2026-08-05 at 5.16.33 PM (2).jpeg",
                     "WhatsApp Image 2026-08-05 at 5.16.33 PM (2).jpeg"
                 ],
                 2: [ // Conference & Workstations Area images
