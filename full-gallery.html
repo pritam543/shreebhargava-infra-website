@@ -125,6 +125,7 @@
             text-align: center;
         }
 
+        /* Updated Gallery Grid to display full images without cropping */
         .gallery-grid-view {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -134,12 +135,12 @@
 
         .gallery-grid-view img {
             width: 100%;
-            height: 380px;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
             border-radius: 8px;
             border: 2px solid var(--gold);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            background: #000;
+            background: transparent;
             transition: transform 0.3s ease;
         }
 
@@ -466,8 +467,8 @@
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.39 PM (2).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM.jpeg"
                 ],
-                1: [ // Sourdoot Brand Wall images (All correct paths)
-                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
+                1: [ // Sourdoot Brand Wall images (Updated with specific 1st image path)
+                    "WhatsApp Image 2026-08-05 at 5.16.18 PM_3.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.33 PM (1).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.15.58 PM (1).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.04 PM (2).jpeg",
@@ -476,10 +477,10 @@
                 ],
                 2: [ // Conference & Workstations Area images
                     "all mix images/pco f.jpeg",
-                    "all mix images/WhatsApp Image 2026-08-05 at 5.15.53 PM (1).jpeg",
-                   
-                    "all mix images/WhatsApp Image 2026-08-18 at 12.59.31 PM.jpeg",
-                 
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM (2).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (2).jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.34 PM.jpeg",
+                    "all mix images/WhatsApp Image 2026-08-05 at 5.16.08 PM.jpeg"
                 ]
             }
         };
