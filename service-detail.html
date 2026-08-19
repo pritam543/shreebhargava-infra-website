@@ -826,7 +826,9 @@
             card.className = 'gallery-card scroll-slide-left';
             card.href = `project-detail.html?service=${serviceKey}&index=${index}`;
             card.innerHTML = `
-                
+                <div class="gallery-img-box">
+                    <img src="${proj.img}" alt="${proj.name || 'Project Image'}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
+                </div>
                
 
                 
