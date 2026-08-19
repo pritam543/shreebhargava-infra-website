@@ -234,7 +234,6 @@
             }
         }
 
-        /* Mobile Menu Toggle Button */
         .menu-toggle {
             display: none;
             font-size: 1.4rem;
@@ -383,7 +382,6 @@
             color: var(--gold);
         }
 
-        /* Uniform Hero Social Icons */
         .hero-social-icons {
             display: flex;
             justify-content: center;
@@ -516,7 +514,7 @@
             margin-bottom: 12px;
         }
 
-        /* Services Section with Smooth Hover Swap (Non-Clickable) */
+        /* Services Section */
         .services {
             background-color: var(--bg-light);
         }
@@ -649,7 +647,7 @@
             color: var(--text-muted);
         }
 
-        /* Featured Projects Section & Category Filter Buttons */
+        /* Featured Projects Section */
         .project-filter-buttons {
             display: flex;
             justify-content: center;
@@ -785,7 +783,7 @@
             display: block;
         }
 
-        /* Contact Section with Social Brand Boxes */
+        /* Contact Section */
         .contact {
             background-color: var(--primary-dark);
             color: var(--text-light);
@@ -961,7 +959,6 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            /* Mobile Navbar Fixes */
             .menu-toggle {
                 display: block;
             }
@@ -993,7 +990,6 @@
                 justify-content: center;
             }
 
-            /* Mobile Dropdown Click Control */
             .dropdown-menu {
                 position: relative;
                 width: 100%;
@@ -1010,19 +1006,13 @@
                 display: block;
             }
 
-            /* Mobile Horizontal Scroll for Category Filter Buttons */
             .project-filter-buttons {
-                display: flex;
                 flex-wrap: nowrap;
                 overflow-x: auto;
                 justify-content: flex-start;
                 padding-bottom: 10px;
                 -webkit-overflow-scrolling: touch;
                 scrollbar-width: none;
-            }
-
-            .project-filter-buttons::-webkit-scrollbar {
-                display: none;
             }
 
             .filter-btn {
@@ -1114,15 +1104,15 @@
                     firm dedicated to creating timeless, functional, and inspiring spaces.</p>
                 <div class="stats-grid">
                     <div class="stat-item"><i class="fa-solid fa-award" style="color:var(--gold);"></i>
-                        <h4>10+</h4>
+                        <h4><span class="counter" data-target="11">0</span>+</h4>
                         <p>Years Experience</p>
                     </div>
                     <div class="stat-item"><i class="fa-solid fa-building-shield" style="color:var(--gold);"></i>
-                        <h4>250+</h4>
+                        <h4><span class="counter" data-target="250">0</span>+</h4>
                         <p>Projects Done</p>
                     </div>
                     <div class="stat-item"><i class="fa-solid fa-smile" style="color:var(--gold);"></i>
-                        <h4>100%</h4>
+                        <h4><span class="counter" data-target="100">0</span>%</h4>
                         <p>Satisfaction</p>
                     </div>
                 </div>
@@ -1352,7 +1342,6 @@
                     <div class="project-img">
                         <img src="images/interior/interior1.jpg" alt="Interior"
                             onError="this.src='all mix images/pco f.jpeg';">
-                        <!-- <span class="project-badge">Interior</span> -->
                         <div class="project-overlay">
                             <p>Click to view complete project details, dimensions, and specifications.</p>
                         </div>
@@ -1366,7 +1355,6 @@
                 <a href="project-detail.html?id=urban-eco-courtyard" class="project-card scroll-slide-left">
                     <div class="project-img">
                         <img src="all mix images/WhatsApp Image 2026-08-05 at 5.16.06 PM.jpeg" alt="Government Project">
-                        <!-- <span class="project-badge">Government</span> -->
                         <div class="project-overlay">
                             <p>Click to view complete project details, dimensions, and specifications.</p>
                         </div>
@@ -1463,6 +1451,37 @@
             }
         }
 
+        // Counter Animation Script for Stats
+        const counters = document.querySelectorAll('.counter');
+        const statsSection = document.querySelector('.stats-grid');
+        let started = false;
+
+        if (statsSection) {
+            const observerOptions = { threshold: 0.5 };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !started) {
+                        started = true;
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute('data-target');
+                            const updateCount = () => {
+                                const count = +counter.innerText;
+                                const increment = target / 40; // Speed adjustment
+                                if (count < target) {
+                                    counter.innerText = Math.ceil(count + increment);
+                                    setTimeout(updateCount, 25);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            };
+                            updateCount();
+                        });
+                    }
+                });
+            }, observerOptions);
+            observer.observe(statsSection);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => {
@@ -1477,14 +1496,14 @@
                 });
             });
 
-            const observer = new IntersectionObserver((entries) => {
+            const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show');
                     }
                 });
             }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => observer.observe(el));
+            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => scrollObserver.observe(el));
         });
     </script>
 </body>
