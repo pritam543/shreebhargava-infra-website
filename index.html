@@ -605,10 +605,12 @@
             transform: translateY(0);
         }
 
-        /* Why Choose Us */
+        /* Why Choose Us - Updated Professional Gradient Background */
         .why-choose-us {
-            background-color: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
             color: var(--text-light);
+            border-top: 1px solid rgba(255, 165, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 165, 0, 0.15);
         }
 
         .wcu-grid {
@@ -1466,7 +1468,7 @@
                             const target = +counter.getAttribute('data-target');
                             const updateCount = () => {
                                 const count = +counter.innerText;
-                                const increment = target / 40; // Speed adjustment
+                                const increment = target / 40;
                                 if (count < target) {
                                     counter.innerText = Math.ceil(count + increment);
                                     setTimeout(updateCount, 25);
