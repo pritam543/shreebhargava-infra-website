@@ -88,6 +88,16 @@
             letter-spacing: 2px;
         }
 
+        .logo .architect-subtitle {
+            font-size: 0.65rem;
+            color: var(--gold);
+            display: block;
+            letter-spacing: 2.2px;
+            font-weight: 600;
+            margin-top: 2px;
+            text-transform: uppercase;
+        }
+
         .nav-links {
             display: flex;
             align-items: center;
@@ -241,6 +251,37 @@
             width: 60px;
             height: 2px;
             background-color: var(--gold);
+        }
+
+        /* Filter Buttons Styling matching Homepage */
+        .project-filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            color: var(--primary-dark);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: #ffffff;
+            border-color: var(--gold);
         }
 
         .gallery-grid {
@@ -501,6 +542,20 @@
             .dropdown.active-dropdown .dropdown-menu {
                 display: block;
             }
+
+            .project-filter-buttons {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 10px;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .filter-btn {
+                flex-shrink: 0;
+                white-space: nowrap;
+            }
         }
 
         @media (max-width: 576px) {
@@ -551,6 +606,18 @@
     </div>
 
     <section class="gallery-section container">
+        <!-- 6 Filter Buttons added right above Project Gallery -->
+        <div class="project-filter-buttons scroll-slide-right">
+            <a href="index.html#projects" class="filter-btn">All Projects</a>
+            <a href="service-detail.html?service=architecture" class="filter-btn" id="btn-architecture">Architecture</a>
+            <a href="service-detail.html?service=interior" class="filter-btn" id="btn-interior">Interior</a>
+            <a href="service-detail.html?service=townplanning" class="filter-btn" id="btn-townplanning">Town
+                Planning</a>
+            <a href="service-detail.html?service=government" class="filter-btn" id="btn-government">Government
+                Project</a>
+            <a href="service-detail.html?service=pmc" class="filter-btn" id="btn-pmc">PMC Projects</a>
+        </div>
+
         <div class="section-header scroll-slide-left">
             <h2>Project Gallery</h2>
         </div>
@@ -648,9 +715,6 @@
                 });
             });
         });
-
-
-
 
         const serviceData = {
             architecture: {
@@ -753,6 +817,12 @@
 
         document.getElementById('serviceTitle').innerText = currentService.title;
         document.getElementById('serviceDesc').innerText = currentService.desc;
+
+        // Highlight active button dynamically
+        const activeBtn = document.getElementById('btn-' + serviceKey);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
 
         const galleryContainer = document.getElementById('galleryContainer');
         currentService.projects.forEach((proj) => {
