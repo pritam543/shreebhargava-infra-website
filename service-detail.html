@@ -243,7 +243,6 @@
             background-color: var(--gold);
         }
 
-        /* 3 Columns Grid Layout */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -260,9 +259,7 @@
             transition: var(--transition);
             display: flex;
             flex-direction: column;
-            text-decoration: none;
             color: inherit;
-            cursor: pointer;
         }
 
         .gallery-card:hover {
@@ -291,36 +288,6 @@
 
         .gallery-card:hover .gallery-img-box img {
             transform: scale(1.08);
-        }
-
-        .gallery-info {
-            padding: 15px;
-            text-align: center;
-            background: var(--bg-light);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-info h4 {
-            font-size: 0.95rem;
-            color: var(--primary-dark);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 5px;
-        }
-
-        .gallery-details-text {
-            font-size: 0.75rem;
-            color: #666;
-            font-weight: 500;
-            border-top: 1px solid #ddd;
-            padding-top: 5px;
-            width: 100%;
-            display: block;
         }
 
         .contact {
@@ -392,36 +359,16 @@
             background: #25D366;
         }
 
-        .qr-item.whatsapp-brand:hover {
-            border-color: #25D366;
-            transform: translateY(-4px);
-        }
-
         .qr-item.google-brand .qr-placeholder {
             background: #4285F4;
-        }
-
-        .qr-item.google-brand:hover {
-            border-color: #4285F4;
-            transform: translateY(-4px);
         }
 
         .qr-item.insta-brand .qr-placeholder {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
-        .qr-item.insta-brand:hover {
-            border-color: #dc2743;
-            transform: translateY(-4px);
-        }
-
         .qr-item.web-brand .qr-placeholder {
             background: var(--gold);
-        }
-
-        .qr-item.web-brand:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
         }
 
         .qr-item span {
@@ -499,19 +446,6 @@
 
             .social-qr-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-
-            .navbar {
-                padding: 12px 15px;
-            }
-
-            .logo h1 {
-                font-size: 1.15rem;
-            }
-
-            .logo span {
-                font-size: 0.55rem;
-                letter-spacing: 1px;
             }
 
             .menu-toggle {
@@ -653,20 +587,16 @@
 
                 <div class="social-qr-grid">
                     <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="qr-item whatsapp-brand">
-                        <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div>
-                        <span>WhatsApp</span>
+                        <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div><span>WhatsApp</span>
                     </a>
                     <a href="https://www.google.com" target="_blank" class="qr-item google-brand">
-                        <div class="qr-placeholder"><i class="fa-solid fa-star"></i></div>
-                        <span>Google Review</span>
+                        <div class="qr-placeholder"><i class="fa-solid fa-star"></i></div><span>Google Review</span>
                     </a>
                     <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="qr-item insta-brand">
-                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div>
-                        <span>Instagram</span>
+                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div><span>Instagram</span>
                     </a>
                     <a href="index.html" class="qr-item web-brand">
-                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div>
-                        <span>Website</span>
+                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div><span>Website</span>
                     </a>
                 </div>
             </div>
@@ -719,84 +649,79 @@
             });
         });
 
-        // Service data with interior images (interior7 to interior16) added with complete details
         const serviceData = {
             architecture: {
                 title: "Architecture Design",
                 desc: "Explore precise 2D floor plans, elevation drawings, and photorealistic 3D architectural renders.",
                 projects: [
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.49 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.50 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.51 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.52 PM (3).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.56 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.57 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.01 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.07 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.14 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.59 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.37 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.37 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.41 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.16.48 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.33 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.34 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.34 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.35 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.37 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.37 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.38 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.38 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.39 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.39 PM.jpeg", },
-
-
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.49 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.50 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.51 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.52 PM (3).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.56 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.57 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.01 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.07 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.14 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.35 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.15.59 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.37 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.37 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.40 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.41 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.16.48 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.33 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.34 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.34 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.35 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.37 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.37 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.38 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.38 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.39 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.39 PM.jpeg" }
                 ]
             },
             interior: {
                 title: "Interior Design",
                 desc: "Explore all our exclusive unique interior design executions, 3D walkthroughs, and custom folders.",
                 projects: [
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.51 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.51 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.51 PM.jpeg", },
-                    { name: "", img: "interior images/interior10.jpg", },
-                    { name: "", img: "interior images/interior11.jpg", },
-                    { name: "", img: "interior images/interior12.jpg", },
-                    { name: "", img: "interior images/interior13.jpg", },
-                    { name: "", img: "interior images/interior14.jpg", },
-                    { name: "", img: "interior images/interior15.jpg", },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.51 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.51 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.51 PM.jpeg" },
+                    { name: "", img: "interior images/interior10.jpg" },
+                    { name: "", img: "interior images/interior11.jpg" },
+                    { name: "", img: "interior images/interior12.jpg" },
+                    { name: "", img: "interior images/interior13.jpg" },
+                    { name: "", img: "interior images/interior14.jpg" },
+                    { name: "", img: "interior images/interior15.jpg" },
                     { name: "", img: "interior images/interior16.jpg" },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.36 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.36 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.36 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.37 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.37 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.38 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.38 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.38 PM.jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.39 PM (1).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.39 PM (2).jpeg", },
-                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.39 PM.jpeg", },
-                    { name: "", img: "interior images/interior7.jpg", },
-                    { name: "", img: "interior images/interior8.jpg", },
-                    { name: "", img: "interior images/interior9.jpg", },
-
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.36 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.36 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.36 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.37 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.37 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.38 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.38 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.38 PM.jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.39 PM (1).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.39 PM (2).jpeg" },
+                    { name: "", img: "all mix images/WhatsApp Image 2026-08-19 at 2.08.39 PM.jpeg" },
+                    { name: "", img: "interior images/interior7.jpg" },
+                    { name: "", img: "interior images/interior8.jpg" },
+                    { name: "", img: "interior images/interior9.jpg" }
                 ]
             },
             townplanning: {
                 title: "Town Planning",
                 desc: "Comprehensive master layout planning, zoning design, and large-scale urban development.",
                 projects: [
-                    { name: "Greenfield Township Plan", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.03 PM (2).jpeg", owner: "Govt Housing Board", plot: "50000 sq.ft", built: "35000 sq.ft", place: "Indore, MP", desc: "Large-scale township layout incorporating parks, commercial zones, and wide roadways." },
-                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.19 PM.jpeg", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft", place: "Bhopal, MP", desc: "Strategic smart city zoning and residential block planning." },
-                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.36 PM.jpeg", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft", place: "Bhopal, MP", desc: "Strategic smart city zoning and residential block planning." },
-                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM.jpeg", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft", place: "Bhopal, MP", desc: "Strategic smart city zoning and residential block planning." },
-                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM (2).jpeg", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft", place: "Bhopal, MP", desc: "Strategic smart city zoning and residential block planning." },
-                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.10 PM.jpeg", owner: "Urban Authority", plot: "80000 sq.ft", built: "55000 sq.ft", place: "Bhopal, MP", desc: "Strategic smart city zoning and residential block planning." },
-
+                    { name: "Greenfield Township Plan", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.03 PM (2).jpeg" },
+                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.19 PM.jpeg" },
+                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-19 at 4.24.36 PM.jpeg" },
+                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM.jpeg" },
+                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.36 PM (2).jpeg" },
+                    { name: "Smart City Zoning Map", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.10 PM.jpeg" }
                 ]
             },
             government: {
@@ -807,14 +732,14 @@
                     { name: "Public Infrastructure Drawing", img: "all mix images/WhatsApp Image 2026-08-18 at 1.00.35 PM.jpeg" },
                     { name: "Municipal Building 3D View", img: "all mix images/WhatsApp Image 2026-08-18 at 1.00.18 PM.jpeg" },
                     { name: "Govt Project Master Plan", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.09 PM.jpeg" },
-                    { name: "Urban Zoning CAD Design", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.01 PM (1).jpeg" },
+                    { name: "Urban Zoning CAD Design", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.01 PM (1).jpeg" }
                 ]
             },
             pmc: {
                 title: "Project Management Consultancy",
                 desc: "Structural audit reports, construction scheduling charts, and quality control drawings.",
                 projects: [
-                    { name: "Site Supervision 3D View", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80", owner: "Buildcorp Ltd", plot: "20000 sq.ft", built: "18000 sq.ft", place: "Pune, MH", desc: "Rigorous quality audit and construction progress supervision tracking." }
+                    { name: "Site Supervision 3D View", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80" }
                 ]
             }
         };
@@ -827,17 +752,13 @@
         document.getElementById('serviceDesc').innerText = currentService.desc;
 
         const galleryContainer = document.getElementById('galleryContainer');
-        currentService.projects.forEach((proj, index) => {
-            const card = document.createElement('a');
+        currentService.projects.forEach((proj) => {
+            const card = document.createElement('div');
             card.className = 'gallery-card scroll-slide-left';
-            card.href = `project-detail.html?service=${serviceKey}&index=${index}`;
             card.innerHTML = `
                 <div class="gallery-img-box">
                     <img src="${proj.img}" alt="${proj.name || 'Project Image'}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
                 </div>
-               
-
-                
             `;
             galleryContainer.appendChild(card);
         });
