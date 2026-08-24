@@ -754,7 +754,6 @@
         const urlParams = new URLSearchParams(window.location.search);
         const projId = urlParams.get('id');
         const serviceKey = urlParams.get('service');
-        const index = urlParams.get('index');
 
         let projectListToDisplay = [];
 
@@ -762,15 +761,14 @@
             const base = detailsDB[projId];
             document.getElementById('projTitle').innerText = base.name;
             projectListToDisplay = base.projectsList;
-        } else if (serviceKey && index !== null && serviceDatabase[serviceKey] && serviceDatabase[serviceKey][index]) {
-            const base = serviceDatabase[serviceKey][index];
-            document.getElementById('projTitle').innerText = base.name;
-            projectListToDisplay = [base];
+        } else if (serviceKey && serviceDatabase[serviceKey]) {
+            document.getElementById('projTitle').innerText = serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) + " Projects";
+            projectListToDisplay = serviceDatabase[serviceKey];
         }
 
         const container = document.getElementById('projectsSectionsContainer');
         if (projectListToDisplay.length > 0) {
-            projectListToDisplay.forEach((p, idx) => {
+            projectListToDisplay.forEach((p) => {
                 const rowCard = document.createElement('div');
                 rowCard.className = 'project-row-card scroll-slide-left';
                 rowCard.innerHTML = `
