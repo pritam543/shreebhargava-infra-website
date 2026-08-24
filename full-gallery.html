@@ -125,7 +125,6 @@
             text-align: center;
         }
 
-        /* Updated Gallery Grid to display full images without cropping */
         .gallery-grid-view {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -133,7 +132,8 @@
             margin-bottom: 40px;
         }
 
-        .gallery-grid-view img {
+        .gallery-grid-view img,
+        .gallery-grid-view video {
             width: 100%;
             height: auto;
             object-fit: contain;
@@ -477,7 +477,6 @@
                 ],
                 2: [
                     "all mix images/WhatsApp Image 2026-08-24 at 2.11.25 PM (1).jpeg",
-
                     "all mix images/WhatsApp Image 2026-08-24 at 2.11.26 PM (1).jpeg",
                     "all mix images/WhatsApp Image 2026-08-24 at 2.11.26 PM (1).jpeg",
                     "all mix images/WhatsApp Image 2026-08-24 at 2.11.29 PM.jpeg",
@@ -486,8 +485,6 @@
                     "all mix images/WhatsApp Image 2026-08-24 at 2.11.53 PM.jpeg",
                     "all mix images/WhatsApp Image 2026-08-24 at 2.11.51 PM.jpeg",
                     "all mix images/2lakh sq. ft.mp4"
-
-
                 ]
             },
             "urban-eco-courtyard": {
@@ -499,8 +496,6 @@
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.32 PM.jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.15 PM (2).jpeg",
                     "all mix images/WhatsApp Image 2026-08-05 at 5.16.19 PM (2).jpeg",
-
-
                 ],
                 1: [
                     "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80",
@@ -509,7 +504,6 @@
                     "https://images.unsplash.com/photo-1541888946425-d0fbb186a5b3?auto=format&fit=crop&w=800&q=80"
                 ]
             },
-
         };
 
         const urlParams = new URLSearchParams(window.location.search);
@@ -520,12 +514,21 @@
         const targetImages = projectGalleries[index] || projectGalleries[0];
 
         const container = document.getElementById('fullImgContainer');
-        targetImages.forEach(imgSrc => {
-            const imgEl = document.createElement('img');
-            imgEl.src = imgSrc;
-            imgEl.alt = "Project Gallery Image";
-            imgEl.onerror = function () { this.src = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'; };
-            container.appendChild(imgEl);
+        targetImages.forEach(mediaSrc => {
+            if (mediaSrc.match(/\.(mp4|webm|ogg)$/i)) {
+                const videoEl = document.createElement('video');
+                videoEl.src = mediaSrc;
+                videoEl.width = "100%";
+                videoEl.height = "auto";
+                videoEl.controls = true;
+                container.appendChild(videoEl);
+            } else {
+                const imgEl = document.createElement('img');
+                imgEl.src = mediaSrc;
+                imgEl.alt = "Project Gallery Image";
+                imgEl.onerror = function () { this.src = 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'; };
+                container.appendChild(imgEl);
+            }
         });
     </script>
 </body>
