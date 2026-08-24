@@ -78,8 +78,6 @@
             color: var(--gold);
             font-size: 1.4rem;
             font-weight: 700;
-            letter-spacing: 1px;
-            line-height: 1.2;
         }
 
         .logo span {
@@ -88,17 +86,6 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-weight: 300;
-        }
-
-        .logo .architect-subtitle {
-            font-size: 0.65rem;
-            color: var(--gold);
-            display: block;
-            letter-spacing: 2.2px;
-            font-weight: 600;
-            margin-top: 2px;
-            text-transform: uppercase;
         }
 
         .nav-links {
@@ -236,7 +223,7 @@
             margin-bottom: 40px;
         }
 
-        /* Non-clickable image container */
+        /* Clickable image container linking to full-gallery.html */
         .project-row-img {
             display: block;
             overflow: hidden;
@@ -253,6 +240,11 @@
             object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .project-row-img:hover img {
+            transform: scale(1.03);
         }
 
         .project-row-info h2 {
@@ -357,36 +349,16 @@
             background: #25D366;
         }
 
-        .qr-item.whatsapp-brand:hover {
-            border-color: #25D366;
-            transform: translateY(-4px);
-        }
-
         .qr-item.google-brand .qr-placeholder {
             background: #4285F4;
-        }
-
-        .qr-item.google-brand:hover {
-            border-color: #4285F4;
-            transform: translateY(-4px);
         }
 
         .qr-item.insta-brand .qr-placeholder {
             background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
         }
 
-        .qr-item.insta-brand:hover {
-            border-color: #dc2743;
-            transform: translateY(-4px);
-        }
-
         .qr-item.web-brand .qr-placeholder {
             background: var(--gold);
-        }
-
-        .qr-item.web-brand:hover {
-            border-color: var(--gold);
-            transform: translateY(-4px);
         }
 
         .qr-item span {
@@ -655,43 +627,6 @@
             }
         }
 
-        const serviceDatabase = {
-            architecture: [
-                { name: "3D Front Elevation Render 1", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Verma", built: "2600 sq.ft", place: "Indore, MP", desc: "Precise 3D elevation render showcasing contemporary facade design." },
-                { name: "Technical Floor Plan 2D", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "Dr. Agrawal", built: "2100 sq.ft", place: "Bhopal, MP", desc: "Detailed 2D floor plan optimized for space utilization and airflow." },
-                { name: "Modern Exterior 3D View", img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80", owner: "Mr. Kapoor", built: "4000 sq.ft", place: "Ujjain, MP", desc: "Luxurious exterior 3D view featuring modern structural elements." },
-                { name: "Structural Layout Blueprint", img: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?auto=format&fit=crop&w=800&q=80", owner: "BuildWell Group", built: "6000 sq.ft", place: "Dewas, MP", desc: "Comprehensive structural blueprint designed as per high engineering standards." },
-                { name: "Luxury Villa 3D Concept", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "6500 sq.ft", place: "Indore, MP", desc: "High-end villa architectural concept with expansive lawns and open balconies." },
-                { name: "Luxury Villa 3D Concept", img: "all mix images/WhatsApp Image 2026-08-19 at 4.16.46 PM.jpeg", owner: "Mr. Sharma", built: "6500 sq.ft", place: "Indore, MP", desc: "High-end villa architectural concept with expansive lawns and open balconies." },
-                { name: "Luxury Villa 3D Concept", img: "all mix images/WhatsApp Image 2026-08-19 at 4.16.47 PM.jpeg", owner: "Mr. Sharma", built: "6500 sq.ft", place: "Indore, MP", desc: "High-end villa architectural concept with expansive lawns and open balconies." },
-            ],
-            interior: [
-                { name: "Luxury Bedroom Wardrobe View", img: "interior images/interior7.jpg", owner: "Mr. R. Sharma", built: "600 sq.ft", place: "Indore, MP", desc: "Elegant bedroom interior featuring custom-built wooden wardrobes, ambient cove lighting, and sleek modern bed styling." },
-                { name: "Minimalist Sliding Wardrobe Room", img: "interior images/interior8.jpg", owner: "Mrs. Sen", built: "550 sq.ft", place: "Bhopal, MP", desc: "Clean white and wooden finish sliding wardrobe setup paired with serene minimalist bedroom aesthetics." },
-                { name: "Executive Office Cabin", img: "interior images/interior9.jpg", owner: "Apex Corp", built: "450 sq.ft", place: "Indore, MP", desc: "Modern corporate office cabin featuring fluted wooden panels, sleek grey desk setup, and artistic wall framing." },
-                { name: "Contemporary TV Credenza Bedroom", img: "interior images/interior10.jpg", owner: "Mr. Jain", built: "500 sq.ft", place: "Raipur, CG", desc: "Sophisticated grey-toned bedroom setup featuring a clean white wall-mounted media console unit." },
-                { name: "Aesthetic Fluted Panel Bedroom", img: "interior images/interior11.jpg", owner: "Dr. Khandelwal", built: "650 sq.ft", place: "Pune, MH", desc: "Chic bedroom interior styled with vertical wall fluting, rose-gold pendant lamps, and a round backlit mirror." },
-                { name: "Warm Wood Panel Bedback", img: "interior images/interior12.jpg", owner: "Mr. Agrawal", built: "700 sq.ft", place: "Indore, MP", desc: "Grand wooden wall-paneling headboard design accented with warm LED strip lighting." },
-                { name: "Wooden Media Unit & Shelves", img: "interior images/interior13.jpg", owner: "Mr. Patidar", built: "480 sq.ft", place: "Harda, MP", desc: "Functional bedroom entertainment wall featuring vertical wood paneling and integrated display shelving." },
-                { name: "Warm Lighting TV Console", img: "interior images/interior14.jpg", owner: "Mr. Solanki", built: "520 sq.ft", place: "Khargone, MP", desc: "Warm ambient lit wooden TV unit panel paired with floating low-profile drawers." },
-                { name: "Upholstered Headboard Suite", img: "interior images/interior15.jpg", owner: "Mr. Dubey", built: "750 sq.ft", place: "Bhopal, MP", desc: "Luxurious master bedroom interior featuring vertical pleated fabric headboard and rich pendant lighting." },
-                { name: "Glass Wardrobe & Brick Wall", img: "interior images/interior16.jpg", owner: "Mr. Chawla", built: "680 sq.ft", place: "Indore, MP", desc: "Modern bedroom layout highlighted by glass-door wardrobes with gold handles and rustic exposed white brick wall detailing." }
-            ],
-            townplanning: [
-                { name: "Greenfield Township Plan", img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80", owner: "Govt Housing Board", built: "35000 sq.ft", place: "Indore, MP", desc: "Large-scale township layout incorporating parks, commercial zones, and wide roadways." },
-                { name: "Smart City Zoning Map", img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80", owner: "Urban Authority", built: "55000 sq.ft", place: "Bhopal, MP", desc: "Strategic smart city zoning and residential block planning." }
-            ],
-            government: [
-                { name: "Civic Complex 3D Render", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.00 PM (3).jpeg", owner: "Municipal Corp", built: "8500 sq.ft", place: "Indore, MP", desc: "Modern civic administrative building design complying with all public safety norms." },
-                { name: "Civic Complex 3D Render", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.01 PM (1).jpeg", owner: "Municipal Corp", built: "8500 sq.ft", place: "Indore, MP", desc: "Modern civic administrative building design complying with all public safety norms." },
-                { name: "Civic Complex 3D Render", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.03 PM (2).jpeg", owner: "Municipal Corp", built: "8500 sq.ft", place: "Indore, MP", desc: "Modern civic administrative building design complying with all public safety norms." },
-                { name: "Civic Complex 3D Render", img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.09 PM.jpeg", owner: "Municipal Corp", built: "8500 sq.ft", place: "Indore, MP", desc: "Modern civic administrative building design complying with all public safety norms." },
-            ],
-            pmc: [
-                { name: "Site Supervision 3D View", img: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=800&q=80", owner: "Buildcorp Ltd", built: "18000 sq.ft", place: "Pune, MH", desc: "Rigorous quality audit and construction progress supervision tracking." }
-            ]
-        };
-
         const detailsDB = {
             "modern-luxury-residence": {
                 name: "Modern Luxury Residence",
@@ -753,7 +688,6 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const projId = urlParams.get('id');
-        const serviceKey = urlParams.get('service');
 
         let projectListToDisplay = [];
 
@@ -761,20 +695,17 @@
             const base = detailsDB[projId];
             document.getElementById('projTitle').innerText = base.name;
             projectListToDisplay = base.projectsList;
-        } else if (serviceKey && serviceDatabase[serviceKey]) {
-            document.getElementById('projTitle').innerText = serviceKey.charAt(0).toUpperCase() + serviceKey.slice(1) + " Projects";
-            projectListToDisplay = serviceDatabase[serviceKey];
         }
 
         const container = document.getElementById('projectsSectionsContainer');
         if (projectListToDisplay.length > 0) {
-            projectListToDisplay.forEach((p) => {
+            projectListToDisplay.forEach((p, idx) => {
                 const rowCard = document.createElement('div');
                 rowCard.className = 'project-row-card scroll-slide-left';
                 rowCard.innerHTML = `
-                    <div class="project-row-img">
+                    <a href="full-gallery.html?id=${projId}&index=${idx}" class="project-row-img" title="Click to view full image gallery">
                         <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                    </div>
+                    </a>
                     <div class="project-row-info">
                         <h2>${p.name}</h2>
                         <p class="project-row-desc">${p.desc || 'Professional project execution and design detail.'}</p>
