@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details - Shree Bhargava Infrastructure & Development</title>
+    <title>Heritage & Legacy - Shree Bhargava Infrastructure & Development</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -56,6 +56,68 @@
             color: inherit;
         }
 
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        /* Smooth Animations */
+        .scroll-slide-left {
+            opacity: 0;
+            transform: translateX(-80px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-slide-right {
+            opacity: 0;
+            transform: translateX(80px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-slide-left.show,
+        .scroll-slide-right.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Navbar */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -68,9 +130,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 18px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 18px 0;
             position: relative;
         }
 
@@ -78,6 +138,8 @@
             color: var(--gold);
             font-size: 1.4rem;
             font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
         }
 
         .logo span {
@@ -86,6 +148,17 @@
             color: var(--text-light);
             text-transform: uppercase;
             letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        .logo .architect-subtitle {
+            font-size: 0.65rem;
+            color: var(--gold);
+            display: block;
+            letter-spacing: 2.2px;
+            font-weight: 600;
+            margin-top: 2px;
+            text-transform: uppercase;
         }
 
         .nav-links {
@@ -111,7 +184,8 @@
             gap: 6px;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--gold);
         }
 
@@ -166,120 +240,161 @@
             border: 1px solid rgba(255, 165, 0, 0.3);
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            width: 100%;
-        }
-
+        /* Page Header */
         .page-header {
             background: linear-gradient(rgba(17, 22, 30, 0.85), rgba(17, 22, 30, 0.85)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover;
-            padding: 60px 20px;
+            padding: 80px 20px;
             text-align: center;
             color: var(--white);
         }
 
         .page-header h1 {
             color: var(--gold);
-            font-size: 2rem;
+            font-size: 2.2rem;
             text-transform: uppercase;
             margin-bottom: 10px;
             letter-spacing: 2px;
         }
 
-        .scroll-slide-left {
-            opacity: 0;
-            transform: translateX(-80px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
         }
 
-        .scroll-slide-right {
-            opacity: 0;
-            transform: translateX(80px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        /* Section 1: Guiding Pillars (Tribute) */
+        .pillars-section {
+            background-color: var(--bg-light);
+            padding: 80px 0;
         }
 
-        .scroll-slide-left.show,
-        .scroll-slide-right.show {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .project-detail-section {
-            padding: 60px 0;
-        }
-
-        .project-row-card {
+        .pillars-grid {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: repeat(2, 1fr);
             gap: 40px;
-            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pillar-card {
             background: var(--white);
-            border-radius: 10px;
-            border: 1px solid #eee;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
-            padding: 30px;
-            margin-bottom: 40px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            text-align: center;
+            padding: 40px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
 
-        /* Clickable image container linking to full-gallery.html */
-        .project-row-img {
-            display: block;
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .pillar-img-wrapper {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
             overflow: hidden;
-            border-radius: 8px;
-            background: #f4f4f4;
-            width: 100%;
-            height: 320px;
-            position: relative;
+            margin: 0 auto 20px;
+            border: 4px solid var(--gold);
+            filter: grayscale(20%);
         }
 
-        .project-row-img img {
+        .pillar-img-wrapper img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
         }
 
-        .project-row-img:hover img {
-            transform: scale(1.03);
-        }
-
-        .project-row-info h2 {
-            font-size: 1.8rem;
+        .pillar-card h3 {
+            font-size: 1.3rem;
             color: var(--primary-dark);
             text-transform: uppercase;
-            margin-bottom: 15px;
-            font-weight: 800;
+            margin-bottom: 5px;
+            font-weight: 700;
         }
 
-        .project-row-desc {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .spec-box {
-            background: var(--bg-light);
-            border-left: 4px solid var(--gold);
-            padding: 18px;
-            border-radius: 6px;
-        }
-
-        .spec-box p {
-            font-size: 0.92rem;
-            margin-bottom: 6px;
-            color: #333;
+        .pillar-card .role {
+            font-size: 0.9rem;
+            color: var(--gold);
             font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: block;
         }
 
-        .spec-box p:last-child {
-            margin-bottom: 0;
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.6;
         }
 
+        /* Section 2 & 3: Rewards & Events Grids */
+        .legacy-grid-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .legacy-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .legacy-item-card {
+            background: var(--bg-light);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+            transition: var(--transition);
+        }
+
+        .legacy-item-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            box-shadow: 0 12px 25px rgba(255, 165, 0, 0.15);
+        }
+
+        .legacy-img-box {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .legacy-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .legacy-item-card:hover .legacy-img-box img {
+            transform: scale(1.08);
+        }
+
+        .legacy-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .legacy-content h4 {
+            font-size: 1.1rem;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .legacy-content p {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        /* Contact Section */
         .contact {
             background-color: var(--primary-dark);
             color: var(--text-light);
@@ -290,7 +405,6 @@
             display: grid;
             grid-template-columns: 1fr 1.2fr;
             gap: 50px;
-            width: 100%;
         }
 
         .contact-details h3,
@@ -311,7 +425,6 @@
             gap: 15px;
             margin-bottom: 20px;
             color: var(--text-muted);
-            word-break: break-word;
         }
 
         .social-qr-grid {
@@ -371,17 +484,15 @@
 
         .contact-form {
             background: var(--secondary-dark);
-            padding: 30px;
+            padding: 40px;
             border-radius: 10px;
             border: 1px solid rgba(255, 102, 0, 0.2);
-            width: 100%;
         }
 
         #contactForm {
             display: flex;
             flex-direction: column;
             gap: 18px;
-            width: 100%;
         }
 
         #contactForm input,
@@ -393,7 +504,6 @@
             border-radius: 6px;
             color: var(--white);
             font-family: inherit;
-            font-size: 0.95rem;
         }
 
         #contactForm button {
@@ -424,10 +534,11 @@
         }
 
         @media (max-width: 992px) {
-            .project-row-card {
+
+            .pillars-grid,
+            .legacy-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                padding: 20px;
+                gap: 25px;
             }
 
             .contact-grid {
@@ -439,34 +550,22 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .navbar {
-                padding: 12px 15px;
-            }
-
-            .logo h1 {
-                font-size: 1.15rem;
-            }
-
             .menu-toggle {
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                display: block;
             }
 
             .nav-links {
                 display: none;
-                flex-direction: column;
+                width: 100%;
                 position: absolute;
                 top: 100%;
                 left: 0;
-                width: 100%;
-                background-color: var(--primary-dark);
-                padding: 15px 20px;
-                border-bottom: 2px solid rgba(255, 165, 0, 0.3);
-                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
-                gap: 10px;
+                background: var(--primary-dark);
+                flex-direction: column;
+                padding: 20px;
+                border-top: 1px solid rgba(255, 102, 0, 0.2);
+                z-index: 1000;
                 text-align: center;
-                z-index: 999;
             }
 
             .nav-links.active {
@@ -475,14 +574,11 @@
 
             .nav-links li {
                 width: 100%;
+                margin: 5px 0;
             }
 
-            .nav-links a {
-                font-size: 0.85rem;
-                display: block;
-                padding: 10px;
-                background: rgba(255, 255, 255, 0.04);
-                border-radius: 6px;
+            .nav-links li a {
+                justify-content: center;
             }
 
             .dropdown-menu {
@@ -506,8 +602,9 @@
 
 <body>
 
+    <!-- Header & Navbar -->
     <header>
-        <div class="navbar">
+        <div class="container navbar">
             <div class="logo">
                 <h1>SHREE BHARGAVA</h1>
                 <span>Infrastructure & Development</span>
@@ -525,7 +622,7 @@
                         <li><a href="index.html#team">Leadership</a></li>
                         <li><a href="index.html#why-us">Why Choose Us</a></li>
                         <li><a href="professional-team.html">Our Professional Team</a></li>
-                        <li><a href="legacy.html">Heritage & Legacy</a></li>
+                        <li><a href="legacy.html" class="active">Heritage & Legacy</a></li>
                     </ul>
                 </li>
                 <li><a href="index.html#services">Services</a></li>
@@ -537,17 +634,128 @@
         </div>
     </header>
 
+    <!-- Page Header Banner -->
     <div class="page-header">
         <div class="container scroll-slide-left">
-            <h1 id="projTitle">Project Detail View</h1>
+            <h1>Our Heritage & Legacy</h1>
+            <p>Honoring our guiding pillars, celebrating our milestones, and cherishing our journey of excellence.</p>
         </div>
     </div>
 
-    <section class="project-detail-section container" id="projectsSectionsContainer">
-        <!-- Dynamically populated via JS -->
+    <!-- Section 1: Tribute to Guiding Pillars -->
+    <section class="pillars-section">
+        <div class="container">
+            <div class="section-header scroll-slide-left">
+                <h2>Tribute to Our Guiding Pillars</h2>
+            </div>
+            <div class="pillars-grid">
+                <!-- Pillar 1 -->
+                <div class="pillar-card scroll-slide-left">
+                    <div class="pillar-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=500&q=80"
+                            alt="Late Shri Mentor Name">
+                    </div>
+                    <h3>Late Shri [Name Here]</h3>
+                    <span class="role">Founding Inspiration & Mentor</span>
+                    <p>His visionary wisdom, unwavering integrity, and dedication laid the lifelong foundation of our
+                        values and architectural philosophy.</p>
+                </div>
+                <!-- Pillar 2 -->
+                <div class="pillar-card scroll-slide-right">
+                    <div class="pillar-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80"
+                            alt="Late Shri Senior Advisor Name">
+                    </div>
+                    <h3>Late Shri [Name Here]</h3>
+                    <span class="role">Chief Engineering Advisor</span>
+                    <p>Remembered for his groundbreaking structural insights and pioneering spirit that continues to
+                        inspire our engineering teams every day.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="contact" class="contact section-padding">
+    <!-- Section 2 & 3: Rewards & Events Collection -->
+    <section class="legacy-grid-section">
+        <div class="container">
+            <!-- Awards & Rewards Subsection -->
+            <div class="section-header scroll-slide-left">
+                <h2>Awards & Recognitions</h2>
+            </div>
+            <div class="legacy-grid">
+                <div class="legacy-item-card scroll-slide-left">
+                    <div class="legacy-img-box">
+                        <img src="https://images.unsplash.com/photo-1567427017947-545c5f8d16ad?auto=format&fit=crop&w=600&q=80"
+                            alt="Award 1">
+                    </div>
+                    <div class="legacy-content">
+                        <h4>Excellence in Architecture 2024</h4>
+                        <p>Awarded for sustainable urban township planning and design execution.</p>
+                    </div>
+                </div>
+                <div class="legacy-item-card scroll-slide-right">
+                    <div class="legacy-img-box">
+                        <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=600&q=80"
+                            alt="Award 2">
+                    </div>
+                    <div class="legacy-content">
+                        <h4>Best Infrastructure Developer</h4>
+                        <p>Recognized for high standards of quality control and timely delivery.</p>
+                    </div>
+                </div>
+                <div class="legacy-item-card scroll-slide-left">
+                    <div class="legacy-img-box">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=600&q=80"
+                            alt="Award 3">
+                    </div>
+                    <div class="legacy-content">
+                        <h4>State Design Honors</h4>
+                        <p>Celebrating innovation in commercial building architecture.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events & Milestones Subsection -->
+            <div class="section-header scroll-slide-left" style="margin-top: 60px;">
+                <h2>Events & Milestones</h2>
+            </div>
+            <div class="legacy-grid">
+                <div class="legacy-item-card scroll-slide-left">
+                    <div class="legacy-img-box">
+                        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=600&q=80"
+                            alt="Event 1">
+                    </div>
+                    <div class="legacy-content">
+                        <h4>Annual Foundation Day</h4>
+                        <p>Celebrating years of teamwork, dedication, and structural innovation.</p>
+                    </div>
+                </div>
+                <div class="legacy-item-card scroll-slide-right">
+                    <div class="legacy-img-box">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=600&q=80"
+                            alt="Event 2">
+                    </div>
+                    <div class="legacy-content">
+                        <h4>Corporate Expo & Exhibition</h4>
+                        <p>Showcasing our futuristic 3D architectural models at the regional expo.</p>
+                    </div>
+                </div>
+                <div class="legacy-item-card scroll-slide-left">
+                    <div class="legacy-img-box">
+                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80"
+                            alt="Event 3">
+                    </div>
+                    <div class="legacy-content">
+                        <h4>Team Building & Workshops</h4>
+                        <p>Continuous learning sessions and collaborative technical meets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact">
         <div class="container contact-grid">
             <div class="contact-details scroll-slide-left">
                 <h3>Contact Us</h3>
@@ -577,26 +785,22 @@
 
                 <div class="social-qr-grid">
                     <a href="https://wa.me/message/TC73LR7AN4FEM1" target="_blank" class="qr-item whatsapp-brand">
-                        <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div>
-                        <span>WhatsApp</span>
+                        <div class="qr-placeholder"><i class="fa-brands fa-whatsapp"></i></div><span>WhatsApp</span>
                     </a>
                     <a href="https://www.google.com" target="_blank" class="qr-item google-brand">
-                        <div class="qr-placeholder"><i class="fa-solid fa-star"></i></div>
-                        <span>Google Review</span>
+                        <div class="qr-placeholder"><i class="fa-solid fa-star"></i></div><span>Google Review</span>
                     </a>
                     <a href="https://www.instagram.com/architectbhargava/" target="_blank" class="qr-item insta-brand">
-                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div>
-                        <span>Instagram</span>
+                        <div class="qr-placeholder"><i class="fa-brands fa-instagram"></i></div><span>Instagram</span>
                     </a>
                     <a href="index.html" class="qr-item web-brand">
-                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div>
-                        <span>Website</span>
+                        <div class="qr-placeholder"><i class="fa-solid fa-globe"></i></div><span>Website</span>
                     </a>
                 </div>
             </div>
 
             <div class="contact-form scroll-slide-right">
-                <h3>Send an Inquiry About This Project</h3>
+                <h3>Get in Touch With Us</h3>
                 <form id="contactForm" action="/contact" method="POST">
                     <input name="name" type="text" placeholder="Full Name" required>
                     <input name="email" type="email" placeholder="Email Address" required>
@@ -628,103 +832,10 @@
             }
         }
 
-        const detailsDB = {
-            "modern-luxury-residence": {
-                name: "Modern Luxury Residence",
-                projectsList: [
-                    { name: "Modern Luxury Residence - Main View", img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "A masterpiece in modern luxury residential architecture featuring expansive open terraces, double-height living areas, seamless glass facades, and sustainable energy integration." },
-                    { name: "Terrace & Elevation View", img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80", owner: "Mr. Sharma", built: "3200 sq.ft", place: "Indore, MP", desc: "Expansive open terrace designed for evening relaxation and outdoor gatherings." }
-                ]
-            },
-            "premium-corporate-office": {
-                name: "Premium Corporate Office",
-                projectsList: [
-                    {
-                        name: "47 BILLION",
-                        img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.42 PM (1).jpeg",
-                        owner: "47 Billion",
-                        built: "12000 sq.ft",
-                        place: "Crystal IT Park, Indore, MP",
-                        desc: "State-of-the-art corporate workspace designed with ergonomic workstations and advanced acoustic lighting."
-                    },
-                    {
-                        name: "Sourdoot ",
-                        img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.18 PM.jpeg",
-                        owner: "Sourdoot Pvt. Ltd.",
-                        built: "1200 sq.ft",
-                        place: "Indore, MP",
-                        desc: "Custom acrylic 3D brand logo signage installed at the corporate reception foyer."
-                    },
-                    {
-                        name: " Workstations Area",
-                        img: "all mix images/WhatsApp Image 2026-08-24 at 2.11.25 PM (1).jpeg",
-                        owner: "Corporate Building Design",
-                        built: "2 Lack sq.ft",
-                        place: "Super Corridor, Indore, MP",
-                        desc: "Spacious meeting hubs and multi-tier desk layout for seamless corporate operations."
-                    }
-                ]
-            },
-            "urban-eco-courtyard": {
-                name: "Urban Eco Courtyard",
-                projectsList: [
-                    {
-                        name: "Urban Eco Courtyard - Main Landscape",
-                        img: "all mix images/WhatsApp Image 2026-08-05 at 5.16.06 PM.jpeg",
-                        owner: "Maheshwar.........",
-                        built: "5000 sq.ft",
-                        place: "Maheshwar, MP",
-                        desc: "A sustainable public landscape and civic development project integrating indigenous green cover."
-                    },
-                    {
-                        name: "Pathway & Lighting Design",
-                        img: "https://images.unsplash.com/photo-1592417817098-8f3d691a4bf5?auto=format&fit=crop&w=800&q=80",
-                        owner: "Municipal Corp",
-                        built: "8500 sq.ft", place: "Indore, MP",
-                        desc: "Eco-stone walking pathways integrated with energy-efficient solar bollard lighting."
-                    }
-                ]
-            }
-        };
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const projId = urlParams.get('id');
-
-        let projectListToDisplay = [];
-
-        if (projId && detailsDB[projId]) {
-            const base = detailsDB[projId];
-            document.getElementById('projTitle').innerText = base.name;
-            projectListToDisplay = base.projectsList;
-        }
-
-        const container = document.getElementById('projectsSectionsContainer');
-        if (projectListToDisplay.length > 0) {
-            projectListToDisplay.forEach((p, idx) => {
-                const rowCard = document.createElement('div');
-                rowCard.className = 'project-row-card scroll-slide-left';
-                rowCard.innerHTML = `
-                    <a href="full-gallery.html?id=${projId}&index=${idx}" class="project-row-img" title="Click to view full image gallery">
-                        <img src="${p.img}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'">
-                    </a>
-                    <div class="project-row-info">
-                        <h2>${p.name}</h2>
-                        <p class="project-row-desc">${p.desc || 'Professional project execution and design detail.'}</p>
-                        <div class="spec-box">
-                           <p>Name: ${p.owner || 'Client'}</p>
-                            <p>Built-in Area: ${p.built || 'N/A'}</p>
-                            <p>Location / Place: ${p.place || 'Indore, MP'}</p>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(rowCard);
-            });
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             const links = document.querySelectorAll('.nav-links a');
             links.forEach(link => {
-                link.addEventListener('click', (e) => {
+                link.addEventListener('click', () => {
                     if (window.innerWidth <= 992) {
                         if (link.parentElement.classList.contains('dropdown') && link === link.parentElement.querySelector('a')) {
                             return;
@@ -735,14 +846,14 @@
                 });
             });
 
-            const observer = new IntersectionObserver((entries) => {
+            const scrollObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show');
                     }
                 });
             }, { threshold: 0.1 });
-            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => observer.observe(el));
+            document.querySelectorAll('.scroll-slide-left, .scroll-slide-right').forEach(el => scrollObserver.observe(el));
         });
     </script>
 </body>
