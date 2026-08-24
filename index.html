@@ -122,7 +122,7 @@
             transform: translateX(0);
         }
 
-        /* Navbar */
+        /* Navbar & Logo Styling */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -137,6 +137,19 @@
             align-items: center;
             padding: 18px 0;
             position: relative;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-logo-img {
+            height: 42px;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
         }
 
         .logo h1 {
@@ -340,7 +353,7 @@
             padding-top: 30px;
         }
 
-        /* "Creative Indian Architect" made noticeably bigger with proper spacing */
+        /* "Creative Indian Architect" */
         .hero-content h2 {
             color: var(--gold);
             font-size: 1.6rem;
@@ -349,7 +362,7 @@
             margin-bottom: 25px;
         }
 
-        /* "Designing Spaces That Inspire" adjusted size with proper spacing */
+        /* "Designing Spaces That Inspire" */
         .hero-content h1 {
             font-size: 2.8rem;
             font-weight: 700;
@@ -357,7 +370,7 @@
             letter-spacing: 2px;
         }
 
-        /* Bold removed (font-weight: 400) with proper spacing */
+        /* Architecture line (not bold) */
         .hero-content p {
             font-size: 1.15rem;
             color: #ffffff;
@@ -610,10 +623,12 @@
             transform: translateY(0);
         }
 
-        /* Why Choose Us */
+        /* Why Choose Us - Professional Gradient Background */
         .why-choose-us {
-            background-color: var(--primary-dark);
+            background: linear-gradient(135deg, var(--primary-dark), var(--secondary-dark));
             color: var(--text-light);
+            border-top: 1px solid rgba(255, 165, 0, 0.15);
+            border-bottom: 1px solid rgba(255, 165, 0, 0.15);
         }
 
         .wcu-grid {
@@ -1039,9 +1054,12 @@
     <header>
         <div class="container navbar">
             <div class="logo">
-                <h1>SHREE BHARGAVA</h1>
-                <span>Infrastructure & Development</span>
-                <span class="architect-subtitle"><b>Creative Indian Architect</b></span>
+                <img src="logo.bmp" alt="Logo" class="navbar-logo-img">
+                <div>
+                    <h1>SHREE BHARGAVA</h1>
+                    <span>Infrastructure & Development</span>
+                    <span class="architect-subtitle"><b>Creative Indian Architect</b></span>
+                </div>
             </div>
 
             <!-- Hamburger Button -->
@@ -1345,8 +1363,8 @@
 
                 <a href="project-detail.html?id=premium-corporate-office" class="project-card scroll-slide-right">
                     <div class="project-img">
-                        <img src="images/interior/interior1.jpg" alt="Interior"
-                            onError="this.src='all mix images/pco f.jpeg';">
+                        <img src="all mix images/pco f.jpeg" alt="Interior"
+                            onError="this.src='images/interior/interior1.jpg';">
                         <div class="project-overlay">
                             <p>Click to view complete project details, dimensions, and specifications.</p>
                         </div>
