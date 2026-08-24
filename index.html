@@ -245,7 +245,7 @@
             border: 1px solid rgba(255, 165, 0, 0.3);
         }
 
-        /* Animated Hero Background Slideshow - Optimized for Mobile & Desktop */
+        /* Animated Hero Background Slideshow */
         .hero {
             position: relative;
             height: 90vh;
@@ -337,30 +337,31 @@
             z-index: 2;
             max-width: 850px;
             margin: 0 auto;
+            padding-top: 30px;
         }
 
-        /* "Creative Indian Architect" made slightly bigger */
+        /* "Creative Indian Architect" made noticeably bigger with proper spacing */
         .hero-content h2 {
             color: var(--gold);
-            font-size: 1.45rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
-        /* "Designing Spaces That Inspire" made slightly smaller */
+        /* "Designing Spaces That Inspire" adjusted size with proper spacing */
         .hero-content h1 {
             font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             letter-spacing: 2px;
         }
 
-        /* Bold removed (font-weight: 400) */
+        /* Bold removed (font-weight: 400) with proper spacing */
         .hero-content p {
             font-size: 1.15rem;
             color: #ffffff;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             font-weight: 400;
             letter-spacing: 3px;
             text-transform: uppercase;
@@ -378,6 +379,7 @@
             border: 2px solid var(--gold);
             transition: var(--transition);
             cursor: pointer;
+            margin-bottom: 25px;
         }
 
         .btn:hover {
@@ -389,7 +391,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 25px;
+            margin-top: 15px;
         }
 
         .hero-social-btn {
@@ -648,6 +650,142 @@
         .wcu-feature p {
             font-size: 0.85rem;
             color: var(--text-muted);
+        }
+
+        /* Featured Projects Section */
+        .project-filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 45px;
+        }
+
+        .filter-btn {
+            padding: 10px 22px;
+            background: var(--bg-light);
+            border: 1px solid #e0e0e0;
+            color: var(--primary-dark);
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold);
+            color: #ffffff;
+            border-color: var(--gold);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--white);
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+            border-color: var(--gold);
+        }
+
+        .project-img {
+            position: relative;
+            overflow: hidden;
+            height: 260px;
+        }
+
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-img img {
+            transform: scale(1.08);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(17, 22, 30, 0.88);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: #fff;
+            padding: 5px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 4px;
+            z-index: 2;
+        }
+
+        .project-info {
+            padding: 20px;
+            text-align: center;
+            background: var(--white);
+        }
+
+        .project-info h3 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .project-details-text {
+            font-size: 0.78rem;
+            color: #666;
+            margin-top: 8px;
+            font-weight: 500;
+            border-top: 1px solid #eee;
+            padding-top: 8px;
+            display: block;
         }
 
         /* Contact Section */
@@ -1167,6 +1305,71 @@
                     </div>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects" class="section-padding">
+        <div class="container">
+            <div class="section-header scroll-slide-left">
+                <h2>Featured Projects</h2>
+            </div>
+
+            <!-- Updated 5 Filter Buttons + All Projects -->
+            <div class="project-filter-buttons scroll-slide-right">
+                <a href="index.html#projects" class="filter-btn active">All Projects</a>
+                <a href="service-detail.html?service=architecture" class="filter-btn">Architecture</a>
+                <a href="service-detail.html?service=interior" class="filter-btn">Interior</a>
+                <a href="service-detail.html?service=townplanning" class="filter-btn">Town Planning</a>
+                <a href="service-detail.html?service=government" class="filter-btn">Government Project</a>
+                <a href="service-detail.html?service=pmc" class="filter-btn">PMC Projects</a>
+            </div>
+
+            <!-- Clickable Project Cards leading to project-detail.html -->
+            <div class="projects-grid" id="projectsContainer">
+                <a href="project-detail.html?id=modern-luxury-residence" class="project-card scroll-slide-left">
+                    <div class="project-img">
+                        <img src="all mix images/WhatsApp Image 2026-08-19 at 4.24.41 PM.jpeg" alt="Architecture">
+                        <span class="project-badge">Architecture</span>
+                        <div class="project-overlay">
+                            <p>Click to view complete project details, dimensions, and specifications.</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Modern Luxury Residence</h3>
+                        <span class="project-details-text">Owner: Mr. Sharma | Plot Area: 2400 sq.ft | Built-in Area:
+                            3200 sq.ft</span>
+                    </div>
+                </a>
+
+                <a href="project-detail.html?id=premium-corporate-office" class="project-card scroll-slide-right">
+                    <div class="project-img">
+                        <img src="images/interior/interior1.jpg" alt="Interior"
+                            onError="this.src='all mix images/pco f.jpeg';">
+                        <div class="project-overlay">
+                            <p>Click to view complete project details, dimensions, and specifications.</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Premium Corporate Office</h3>
+                        <span class="project-details-text">Office name : Apex Corp | Plot Area | Built-in Area</span>
+                    </div>
+                </a>
+
+                <a href="project-detail.html?id=urban-eco-courtyard" class="project-card scroll-slide-left">
+                    <div class="project-img">
+                        <img src="all mix images/WhatsApp Image 2026-08-05 at 5.16.06 PM.jpeg" alt="Government Project">
+                        <div class="project-overlay">
+                            <p>Click to view complete project details, dimensions, and specifications.</p>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3>Urban Eco Courtyard</h3>
+                        <span class="project-details-text">Office name : Municipal Corp | Plot Area| Built-in
+                            Area</span>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
