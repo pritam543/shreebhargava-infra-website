@@ -122,7 +122,7 @@
             transform: translateX(0);
         }
 
-        /* Navbar & Logo Styling */
+        /* Navbar */
         header {
             background-color: var(--primary-dark);
             position: sticky;
@@ -137,19 +137,6 @@
             align-items: center;
             padding: 18px 0;
             position: relative;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .navbar-logo-img {
-            height: 42px;
-            width: auto;
-            object-fit: contain;
-            filter: brightness(0) invert(1);
         }
 
         .logo h1 {
@@ -353,6 +340,7 @@
             padding-top: 30px;
         }
 
+        /* "Creative Indian Architect" made noticeably bigger with proper spacing */
         .hero-content h2 {
             color: var(--gold);
             font-size: 1.6rem;
@@ -361,6 +349,7 @@
             margin-bottom: 25px;
         }
 
+        /* "Designing Spaces That Inspire" adjusted size with proper spacing */
         .hero-content h1 {
             font-size: 2.8rem;
             font-weight: 700;
@@ -368,6 +357,7 @@
             letter-spacing: 2px;
         }
 
+        /* Bold removed (font-weight: 400) with proper spacing */
         .hero-content p {
             font-size: 1.15rem;
             color: #ffffff;
@@ -1049,12 +1039,9 @@
     <header>
         <div class="container navbar">
             <div class="logo">
-                <img src="logo.bmp" alt="Logo" class="navbar-logo-img">
-                <div>
-                    <h1>SHREE BHARGAVA</h1>
-                    <span>Infrastructure & Development</span>
-                    <span class="architect-subtitle"><b>Creative Indian Architect</b></span>
-                </div>
+                <h1>SHREE BHARGAVA</h1>
+                <span>Infrastructure & Development</span>
+                <span class="architect-subtitle"><b>Creative Indian Architect</b></span>
             </div>
 
             <!-- Hamburger Button -->
