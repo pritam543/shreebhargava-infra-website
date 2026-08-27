@@ -245,7 +245,7 @@
             border: 1px solid rgba(255, 165, 0, 0.3);
         }
 
-        /* Animated Hero Background Slideshow - Optimized for Mobile & Desktop */
+        /* Animated Hero Background Slideshow - Optimized Size & Mobile View */
         .hero {
             position: relative;
             height: 90vh;
@@ -337,41 +337,45 @@
             z-index: 2;
             max-width: 850px;
             margin: 0 auto;
+            padding: 0 15px;
         }
 
         .hero-content h2 {
             color: var(--gold);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
+            font-size: 2.8rem;
+            /* Adjusted for better proportion */
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
         }
 
         .hero-content p {
-            font-size: 1.15rem;
+            font-size: 0.95rem;
+            /* Reduced size for clean look */
             color: #ffffff;
-            margin-bottom: 30px;
-            font-weight: 900;
-            letter-spacing: 3px;
+            margin-bottom: 25px;
+            font-weight: 400;
+            /* Removed bold */
+            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
         .btn {
             display: inline-block;
-            padding: 14px 35px;
+            padding: 12px 30px;
             background-color: var(--gold);
             color: #ffffff;
             text-transform: uppercase;
             font-weight: 600;
             letter-spacing: 1px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             border: 2px solid var(--gold);
             transition: var(--transition);
             cursor: pointer;
@@ -385,19 +389,19 @@
         .hero-social-icons {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin-top: 25px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .hero-social-btn {
-            width: 45px;
-            height: 45px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-light);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: var(--transition);
             text-decoration: none;
             background: var(--secondary-dark);
@@ -946,11 +950,23 @@
 
         @media (max-width: 992px) {
             .hero {
-                height: 80vh;
+                height: 75vh;
             }
 
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.1rem;
+                /* Perfectly optimized for mobile view to show background */
+            }
+
+            .hero-content h2 {
+                font-size: 0.95rem;
+                letter-spacing: 2px;
+            }
+
+            .hero-content p {
+                font-size: 0.75rem;
+                font-weight: 400;
+                letter-spacing: 1px;
             }
 
             .about-grid,
